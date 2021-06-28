@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "pokemonirl9b4ab8b0": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

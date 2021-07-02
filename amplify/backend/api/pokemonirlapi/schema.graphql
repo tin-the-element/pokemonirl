@@ -6,7 +6,6 @@ type Todo @model {
 
 type SingleTask @model {
   id: ID!
-  type: String!
   question: String!
   answer: String!
   total_hp: Int!
@@ -16,18 +15,16 @@ type SingleTask @model {
 
 type MultipleTask @model {
   id: ID!
-  type: String!
   question: String!
-  answer: [String]
+  answer: [String]!
   turns_permitted: Int!
   exp_given: Int!
 }
 
 type RiddleTask @model {
   id: ID!
-  type: String!
   question: String!
-  answer: [Move]
+  answer: [Move]!
   turns_permitted: Int!
   exp_given: Int!
 }

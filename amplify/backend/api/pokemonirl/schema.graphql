@@ -8,7 +8,7 @@ type SingleTask @model {
   id: ID!
   type: String!
   question: String!
-  answer: String!
+  answer: Type
   total_hp: Int!
   turns_permitted: Int!
   exp_given: Int!
@@ -18,7 +18,7 @@ type MultipleTask @model {
   id: ID!
   type: String!
   question: String!
-  answer: [String]
+  answer: [Type]
   turns_permitted: Int!
   exp_given: Int!
 }
@@ -37,3 +37,4 @@ type Move @model {
   type: String! 
   power: Int!
 }
+

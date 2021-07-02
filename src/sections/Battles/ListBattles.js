@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import { createTodo } from '../../graphql/mutations'
 import { listSingleTasks } from '../../graphql/queries'
 import {
   BrowserRouter as Router,
@@ -10,25 +9,29 @@ import {
 } from "react-router-dom";
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
-import awsExports from "../aws-exports";
+import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-const App = () => {
+const ListBattles = () => {
   const [singleTasks, setSingleTasks] = useState([])
 
   useEffect(() => {
+      
     fetchProblems()
   }, [])
 
   async function fetchProblems() {
     try {
       const singleTaskData = await API.graphql(graphqlOperation(listSingleTasks))
+      console.log(singleTaskData);
       const singleTasks = singleTaskData.data.listSingleTasks.items
       setSingleTasks(singleTasks)
     } catch (err) { console.log('error fetching todos') }
   }
 
+  console.log("Test")
   return (
+      
     <div style={styles.container}>
       {
         singleTasks.map((task, index) => (
@@ -51,4 +54,4 @@ const styles = {
   button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
 }
 
-export default withAuthenticator(App)
+export default withAuthenticator(ListBattles)

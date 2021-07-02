@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Header from './includes/header.js'
 import CreateProblem from './sections/admin/CreateProblem.js'
+import ListBattles from './sections/Battles/ListBattles.js'
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "./aws-exports";
@@ -27,7 +28,7 @@ const App = () => {
           <CreateProblem />
         </Route>
         <Route path="/list_battles">
-          
+          <ListBattles />
         </Route>
       </Switch>
     </Router>

@@ -41,6 +41,7 @@ const CreateProblem = () => {
       setSingleTasks([...singleTasks, singleTask])
       setFormState(initialState)
       await API.graphql(graphqlOperation(createSingleTask, {input: singleTask}))
+      console.log("success")
     } catch (err) {
       console.log('error creating todo:', err)
     }

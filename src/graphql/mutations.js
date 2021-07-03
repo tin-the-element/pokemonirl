@@ -50,6 +50,7 @@ export const createSingleTask = /* GraphQL */ `
   ) {
     createSingleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer
       total_hp
@@ -67,6 +68,7 @@ export const updateSingleTask = /* GraphQL */ `
   ) {
     updateSingleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer
       total_hp
@@ -84,6 +86,7 @@ export const deleteSingleTask = /* GraphQL */ `
   ) {
     deleteSingleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer
       total_hp
@@ -101,6 +104,7 @@ export const createMultipleTask = /* GraphQL */ `
   ) {
     createMultipleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer
       turns_permitted
@@ -117,6 +121,7 @@ export const updateMultipleTask = /* GraphQL */ `
   ) {
     updateMultipleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer
       turns_permitted
@@ -133,6 +138,7 @@ export const deleteMultipleTask = /* GraphQL */ `
   ) {
     deleteMultipleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer
       turns_permitted
@@ -149,6 +155,7 @@ export const createRiddleTask = /* GraphQL */ `
   ) {
     createRiddleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer {
         id
@@ -172,6 +179,7 @@ export const updateRiddleTask = /* GraphQL */ `
   ) {
     updateRiddleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer {
         id
@@ -195,6 +203,7 @@ export const deleteRiddleTask = /* GraphQL */ `
   ) {
     deleteRiddleTask(input: $input, condition: $condition) {
       id
+      name
       question
       answer {
         id

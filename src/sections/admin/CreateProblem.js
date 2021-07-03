@@ -12,7 +12,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-const initialState = { question: '', answer: '', total_hp: '', turns_permitted: '', exp_given: '' }
+const initialState = { name: '', question: '', answer: '', total_hp: '', turns_permitted: '', exp_given: '' }
 
 const CreateProblem = () => {
   const [formState, setFormState] = useState(initialState)
@@ -34,9 +34,10 @@ const CreateProblem = () => {
 //     } catch (err) { console.log('error fetching todos') }
 //   }
 
+
   async function addSingleTask() {
     try {
-      if (!formState.question || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given) return
+      if (!formState.name || !formState.question || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given) return
       const singleTask = { ...formState }
       setSingleTasks([...singleTasks, singleTask])
       setFormState(initialState)
@@ -56,6 +57,12 @@ question
   return (
     <div style={styles.container}>
       <h2>Create Problem</h2>
+      <input
+        onChange={event => setInput('name', event.target.value)}
+        style={styles.input}
+        value={formState.name}
+        placeholder="Name"
+      />
       <input
         onChange={event => setInput('question', event.target.value)}
         style={styles.input}

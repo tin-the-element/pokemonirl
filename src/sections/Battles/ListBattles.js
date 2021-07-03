@@ -26,7 +26,11 @@ const ListBattles = () => {
       console.log(singleTaskData);
       const singleTasks = singleTaskData.data.listSingleTasks.items
       setSingleTasks(singleTasks)
-    } catch (err) { console.log('error fetching todos') }
+    } catch (err) { console.log(err) }
+  }
+
+  function toBattle(id) {
+    window.location = "/battle/id=" + id ;
   }
 
   console.log("Test")
@@ -35,7 +39,9 @@ const ListBattles = () => {
     <div style={styles.container}>
       {
         singleTasks.map((task, index) => (
-          <div key={task.id ? task.id : index} style={styles.todo}>
+          <div onClick={() => toBattle(task.id)} key={task.id ? task.id : index} style={styles.todo}>
+            <p style={styles.todoName}>{task.id}</p>
+            <p style={styles.todoName}>{task.name}</p>
             <p style={styles.todoName}>{task.question}</p>
             <p style={styles.todoDescription}>{task.answer}</p>
           </div>

@@ -6,7 +6,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useParams
 } from "react-router-dom";
 import Header from './includes/header.js'
 import CreateProblem from './sections/admin/CreateProblem.js'
@@ -14,6 +15,7 @@ import ListBattles from './sections/Battles/ListBattles.js'
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "./aws-exports";
+import Battle from './sections/Battles/Battle';
 Amplify.configure(awsExports);
 
 const initialState = { name: '', description: '' }
@@ -30,9 +32,24 @@ const App = () => {
         <Route path="/list_battles">
           <ListBattles />
         </Route>
+        <Switch>
+          <Route path="/battle/id=:id" children={<Battle />} />
+        </Switch>
       </Switch>
     </Router>
   )
+}
+
+function Child() {
+  // We can use the `useParams` hook here to access
+  // the dynamic pieces of the URL.
+  let { id } = useParams();
+
+  return (
+    <div>
+      <h3>ID: {id}</h3>
+    </div>
+  );
 }
 
 const styles = {

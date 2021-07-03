@@ -38,6 +38,7 @@ export const onCreateSingleTask = /* GraphQL */ `
   subscription OnCreateSingleTask {
     onCreateSingleTask {
       id
+      name
       question
       answer
       total_hp
@@ -52,6 +53,7 @@ export const onUpdateSingleTask = /* GraphQL */ `
   subscription OnUpdateSingleTask {
     onUpdateSingleTask {
       id
+      name
       question
       answer
       total_hp
@@ -66,6 +68,7 @@ export const onDeleteSingleTask = /* GraphQL */ `
   subscription OnDeleteSingleTask {
     onDeleteSingleTask {
       id
+      name
       question
       answer
       total_hp
@@ -80,6 +83,7 @@ export const onCreateMultipleTask = /* GraphQL */ `
   subscription OnCreateMultipleTask {
     onCreateMultipleTask {
       id
+      name
       question
       answer
       turns_permitted
@@ -93,6 +97,7 @@ export const onUpdateMultipleTask = /* GraphQL */ `
   subscription OnUpdateMultipleTask {
     onUpdateMultipleTask {
       id
+      name
       question
       answer
       turns_permitted
@@ -106,6 +111,7 @@ export const onDeleteMultipleTask = /* GraphQL */ `
   subscription OnDeleteMultipleTask {
     onDeleteMultipleTask {
       id
+      name
       question
       answer
       turns_permitted
@@ -119,6 +125,7 @@ export const onCreateRiddleTask = /* GraphQL */ `
   subscription OnCreateRiddleTask {
     onCreateRiddleTask {
       id
+      name
       question
       answer {
         id
@@ -139,6 +146,7 @@ export const onUpdateRiddleTask = /* GraphQL */ `
   subscription OnUpdateRiddleTask {
     onUpdateRiddleTask {
       id
+      name
       question
       answer {
         id
@@ -159,6 +167,7 @@ export const onDeleteRiddleTask = /* GraphQL */ `
   subscription OnDeleteRiddleTask {
     onDeleteRiddleTask {
       id
+      name
       question
       answer {
         id

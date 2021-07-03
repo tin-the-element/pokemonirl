@@ -6,12 +6,20 @@ import Amplify, { API, graphqlOperation } from 'aws-amplify'
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../aws-exports";
-Amplify.configure(awsExports);
+import { Auth } from 'aws-amplify';
 
-const initialState = { name: '', description: '' }
+Amplify.configure(awsExports);
 
 const Header = () => {
   
+  async function signOut() {
+    try {
+        await Auth.signOut();
+        window.location.reload();
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+}
 
   return (
     <div style={styles.container}>
@@ -22,6 +30,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/create_problem">Create Problem</Link>
+          </li>
+          <li>
+            <button onClick={signOut}>Logout</button>
           </li>
         </ul>
       </nav>

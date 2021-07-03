@@ -39,6 +39,7 @@ export const onCreateSingleTask = /* GraphQL */ `
     onCreateSingleTask {
       id
       name
+      image
       question
       answer
       total_hp
@@ -54,6 +55,7 @@ export const onUpdateSingleTask = /* GraphQL */ `
     onUpdateSingleTask {
       id
       name
+      image
       question
       answer
       total_hp
@@ -69,6 +71,7 @@ export const onDeleteSingleTask = /* GraphQL */ `
     onDeleteSingleTask {
       id
       name
+      image
       question
       answer
       total_hp
@@ -84,6 +87,7 @@ export const onCreateMultipleTask = /* GraphQL */ `
     onCreateMultipleTask {
       id
       name
+      image
       question
       answer
       turns_permitted
@@ -98,6 +102,7 @@ export const onUpdateMultipleTask = /* GraphQL */ `
     onUpdateMultipleTask {
       id
       name
+      image
       question
       answer
       turns_permitted
@@ -112,6 +117,7 @@ export const onDeleteMultipleTask = /* GraphQL */ `
     onDeleteMultipleTask {
       id
       name
+      image
       question
       answer
       turns_permitted
@@ -126,6 +132,7 @@ export const onCreateRiddleTask = /* GraphQL */ `
     onCreateRiddleTask {
       id
       name
+      image
       question
       answer {
         id
@@ -147,6 +154,7 @@ export const onUpdateRiddleTask = /* GraphQL */ `
     onUpdateRiddleTask {
       id
       name
+      image
       question
       answer {
         id
@@ -168,6 +176,7 @@ export const onDeleteRiddleTask = /* GraphQL */ `
     onDeleteRiddleTask {
       id
       name
+      image
       question
       answer {
         id

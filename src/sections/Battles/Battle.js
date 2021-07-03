@@ -38,7 +38,8 @@ function Battle(){
     return(
     <div>
         <h2>Problem: {singleTaskData.question}</h2>
-        <img alt="temp" src=""></img>
+        <h4>Turns Left: {singleTaskData.turns_permitted}</h4>
+        <img alt="temp" src={'/src/assets/fire.jpg'}></img>
     </div>
     )
 }

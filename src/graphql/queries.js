@@ -35,6 +35,7 @@ export const getSingleTask = /* GraphQL */ `
     getSingleTask(id: $id) {
       id
       name
+      image
       question
       answer
       total_hp
@@ -55,6 +56,7 @@ export const listSingleTasks = /* GraphQL */ `
       items {
         id
         name
+        image
         question
         answer
         total_hp
@@ -72,6 +74,7 @@ export const getMultipleTask = /* GraphQL */ `
     getMultipleTask(id: $id) {
       id
       name
+      image
       question
       answer
       turns_permitted
@@ -91,6 +94,7 @@ export const listMultipleTasks = /* GraphQL */ `
       items {
         id
         name
+        image
         question
         answer
         turns_permitted
@@ -107,6 +111,7 @@ export const getRiddleTask = /* GraphQL */ `
     getRiddleTask(id: $id) {
       id
       name
+      image
       question
       answer {
         id
@@ -133,6 +138,7 @@ export const listRiddleTasks = /* GraphQL */ `
       items {
         id
         name
+        image
         question
         answer {
           id

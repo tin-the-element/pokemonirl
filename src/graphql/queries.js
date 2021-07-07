@@ -35,12 +35,15 @@ export const getSingleTask = /* GraphQL */ `
     getSingleTask(id: $id) {
       id
       name
-      image
+      images
       question
-      answer
-      total_hp
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
+      total_hp
       createdAt
       updatedAt
     }
@@ -56,12 +59,15 @@ export const listSingleTasks = /* GraphQL */ `
       items {
         id
         name
-        image
+        images
         question
-        answer
-        total_hp
         turns_permitted
         exp_given
+        win_quote
+        lose_quote
+        next_steps
+        answer
+        total_hp
         createdAt
         updatedAt
       }
@@ -74,11 +80,14 @@ export const getMultipleTask = /* GraphQL */ `
     getMultipleTask(id: $id) {
       id
       name
-      image
+      images
       question
-      answer
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
       createdAt
       updatedAt
     }
@@ -94,11 +103,14 @@ export const listMultipleTasks = /* GraphQL */ `
       items {
         id
         name
-        image
+        images
         question
-        answer
         turns_permitted
         exp_given
+        win_quote
+        lose_quote
+        next_steps
+        answer
         createdAt
         updatedAt
       }
@@ -111,8 +123,13 @@ export const getRiddleTask = /* GraphQL */ `
     getRiddleTask(id: $id) {
       id
       name
-      image
+      images
       question
+      turns_permitted
+      exp_given
+      win_quote
+      lose_quote
+      next_steps
       answer {
         id
         name
@@ -121,8 +138,6 @@ export const getRiddleTask = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      turns_permitted
-      exp_given
       createdAt
       updatedAt
     }
@@ -138,8 +153,13 @@ export const listRiddleTasks = /* GraphQL */ `
       items {
         id
         name
-        image
+        images
         question
+        turns_permitted
+        exp_given
+        win_quote
+        lose_quote
+        next_steps
         answer {
           id
           name
@@ -148,8 +168,6 @@ export const listRiddleTasks = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        turns_permitted
-        exp_given
         createdAt
         updatedAt
       }

@@ -40,10 +40,10 @@ const ListBattles = () => {
       {
         singleTasks.map((task, index) => (
           <div onClick={() => toBattle(task.id)} key={task.id ? task.id : index} style={styles.todo}>
-            <p style={styles.todoName}>{task.id}</p>
             <p style={styles.todoName}>{task.name}</p>
             <p style={styles.todoName}>{task.question}</p>
-            <p style={styles.todoDescription}>{task.answer}</p>
+            <p style={styles.todoDescription}>Exp Given: {task.exp_given}</p>
+            <hr />
           </div>
         ))
       }

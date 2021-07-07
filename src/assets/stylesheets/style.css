@@ -1,0 +1,41 @@
+body {
+  background-color: #231E1E;
+  color: white;
+  font-family: "Roboto";
+}
+
+a {
+  color: #1ecbe1;
+}
+
+.battle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.problem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.battle_image {
+  width: 500px;
+  height: auto;
+}
+
+#hp_bar {
+  height: 30px;
+  width: 30rem;
+}
+
+.user_space {
+  margin-top: 100px;
+  align-self: center;
+  width: 100px;
+  display: grid;
+  align-items: center;
+}
+
+/*# sourceMappingURL=style.css.map */

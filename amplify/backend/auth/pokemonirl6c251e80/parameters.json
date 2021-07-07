@@ -1,6 +1,6 @@
 {
     "identityPoolName": "pokemonirl6c251e80_identitypool_6c251e80",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "pokemo6c251e80",
     "userPoolName": "pokemonirl6c251e80_userpool_6c251e80",
     "autoVerifiedAttributes": [

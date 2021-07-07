@@ -12,7 +12,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-const initialState = { name: '', question: '', image: '', answer: '', total_hp: '', turns_permitted: '', exp_given: '' }
+const initialState = { name: '', question: '', images: '', answer: '', total_hp: '', win_quote: '', lose_quote: '', turns_permitted: '', exp_given: '' }
 
 const CreateProblem = () => {
   const [formState, setFormState] = useState(initialState)
@@ -34,11 +34,64 @@ const CreateProblem = () => {
 //     } catch (err) { console.log('error fetching todos') }
 //   }
 
+// name: String!
+//   images: [String!]
+//   question: String!
+//   turns_permitted: Int!
+//   exp_given: Int!
+//   win_quote: String!
+//   lose_quote: String!
+//   next_steps: [String]
+//   answer: String!
+//   total_hp: Int!
+
+  const singleTask = [
+    {
+      name: 'name',
+      text: 'Name'
+    },
+    {
+      name: 'images',
+      text: 'Images'
+    },
+    {
+      name: 'question',
+      text: 'Question'
+    },
+    {
+      name: 'turns_permitted',
+      text: 'Turns Permitted'
+    },
+    {
+      name: 'exp_given',
+      text: 'Exp Given'
+    },
+    {
+      name: 'win_quote',
+      text: 'Win Quote'
+    },
+    {
+      name: 'lose_quote',
+      text: 'NamLose Quotee'
+    },
+    {
+      name: 'answer',
+      text: 'Answer'
+    },
+    {
+      name: 'total_hp',
+      text: 'Total HP'
+    }
+  ]
+
 
   async function addSingleTask() {
     try {
-      if (!formState.name || !formState.question || !formState.image || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given) return
+      
+      
+      // if (!formState.name || !formState.question || !formState.image || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given) return
       const singleTask = { ...formState }
+      console.log(!formState["name"] || !formState.question || !formState.images || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given)
       setSingleTasks([...singleTasks, singleTask])
       setFormState(initialState)
       await API.graphql(graphqlOperation(createSingleTask, {input: singleTask}))
@@ -57,48 +110,19 @@ question
   return (
     <div style={styles.container}>
       <h2>Create Problem</h2>
-      <input
-        onChange={event => setInput('name', event.target.value)}
-        style={styles.input}
-        value={formState.name}
-        placeholder="Name"
-      />
-      <input
-        onChange={event => setInput('question', event.target.value)}
-        style={styles.input}
-        value={formState.question}
-        placeholder="Question"
-      />
-      <input
-        onChange={event => setInput('image', event.target.value)}
-        style={styles.input}
-        value={formState.image}
-        placeholder="Image"
-      />
-      <input
-        onChange={event => setInput('answer', event.target.value)}
-        style={styles.input}
-        value={formState.answer}
-        placeholder="Answer"
-      />
-      <input
-        onChange={event => setInput('total_hp', event.target.value)}
-        style={styles.input}
-        value={formState.total_hp}
-        placeholder="Total HP"
-      />
-      <input
-        onChange={event => setInput('turns_permitted', event.target.value)}
-        style={styles.input}
-        value={formState.turns_permitted}
-        placeholder="Turns Permitted"
-      />
-      <input
-        onChange={event => setInput('exp_given', event.target.value)}
-        style={styles.input}
-        value={formState.exp_given}
-        placeholder="Exp Given"
-      />
+      {
+        singleTask.map((object, index) => {
+          return (
+            <input
+              key={object.id ? object.id : index}
+              onChange={event => setInput(object.name, event.target.value)}
+              style={styles.input}
+              value={formState[object.name]}
+              placeholder={object.text}
+            />
+          )
+        })
+      }
       <button style={styles.button} onClick={addSingleTask}>Create Todo</button>
       {/* {
         todos.map((todo, index) => (

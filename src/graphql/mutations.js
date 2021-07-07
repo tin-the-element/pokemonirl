@@ -51,12 +51,15 @@ export const createSingleTask = /* GraphQL */ `
     createSingleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
-      answer
-      total_hp
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
+      total_hp
       createdAt
       updatedAt
     }
@@ -70,12 +73,15 @@ export const updateSingleTask = /* GraphQL */ `
     updateSingleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
-      answer
-      total_hp
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
+      total_hp
       createdAt
       updatedAt
     }
@@ -89,12 +95,15 @@ export const deleteSingleTask = /* GraphQL */ `
     deleteSingleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
-      answer
-      total_hp
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
+      total_hp
       createdAt
       updatedAt
     }
@@ -108,11 +117,14 @@ export const createMultipleTask = /* GraphQL */ `
     createMultipleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
-      answer
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
       createdAt
       updatedAt
     }
@@ -126,11 +138,14 @@ export const updateMultipleTask = /* GraphQL */ `
     updateMultipleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
-      answer
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
       createdAt
       updatedAt
     }
@@ -144,11 +159,14 @@ export const deleteMultipleTask = /* GraphQL */ `
     deleteMultipleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
-      answer
       turns_permitted
       exp_given
+      win_quote
+      lose_quote
+      next_steps
+      answer
       createdAt
       updatedAt
     }
@@ -162,8 +180,13 @@ export const createRiddleTask = /* GraphQL */ `
     createRiddleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
+      turns_permitted
+      exp_given
+      win_quote
+      lose_quote
+      next_steps
       answer {
         id
         name
@@ -172,8 +195,6 @@ export const createRiddleTask = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      turns_permitted
-      exp_given
       createdAt
       updatedAt
     }
@@ -187,8 +208,13 @@ export const updateRiddleTask = /* GraphQL */ `
     updateRiddleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
+      turns_permitted
+      exp_given
+      win_quote
+      lose_quote
+      next_steps
       answer {
         id
         name
@@ -197,8 +223,6 @@ export const updateRiddleTask = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      turns_permitted
-      exp_given
       createdAt
       updatedAt
     }
@@ -212,8 +236,13 @@ export const deleteRiddleTask = /* GraphQL */ `
     deleteRiddleTask(input: $input, condition: $condition) {
       id
       name
-      image
+      images
       question
+      turns_permitted
+      exp_given
+      win_quote
+      lose_quote
+      next_steps
       answer {
         id
         name
@@ -222,8 +251,6 @@ export const deleteRiddleTask = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      turns_permitted
-      exp_given
       createdAt
       updatedAt
     }

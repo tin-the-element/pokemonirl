@@ -24,5 +24,11 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "storage": {
+    "pokemonirls3": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

@@ -4,35 +4,57 @@ type Todo @model {
   description: String
 }
 
-type SingleTask @model {
+interface Task{
   id: ID!
   name: String!
-  image: String!
+  images: String!
   question: String!
-  answer: String!
+  turns_permitted: Int!
+  exp_given: Int!
+  win_quote: String!
+  lose_quote: String!
+  next_steps: [String]
+}
+
+type SingleTask implements Task @model {
+  id: ID!
+  name: String!
+  images: String!
+  question: String!
+  turns_permitted: Int!
+  exp_given: Int!
+  win_quote: String!
+  lose_quote: String!
+  next_steps: [String]
+  answer: [String!]
   total_hp: Int!
-  turns_permitted: Int!
-  exp_given: Int!
 }
 
-type MultipleTask @model {
+type MultipleTask implements Task @model {
   id: ID!
   name: String!
-  image: String!
+  images: String!
   question: String!
+  turns_permitted: Int!
+  exp_given: Int!
+  win_quote: String!
+  lose_quote: String!
+  next_steps: [String]
   answer: [String]!
-  turns_permitted: Int!
-  exp_given: Int!
 }
 
-type RiddleTask @model {
+type RiddleTask implements Task @model {
   id: ID!
   name: String!
-  image: String!
+  images: String!
   question: String!
-  answer: [Move]!
   turns_permitted: Int!
   exp_given: Int!
+  win_quote: String!
+  lose_quote: String!
+  next_steps: [String]
+  answer: [Move]!
+  
 }
 
 type Move @model {

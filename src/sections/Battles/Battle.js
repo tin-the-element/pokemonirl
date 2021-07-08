@@ -19,36 +19,46 @@ function Battle(){
 
     const [singleTaskData, setSingleTaskData] = useState([])
     const [currentHP, setCurrentHP] = useState()
+    const [turnsLeft, setTurnsLeft] = useState()
     const [loading, setLoading] = useState(true)
 
     let { id } = useParams();
     useEffect(() => {
-        fetchProblem(id)
-        update()
-      }, [id])
-
-    function update() {
-    
-      setCurrentHP(singleTaskData.total_hp)
-      console.log(singleTaskData.total_hp)
-    }
-
-
-    async function fetchProblem(id) {
+      const fetchProblem = async () => {
         try {
+          
           const singleTask = await API.graphql({query: queries.getSingleTask, variables: {id: id}})
           console.log(singleTask["data"]["getSingleTask"]);
-          setSingleTaskData(singleTask["data"]["getSingleTask"]);
+          console.log(currentHP);
+          await setSingleTaskData(singleTask["data"]["getSingleTask"]);
+          await setCurrentHP(singleTaskData.total_hp);
           setCurrentHP(singleTaskData.total_hp);
+          setTurnsLeft(singleTaskData.turns_permitted)
+          setLoading(false)
+          
           
 
-        } catch (err) { console.log(err) } finally {
-          setLoading(false)
-        }
+        } catch (err) { console.log(err) }
       }
+      console.log("Load useEffect")
+      if (loading){
+        fetchProblem()
+      }
+        
+      
+        
+      }, [id, loading, currentHP, turnsLeft, singleTaskData.turns_permitted, singleTaskData.total_hp])
     
-    function do_damage() {
+    function try_attack() {
       setCurrentHP(currentHP - 10)
+      setTurnsLeft(turnsLeft - 1)
+      if (currentHP <= 0) {
+        console.log("You Win!")
+      }
+      if (turnsLeft === 0) {
+        console.log("You Lose")
+      }
+      
     }
 
 
@@ -57,7 +67,7 @@ function Battle(){
       <div class="battle">
         <div class="problem">
             <h2>Problem: {singleTaskData.question}</h2>
-            <h4>Turns Left: {singleTaskData.turns_permitted}</h4>
+            <h4>Turns Left: {turnsLeft}</h4>
 
             
             <img class="battle_image" alt={singleTaskData.name} src={'/assets/single_tasks/' + singleTaskData['images']}></img>
@@ -65,7 +75,7 @@ function Battle(){
             <div>{currentHP}/{singleTaskData.total_hp}</div>
         </div>
         <div class="user_space">
-            <button onClick={do_damage}>Water Gun</button>
+            <button onClick={try_attack}>Water Gun</button>
         </div>
     </div>
     )

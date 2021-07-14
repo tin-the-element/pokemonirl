@@ -13,7 +13,6 @@ interface Task{
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
-  next_steps: [String]
 }
 
 type SingleTask implements Task @model {
@@ -25,8 +24,7 @@ type SingleTask implements Task @model {
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
-  next_steps: [String]
-  answer: [String!]
+  answer: [Type]!
   total_hp: Int!
 }
 
@@ -39,8 +37,8 @@ type MultipleTask implements Task @model {
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
-  next_steps: [String]
-  answer: [String]!
+  next_steps: [String]!
+  answer: [Type]!
 }
 
 type RiddleTask implements Task @model {
@@ -52,13 +50,45 @@ type RiddleTask implements Task @model {
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
-  next_steps: [String]
+  next_steps: [String]!
   answer: [Move]!
   
 }
 
-type Move @model {
+type Account @model {
+  id: ID!
+  username: String!
+  users_pokemon: [UserPokemon]
+  money: Int!
+  completed_tasks: [Task]
+}
+
+type UserPokemon @model {
+  id: ID!
+  pokemon: Pokemon
+  owner: Account
+  image: String!
+  movelist: [Move]
+}
+
+type Pokemon @model {
+  api_id: Int!
   name: String!
-  type: String! 
+  types: [Type]!
+  image: String!
+  api: String!
+}
+
+type Move @model {
+  api_id: Int!
+  name: String!
+  type: Type!
   power: Int!
+  api: String!
+}
+
+type Type @model {
+  api_id: Int!
+  name: String!
+  api: String!
 }

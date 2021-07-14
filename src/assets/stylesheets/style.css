@@ -8,6 +8,12 @@ a {
   color: #1ecbe1;
 }
 
+.center-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .battle {
   display: flex;
   flex-direction: column;
@@ -36,6 +42,14 @@ a {
   width: 100px;
   display: grid;
   align-items: center;
+}
+
+.battle_item {
+  width: 30rem;
+}
+
+.battle_item:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

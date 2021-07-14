@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Amplify, { API, graphqlOperation } from 'aws-amplify'
+import Amplify, { API} from 'aws-amplify'
 import * as queries from '../../graphql/queries'
-import { listSingleTasks } from '../../graphql/queries'
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
+  useParams,
+  useHistory,
 } from "react-router-dom";
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
@@ -16,6 +12,8 @@ Amplify.configure(awsExports);
 
 
 function Battle(){
+
+    const history = useHistory();
 
     const [singleTaskData, setSingleTaskData] = useState([])
     const [currentHP, setCurrentHP] = useState()
@@ -44,20 +42,60 @@ function Battle(){
       if (loading){
         fetchProblem()
       }
+
+      if (!check_win()) {
+        check_lose()
+      }
+      
         
       
         
       }, [id, loading, currentHP, turnsLeft, singleTaskData.turns_permitted, singleTaskData.total_hp])
+
+
+    function handle_win() {
+      history.push({
+        pathname: "/won_battle",
+        state: {
+          name: singleTaskData.name,
+          quote: singleTaskData.win_quote,
+          exp_given: singleTaskData.exp_given
+        }
+      })
+    }
+
+    function handle_lost() {
+      history.push({
+        pathname: "/lost_battle",
+        state: {
+          name: singleTaskData.name,
+          quote: singleTaskData.lose_quote,
+          exp_given: singleTaskData.exp_given
+        }
+      })
+    }
     
-    function try_attack() {
-      setCurrentHP(currentHP - 10)
-      setTurnsLeft(turnsLeft - 1)
+    function check_win() {
+      console.log(currentHP <= 0)
       if (currentHP <= 0) {
-        console.log("You Win!")
+        handle_win()
+        return true
       }
-      if (turnsLeft === 0) {
-        console.log("You Lose")
+    }
+
+    function check_lose() {
+      console.log(turnsLeft)
+      if (turnsLeft <= 0) {
+        handle_lost()
       }
+    }
+
+    function try_attack() {
+      console.log(currentHP)
+      setCurrentHP(currentHP - 10)
+      
+      setTurnsLeft(turnsLeft - 1)
+      
       
     }
 

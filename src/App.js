@@ -16,6 +16,10 @@ import ListBattles from './sections/Battles/ListBattles.js'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "./aws-exports";
 import Battle from './sections/Battles/Battle';
+import WonBattle from './sections/Battles/WonBattle'
+import LostBattle from './sections/Battles/LostBattle'
+import MakeAPICalls from './sections/admin/MakeAPICalls'
+
 Amplify.configure(awsExports);
 
 const initialState = { name: '', description: '' }
@@ -31,6 +35,15 @@ const App = () => {
         </Route>
         <Route path="/list_battles">
           <ListBattles />
+        </Route>
+        <Route path="/won_battle">
+          <WonBattle />
+        </Route>
+        <Route path="/lost_battle">
+          <LostBattle />
+        </Route>
+        <Route path="/make_calls" >
+          <MakeAPICalls />
         </Route>
         <Switch>
           <Route path="/battle/id=:id" children={<Battle />} />

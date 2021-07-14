@@ -57,8 +57,14 @@ export const createSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       total_hp
       createdAt
       updatedAt
@@ -79,8 +85,14 @@ export const updateSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       total_hp
       createdAt
       updatedAt
@@ -101,8 +113,14 @@ export const deleteSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       total_hp
       createdAt
       updatedAt
@@ -124,7 +142,14 @@ export const createMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -145,7 +170,14 @@ export const updateMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -166,7 +198,14 @@ export const deleteMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -189,9 +228,18 @@ export const createRiddleTask = /* GraphQL */ `
       next_steps
       answer {
         id
+        api_id
         name
-        type
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
         power
+        api
         createdAt
         updatedAt
       }
@@ -217,9 +265,18 @@ export const updateRiddleTask = /* GraphQL */ `
       next_steps
       answer {
         id
+        api_id
         name
-        type
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
         power
+        api
         createdAt
         updatedAt
       }
@@ -245,12 +302,633 @@ export const deleteRiddleTask = /* GraphQL */ `
       next_steps
       answer {
         id
+        api_id
         name
-        type
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
         power
+        api
         createdAt
         updatedAt
       }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createAccount = /* GraphQL */ `
+  mutation CreateAccount(
+    $input: CreateAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    createAccount(input: $input, condition: $condition) {
+      id
+      username
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          createdAt
+          updatedAt
+        }
+        image
+        movelist {
+          id
+          api_id
+          name
+          power
+          api
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      money
+      completed_tasks {
+        id
+        name
+        images
+        question
+        turns_permitted
+        exp_given
+        win_quote
+        lose_quote
+        ... on SingleTask {
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          total_hp
+          createdAt
+          updatedAt
+        }
+        ... on MultipleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+        ... on RiddleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            power
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAccount = /* GraphQL */ `
+  mutation UpdateAccount(
+    $input: UpdateAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    updateAccount(input: $input, condition: $condition) {
+      id
+      username
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          createdAt
+          updatedAt
+        }
+        image
+        movelist {
+          id
+          api_id
+          name
+          power
+          api
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      money
+      completed_tasks {
+        id
+        name
+        images
+        question
+        turns_permitted
+        exp_given
+        win_quote
+        lose_quote
+        ... on SingleTask {
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          total_hp
+          createdAt
+          updatedAt
+        }
+        ... on MultipleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+        ... on RiddleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            power
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAccount = /* GraphQL */ `
+  mutation DeleteAccount(
+    $input: DeleteAccountInput!
+    $condition: ModelAccountConditionInput
+  ) {
+    deleteAccount(input: $input, condition: $condition) {
+      id
+      username
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          createdAt
+          updatedAt
+        }
+        image
+        movelist {
+          id
+          api_id
+          name
+          power
+          api
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      money
+      completed_tasks {
+        id
+        name
+        images
+        question
+        turns_permitted
+        exp_given
+        win_quote
+        lose_quote
+        ... on SingleTask {
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          total_hp
+          createdAt
+          updatedAt
+        }
+        ... on MultipleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+        ... on RiddleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            power
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createUserPokemon = /* GraphQL */ `
+  mutation CreateUserPokemon(
+    $input: CreateUserPokemonInput!
+    $condition: ModelUserPokemonConditionInput
+  ) {
+    createUserPokemon(input: $input, condition: $condition) {
+      id
+      pokemon {
+        id
+        api_id
+        name
+        types {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks {
+          id
+          name
+          images
+          question
+          turns_permitted
+          exp_given
+          win_quote
+          lose_quote
+          ... on SingleTask {
+            total_hp
+            createdAt
+            updatedAt
+          }
+          ... on MultipleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+          ... on RiddleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+        }
+        createdAt
+        updatedAt
+      }
+      image
+      movelist {
+        id
+        api_id
+        name
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        power
+        api
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateUserPokemon = /* GraphQL */ `
+  mutation UpdateUserPokemon(
+    $input: UpdateUserPokemonInput!
+    $condition: ModelUserPokemonConditionInput
+  ) {
+    updateUserPokemon(input: $input, condition: $condition) {
+      id
+      pokemon {
+        id
+        api_id
+        name
+        types {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks {
+          id
+          name
+          images
+          question
+          turns_permitted
+          exp_given
+          win_quote
+          lose_quote
+          ... on SingleTask {
+            total_hp
+            createdAt
+            updatedAt
+          }
+          ... on MultipleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+          ... on RiddleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+        }
+        createdAt
+        updatedAt
+      }
+      image
+      movelist {
+        id
+        api_id
+        name
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        power
+        api
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteUserPokemon = /* GraphQL */ `
+  mutation DeleteUserPokemon(
+    $input: DeleteUserPokemonInput!
+    $condition: ModelUserPokemonConditionInput
+  ) {
+    deleteUserPokemon(input: $input, condition: $condition) {
+      id
+      pokemon {
+        id
+        api_id
+        name
+        types {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks {
+          id
+          name
+          images
+          question
+          turns_permitted
+          exp_given
+          win_quote
+          lose_quote
+          ... on SingleTask {
+            total_hp
+            createdAt
+            updatedAt
+          }
+          ... on MultipleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+          ... on RiddleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+        }
+        createdAt
+        updatedAt
+      }
+      image
+      movelist {
+        id
+        api_id
+        name
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        power
+        api
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createPokemon = /* GraphQL */ `
+  mutation CreatePokemon(
+    $input: CreatePokemonInput!
+    $condition: ModelPokemonConditionInput
+  ) {
+    createPokemon(input: $input, condition: $condition) {
+      id
+      api_id
+      name
+      types {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
+      image
+      api
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePokemon = /* GraphQL */ `
+  mutation UpdatePokemon(
+    $input: UpdatePokemonInput!
+    $condition: ModelPokemonConditionInput
+  ) {
+    updatePokemon(input: $input, condition: $condition) {
+      id
+      api_id
+      name
+      types {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
+      image
+      api
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePokemon = /* GraphQL */ `
+  mutation DeletePokemon(
+    $input: DeletePokemonInput!
+    $condition: ModelPokemonConditionInput
+  ) {
+    deletePokemon(input: $input, condition: $condition) {
+      id
+      api_id
+      name
+      types {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
+      image
+      api
       createdAt
       updatedAt
     }
@@ -263,9 +941,18 @@ export const createMove = /* GraphQL */ `
   ) {
     createMove(input: $input, condition: $condition) {
       id
+      api_id
       name
-      type
+      type {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       power
+      api
       createdAt
       updatedAt
     }
@@ -278,9 +965,18 @@ export const updateMove = /* GraphQL */ `
   ) {
     updateMove(input: $input, condition: $condition) {
       id
+      api_id
       name
-      type
+      type {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       power
+      api
       createdAt
       updatedAt
     }
@@ -293,9 +989,63 @@ export const deleteMove = /* GraphQL */ `
   ) {
     deleteMove(input: $input, condition: $condition) {
       id
+      api_id
       name
-      type
+      type {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       power
+      api
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createType = /* GraphQL */ `
+  mutation CreateType(
+    $input: CreateTypeInput!
+    $condition: ModelTypeConditionInput
+  ) {
+    createType(input: $input, condition: $condition) {
+      id
+      api_id
+      name
+      api
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateType = /* GraphQL */ `
+  mutation UpdateType(
+    $input: UpdateTypeInput!
+    $condition: ModelTypeConditionInput
+  ) {
+    updateType(input: $input, condition: $condition) {
+      id
+      api_id
+      name
+      api
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteType = /* GraphQL */ `
+  mutation DeleteType(
+    $input: DeleteTypeInput!
+    $condition: ModelTypeConditionInput
+  ) {
+    deleteType(input: $input, condition: $condition) {
+      id
+      api_id
+      name
+      api
       createdAt
       updatedAt
     }

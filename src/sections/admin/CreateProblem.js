@@ -1,13 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
 import { createSingleTask } from '../../graphql/mutations'
-import { listTodos } from '../../graphql/queries'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
@@ -18,32 +11,9 @@ const CreateProblem = () => {
   const [formState, setFormState] = useState(initialState)
   const [singleTasks, setSingleTasks] = useState([])
 
-//   useEffect(() => {
-//     fetchTodos()
-//   }, [])
-
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value })
   }
-
-//   async function fetchTodos() {
-//     try {
-//       const todoData = await API.graphql(graphqlOperation(listTodos))
-//       const todos = todoData.data.listTodos.items
-//       setTodos(todos)
-//     } catch (err) { console.log('error fetching todos') }
-//   }
-
-// name: String!
-//   images: [String!]
-//   question: String!
-//   turns_permitted: Int!
-//   exp_given: Int!
-//   win_quote: String!
-//   lose_quote: String!
-//   next_steps: [String]
-//   answer: String!
-//   total_hp: Int!
 
   const singleTask = [
     {
@@ -92,6 +62,7 @@ const CreateProblem = () => {
       // if (!formState.name || !formState.question || !formState.image || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given) return
       const singleTask = { ...formState }
       console.log(!formState["name"] || !formState.question || !formState.images || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given)
+      console.log(singleTask);
       setSingleTasks([...singleTasks, singleTask])
       setFormState(initialState)
       await API.graphql(graphqlOperation(createSingleTask, {input: singleTask}))

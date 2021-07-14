@@ -41,8 +41,14 @@ export const getSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       total_hp
       createdAt
       updatedAt
@@ -65,8 +71,14 @@ export const listSingleTasks = /* GraphQL */ `
         exp_given
         win_quote
         lose_quote
-        next_steps
-        answer
+        answer {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
         total_hp
         createdAt
         updatedAt
@@ -87,7 +99,14 @@ export const getMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer
+      answer {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -110,7 +129,14 @@ export const listMultipleTasks = /* GraphQL */ `
         win_quote
         lose_quote
         next_steps
-        answer
+        answer {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
@@ -132,9 +158,18 @@ export const getRiddleTask = /* GraphQL */ `
       next_steps
       answer {
         id
+        api_id
         name
-        type
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
         power
+        api
         createdAt
         updatedAt
       }
@@ -162,12 +197,327 @@ export const listRiddleTasks = /* GraphQL */ `
         next_steps
         answer {
           id
+          api_id
           name
-          type
           power
+          api
           createdAt
           updatedAt
         }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getAccount = /* GraphQL */ `
+  query GetAccount($id: ID!) {
+    getAccount(id: $id) {
+      id
+      username
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          createdAt
+          updatedAt
+        }
+        image
+        movelist {
+          id
+          api_id
+          name
+          power
+          api
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      money
+      completed_tasks {
+        id
+        name
+        images
+        question
+        turns_permitted
+        exp_given
+        win_quote
+        lose_quote
+        ... on SingleTask {
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          total_hp
+          createdAt
+          updatedAt
+        }
+        ... on MultipleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+        ... on RiddleTask {
+          next_steps
+          answer {
+            id
+            api_id
+            name
+            power
+            api
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAccounts = /* GraphQL */ `
+  query ListAccounts(
+    $filter: ModelAccountFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAccounts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks {
+          id
+          name
+          images
+          question
+          turns_permitted
+          exp_given
+          win_quote
+          lose_quote
+          ... on SingleTask {
+            total_hp
+            createdAt
+            updatedAt
+          }
+          ... on MultipleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+          ... on RiddleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getUserPokemon = /* GraphQL */ `
+  query GetUserPokemon($id: ID!) {
+    getUserPokemon(id: $id) {
+      id
+      pokemon {
+        id
+        api_id
+        name
+        types {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks {
+          id
+          name
+          images
+          question
+          turns_permitted
+          exp_given
+          win_quote
+          lose_quote
+          ... on SingleTask {
+            total_hp
+            createdAt
+            updatedAt
+          }
+          ... on MultipleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+          ... on RiddleTask {
+            next_steps
+            createdAt
+            updatedAt
+          }
+        }
+        createdAt
+        updatedAt
+      }
+      image
+      movelist {
+        id
+        api_id
+        name
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        power
+        api
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listUserPokemons = /* GraphQL */ `
+  query ListUserPokemons(
+    $filter: ModelUserPokemonFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserPokemons(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          createdAt
+          updatedAt
+        }
+        image
+        movelist {
+          id
+          api_id
+          name
+          power
+          api
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getPokemon = /* GraphQL */ `
+  query GetPokemon($id: ID!) {
+    getPokemon(id: $id) {
+      id
+      api_id
+      name
+      types {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
+      image
+      api
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPokemons = /* GraphQL */ `
+  query ListPokemons(
+    $filter: ModelPokemonFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPokemons(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        api_id
+        name
+        types {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
+        image
+        api
         createdAt
         updatedAt
       }
@@ -179,9 +529,18 @@ export const getMove = /* GraphQL */ `
   query GetMove($id: ID!) {
     getMove(id: $id) {
       id
+      api_id
       name
-      type
+      type {
+        id
+        api_id
+        name
+        api
+        createdAt
+        updatedAt
+      }
       power
+      api
       createdAt
       updatedAt
     }
@@ -196,9 +555,49 @@ export const listMoves = /* GraphQL */ `
     listMoves(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        api_id
         name
-        type
+        type {
+          id
+          api_id
+          name
+          api
+          createdAt
+          updatedAt
+        }
         power
+        api
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getType = /* GraphQL */ `
+  query GetType($id: ID!) {
+    getType(id: $id) {
+      id
+      api_id
+      name
+      api
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTypes = /* GraphQL */ `
+  query ListTypes(
+    $filter: ModelTypeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        api_id
+        name
+        api
         createdAt
         updatedAt
       }

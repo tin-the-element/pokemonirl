@@ -32,6 +32,9 @@ const Header = () => {
             <Link to="/create_problem">Create Problem</Link>
           </li>
           <li>
+            <Link to="/make_calls">Make Calls</Link>
+          </li>
+          <li>
             <button onClick={signOut}>Logout</button>
           </li>
         </ul>

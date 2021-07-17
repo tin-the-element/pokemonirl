@@ -24,7 +24,7 @@ type SingleTask implements Task @model {
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
-  answer: [Type]!
+  answer: [String]!
   total_hp: Int!
 }
 
@@ -38,7 +38,7 @@ type MultipleTask implements Task @model {
   win_quote: String!
   lose_quote: String!
   next_steps: [String]!
-  answer: [Type]!
+  answer: [String]!
 }
 
 type RiddleTask implements Task @model {
@@ -51,7 +51,7 @@ type RiddleTask implements Task @model {
   win_quote: String!
   lose_quote: String!
   next_steps: [String]!
-  answer: [Move]!
+  answer: [String]!
   
 }
 
@@ -60,7 +60,7 @@ type Account @model {
   username: String!
   users_pokemon: [UserPokemon]
   money: Int!
-  completed_tasks: [Task]
+  completed_tasks: [ID]
 }
 
 type UserPokemon @model {
@@ -68,21 +68,21 @@ type UserPokemon @model {
   pokemon: Pokemon
   owner: Account
   image: String!
-  movelist: [Move]
+  movelist: [String]
 }
 
-type Pokemon @model {
+type Pokemon @model @searchable{
   api_id: Int!
   name: String!
-  types: [Type]!
+  types: [String]! 
   image: String!
   api: String!
 }
 
-type Move @model {
+type Move @model @searchable{
   api_id: Int!
   name: String!
-  type: Type!
+  type: String!
   power: Int!
   api: String!
 }

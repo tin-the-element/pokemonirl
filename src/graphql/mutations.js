@@ -57,14 +57,7 @@ export const createSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       total_hp
       createdAt
       updatedAt
@@ -85,14 +78,7 @@ export const updateSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       total_hp
       createdAt
       updatedAt
@@ -113,14 +99,7 @@ export const deleteSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       total_hp
       createdAt
       updatedAt
@@ -142,14 +121,7 @@ export const createMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -170,14 +142,7 @@ export const updateMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -198,14 +163,7 @@ export const deleteMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -226,23 +184,7 @@ export const createRiddleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -263,23 +205,7 @@ export const updateRiddleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -300,23 +226,7 @@ export const deleteRiddleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -336,6 +246,7 @@ export const createAccount = /* GraphQL */ `
           id
           api_id
           name
+          types
           image
           api
           createdAt
@@ -345,73 +256,17 @@ export const createAccount = /* GraphQL */ `
           id
           username
           money
+          completed_tasks
           createdAt
           updatedAt
         }
         image
-        movelist {
-          id
-          api_id
-          name
-          power
-          api
-          createdAt
-          updatedAt
-        }
+        movelist
         createdAt
         updatedAt
       }
       money
-      completed_tasks {
-        id
-        name
-        images
-        question
-        turns_permitted
-        exp_given
-        win_quote
-        lose_quote
-        ... on SingleTask {
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          total_hp
-          createdAt
-          updatedAt
-        }
-        ... on MultipleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        ... on RiddleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            power
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }
+      completed_tasks
       createdAt
       updatedAt
     }
@@ -431,6 +286,7 @@ export const updateAccount = /* GraphQL */ `
           id
           api_id
           name
+          types
           image
           api
           createdAt
@@ -440,73 +296,17 @@ export const updateAccount = /* GraphQL */ `
           id
           username
           money
+          completed_tasks
           createdAt
           updatedAt
         }
         image
-        movelist {
-          id
-          api_id
-          name
-          power
-          api
-          createdAt
-          updatedAt
-        }
+        movelist
         createdAt
         updatedAt
       }
       money
-      completed_tasks {
-        id
-        name
-        images
-        question
-        turns_permitted
-        exp_given
-        win_quote
-        lose_quote
-        ... on SingleTask {
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          total_hp
-          createdAt
-          updatedAt
-        }
-        ... on MultipleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        ... on RiddleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            power
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }
+      completed_tasks
       createdAt
       updatedAt
     }
@@ -526,6 +326,7 @@ export const deleteAccount = /* GraphQL */ `
           id
           api_id
           name
+          types
           image
           api
           createdAt
@@ -535,73 +336,17 @@ export const deleteAccount = /* GraphQL */ `
           id
           username
           money
+          completed_tasks
           createdAt
           updatedAt
         }
         image
-        movelist {
-          id
-          api_id
-          name
-          power
-          api
-          createdAt
-          updatedAt
-        }
+        movelist
         createdAt
         updatedAt
       }
       money
-      completed_tasks {
-        id
-        name
-        images
-        question
-        turns_permitted
-        exp_given
-        win_quote
-        lose_quote
-        ... on SingleTask {
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          total_hp
-          createdAt
-          updatedAt
-        }
-        ... on MultipleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        ... on RiddleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            power
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }
+      completed_tasks
       createdAt
       updatedAt
     }
@@ -618,14 +363,7 @@ export const createUserPokemon = /* GraphQL */ `
         id
         api_id
         name
-        types {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        types
         image
         api
         createdAt
@@ -637,56 +375,17 @@ export const createUserPokemon = /* GraphQL */ `
         users_pokemon {
           id
           image
+          movelist
           createdAt
           updatedAt
         }
         money
-        completed_tasks {
-          id
-          name
-          images
-          question
-          turns_permitted
-          exp_given
-          win_quote
-          lose_quote
-          ... on SingleTask {
-            total_hp
-            createdAt
-            updatedAt
-          }
-          ... on MultipleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-          ... on RiddleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-        }
+        completed_tasks
         createdAt
         updatedAt
       }
       image
-      movelist {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      movelist
       createdAt
       updatedAt
     }
@@ -703,14 +402,7 @@ export const updateUserPokemon = /* GraphQL */ `
         id
         api_id
         name
-        types {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        types
         image
         api
         createdAt
@@ -722,56 +414,17 @@ export const updateUserPokemon = /* GraphQL */ `
         users_pokemon {
           id
           image
+          movelist
           createdAt
           updatedAt
         }
         money
-        completed_tasks {
-          id
-          name
-          images
-          question
-          turns_permitted
-          exp_given
-          win_quote
-          lose_quote
-          ... on SingleTask {
-            total_hp
-            createdAt
-            updatedAt
-          }
-          ... on MultipleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-          ... on RiddleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-        }
+        completed_tasks
         createdAt
         updatedAt
       }
       image
-      movelist {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      movelist
       createdAt
       updatedAt
     }
@@ -788,14 +441,7 @@ export const deleteUserPokemon = /* GraphQL */ `
         id
         api_id
         name
-        types {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        types
         image
         api
         createdAt
@@ -807,56 +453,17 @@ export const deleteUserPokemon = /* GraphQL */ `
         users_pokemon {
           id
           image
+          movelist
           createdAt
           updatedAt
         }
         money
-        completed_tasks {
-          id
-          name
-          images
-          question
-          turns_permitted
-          exp_given
-          win_quote
-          lose_quote
-          ... on SingleTask {
-            total_hp
-            createdAt
-            updatedAt
-          }
-          ... on MultipleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-          ... on RiddleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-        }
+        completed_tasks
         createdAt
         updatedAt
       }
       image
-      movelist {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      movelist
       createdAt
       updatedAt
     }
@@ -871,14 +478,7 @@ export const createPokemon = /* GraphQL */ `
       id
       api_id
       name
-      types {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      types
       image
       api
       createdAt
@@ -895,14 +495,7 @@ export const updatePokemon = /* GraphQL */ `
       id
       api_id
       name
-      types {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      types
       image
       api
       createdAt
@@ -919,14 +512,7 @@ export const deletePokemon = /* GraphQL */ `
       id
       api_id
       name
-      types {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      types
       image
       api
       createdAt
@@ -943,14 +529,7 @@ export const createMove = /* GraphQL */ `
       id
       api_id
       name
-      type {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      type
       power
       api
       createdAt
@@ -967,14 +546,7 @@ export const updateMove = /* GraphQL */ `
       id
       api_id
       name
-      type {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      type
       power
       api
       createdAt
@@ -991,14 +563,7 @@ export const deleteMove = /* GraphQL */ `
       id
       api_id
       name
-      type {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      type
       power
       api
       createdAt

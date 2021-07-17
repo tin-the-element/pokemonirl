@@ -52,4 +52,16 @@ a {
   cursor: pointer;
 }
 
+.pokemon-list-container {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: auto;
+  justify-items: stretch;
+  justify-content: center;
+}
+
+.pokemon {
+  border: 2px white solid;
+}
+
 /*# sourceMappingURL=style.css.map */

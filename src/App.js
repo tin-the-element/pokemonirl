@@ -19,6 +19,7 @@ import Battle from './sections/Battles/Battle';
 import WonBattle from './sections/Battles/WonBattle'
 import LostBattle from './sections/Battles/LostBattle'
 import MakeAPICalls from './sections/admin/MakeAPICalls'
+import ChoosePokemon from './sections/NewPokemon/ChoosePokemon';
 
 Amplify.configure(awsExports);
 
@@ -45,6 +46,10 @@ const App = () => {
         <Route path="/make_calls" >
           <MakeAPICalls />
         </Route>
+        <Route path="/choose_pokemon" >
+          <ChoosePokemon />
+        </Route>
+
         <Switch>
           <Route path="/battle/id=:id" children={<Battle />} />
         </Switch>

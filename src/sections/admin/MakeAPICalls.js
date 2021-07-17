@@ -32,7 +32,7 @@ function MakeAPICalls() {
     }
 
     function load_pokemon() {
-        fetch("https://pokeapi.co/api/v2/pokemon/?limit=1118")
+        fetch("https://pokeapi.co/api/v2/pokemon/?limit=898")
         .then(res => res.json())
         .then((result) => {
             var pokemon = result.results
@@ -47,11 +47,13 @@ function MakeAPICalls() {
     }
 
     /* 
-    id
-      name
-      type
-      image
-      api
+   type Pokemon @model {
+            api_id: Int!
+            name: String!
+            types: [String]! 
+            image: String!
+            api: String!
+            }
     */
 
     function add_pokemon(link) {
@@ -59,7 +61,13 @@ function MakeAPICalls() {
         .then(res => res.json())
         .then((result) => {
             console.log(result)
-            var pokemon_object = {id: result.id, name: result.name, type: result.types}
+
+            var pokemon_types = []
+            for (var key in result.types) {
+                pokemon_types.push(result.types[key].type.name)
+            }
+            console.log(pokemon_types)
+            var pokemon_object = {api_id: result.id, name: result.name, types: pokemon_types, image: result.sprites.front_default, api: link}
             API.graphql(graphqlOperation(createPokemon, {input: pokemon_object}))
         },
         (error) => {
@@ -70,7 +78,7 @@ function MakeAPICalls() {
     }
 
     function load_moves() {
-        fetch("https://pokeapi.co/api/v2/move/?limit=844")
+        fetch("https://pokeapi.co/api/v2/move/?limit=826")
         .then(res => res.json())
         .then((result) => {
             var moves = result.results
@@ -94,16 +102,34 @@ function MakeAPICalls() {
         api: String!
         }
     */
+
+    
     function add_moves(id, link) {
         fetch(link)
         .then(res => res.json())
         .then((result) => {
             console.log(result)
             var move_result = result
-            var move_type = API.graphql({ query: queries.getType, variables: {api_id: 3}})
-            console.log(move_type)
-            // var move_object = {api_id: id, name: move_result.name, type: move_result.type, power: move_result.power, api: link}
-            // API.graphql(graphqlOperation(createMove, {input: move_object}))
+            var move_type_promise = API.graphql({ query: queries.listTypes, variables: {filter: {
+                name: {
+                    eq: result.type.name
+                }
+            }}})
+            var move_type = null
+            move_type_promise.then(function(result){
+                move_type = result.data.listTypes.items[0]
+                var move_object = null
+                console.log(move_type)
+                if (move_result.power == null) {
+                    move_object = {api_id: id, name: move_result.name, type: move_type.name, power: 0, api: link}
+                } else {
+                    move_object = {api_id: id, name: move_result.name, type: move_type.name, power: move_result.power, api: link}
+                }
+                
+                API.graphql(graphqlOperation(createMove, {input: move_object}))
+            })
+            
+            
 
         },
         (error) => {

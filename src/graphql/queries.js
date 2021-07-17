@@ -41,14 +41,7 @@ export const getSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       total_hp
       createdAt
       updatedAt
@@ -71,14 +64,7 @@ export const listSingleTasks = /* GraphQL */ `
         exp_given
         win_quote
         lose_quote
-        answer {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        answer
         total_hp
         createdAt
         updatedAt
@@ -99,14 +85,7 @@ export const getMultipleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -129,14 +108,7 @@ export const listMultipleTasks = /* GraphQL */ `
         win_quote
         lose_quote
         next_steps
-        answer {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        answer
         createdAt
         updatedAt
       }
@@ -156,23 +128,7 @@ export const getRiddleTask = /* GraphQL */ `
       win_quote
       lose_quote
       next_steps
-      answer {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      answer
       createdAt
       updatedAt
     }
@@ -195,15 +151,7 @@ export const listRiddleTasks = /* GraphQL */ `
         win_quote
         lose_quote
         next_steps
-        answer {
-          id
-          api_id
-          name
-          power
-          api
-          createdAt
-          updatedAt
-        }
+        answer
         createdAt
         updatedAt
       }
@@ -222,6 +170,7 @@ export const getAccount = /* GraphQL */ `
           id
           api_id
           name
+          types
           image
           api
           createdAt
@@ -231,73 +180,17 @@ export const getAccount = /* GraphQL */ `
           id
           username
           money
+          completed_tasks
           createdAt
           updatedAt
         }
         image
-        movelist {
-          id
-          api_id
-          name
-          power
-          api
-          createdAt
-          updatedAt
-        }
+        movelist
         createdAt
         updatedAt
       }
       money
-      completed_tasks {
-        id
-        name
-        images
-        question
-        turns_permitted
-        exp_given
-        win_quote
-        lose_quote
-        ... on SingleTask {
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          total_hp
-          createdAt
-          updatedAt
-        }
-        ... on MultipleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-        ... on RiddleTask {
-          next_steps
-          answer {
-            id
-            api_id
-            name
-            power
-            api
-            createdAt
-            updatedAt
-          }
-          createdAt
-          updatedAt
-        }
-      }
+      completed_tasks
       createdAt
       updatedAt
     }
@@ -316,35 +209,12 @@ export const listAccounts = /* GraphQL */ `
         users_pokemon {
           id
           image
+          movelist
           createdAt
           updatedAt
         }
         money
-        completed_tasks {
-          id
-          name
-          images
-          question
-          turns_permitted
-          exp_given
-          win_quote
-          lose_quote
-          ... on SingleTask {
-            total_hp
-            createdAt
-            updatedAt
-          }
-          ... on MultipleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-          ... on RiddleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-        }
+        completed_tasks
         createdAt
         updatedAt
       }
@@ -360,14 +230,7 @@ export const getUserPokemon = /* GraphQL */ `
         id
         api_id
         name
-        types {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        types
         image
         api
         createdAt
@@ -379,56 +242,17 @@ export const getUserPokemon = /* GraphQL */ `
         users_pokemon {
           id
           image
+          movelist
           createdAt
           updatedAt
         }
         money
-        completed_tasks {
-          id
-          name
-          images
-          question
-          turns_permitted
-          exp_given
-          win_quote
-          lose_quote
-          ... on SingleTask {
-            total_hp
-            createdAt
-            updatedAt
-          }
-          ... on MultipleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-          ... on RiddleTask {
-            next_steps
-            createdAt
-            updatedAt
-          }
-        }
+        completed_tasks
         createdAt
         updatedAt
       }
       image
-      movelist {
-        id
-        api_id
-        name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
-        power
-        api
-        createdAt
-        updatedAt
-      }
+      movelist
       createdAt
       updatedAt
     }
@@ -447,6 +271,7 @@ export const listUserPokemons = /* GraphQL */ `
           id
           api_id
           name
+          types
           image
           api
           createdAt
@@ -456,19 +281,12 @@ export const listUserPokemons = /* GraphQL */ `
           id
           username
           money
+          completed_tasks
           createdAt
           updatedAt
         }
         image
-        movelist {
-          id
-          api_id
-          name
-          power
-          api
-          createdAt
-          updatedAt
-        }
+        movelist
         createdAt
         updatedAt
       }
@@ -482,14 +300,7 @@ export const getPokemon = /* GraphQL */ `
       id
       api_id
       name
-      types {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      types
       image
       api
       createdAt
@@ -508,14 +319,7 @@ export const listPokemons = /* GraphQL */ `
         id
         api_id
         name
-        types {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        types
         image
         api
         createdAt
@@ -531,14 +335,7 @@ export const getMove = /* GraphQL */ `
       id
       api_id
       name
-      type {
-        id
-        api_id
-        name
-        api
-        createdAt
-        updatedAt
-      }
+      type
       power
       api
       createdAt
@@ -557,14 +354,7 @@ export const listMoves = /* GraphQL */ `
         id
         api_id
         name
-        type {
-          id
-          api_id
-          name
-          api
-          createdAt
-          updatedAt
-        }
+        type
         power
         api
         createdAt
@@ -602,6 +392,66 @@ export const listTypes = /* GraphQL */ `
         updatedAt
       }
       nextToken
+    }
+  }
+`;
+export const searchPokemons = /* GraphQL */ `
+  query SearchPokemons(
+    $filter: SearchablePokemonFilterInput
+    $sort: SearchablePokemonSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchPokemons(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        api_id
+        name
+        types
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
+    }
+  }
+`;
+export const searchMoves = /* GraphQL */ `
+  query SearchMoves(
+    $filter: SearchableMoveFilterInput
+    $sort: SearchableMoveSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchMoves(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        api_id
+        name
+        type
+        power
+        api
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
     }
   }
 `;

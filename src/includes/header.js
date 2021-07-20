@@ -37,6 +37,9 @@ const Header = () => {
           <li>
             <Link to="/choose_pokemon">Choose Pokemon</Link>
           </li>
+          <li>
+            <Link to="/introduction">Introduction</Link>
+          </li>
           
           <li>
             <button onClick={signOut}>Logout</button>

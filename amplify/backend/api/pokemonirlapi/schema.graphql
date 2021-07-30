@@ -1,9 +1,3 @@
-type Todo @model {
-  id: ID!
-  name: String!
-  description: String
-}
-
 interface Task{
   id: ID!
   name: String!
@@ -56,19 +50,21 @@ type RiddleTask implements Task @model {
 }
 
 type Account @model {
-  id: ID!
+  id: String!
   username: String!
-  users_pokemon: [UserPokemon]
+  users_pokemon: [String] 
   money: Int!
-  completed_tasks: [ID]
+  completed_tasks: [String]!
 }
 
 type UserPokemon @model {
   id: ID!
-  pokemon: Pokemon
-  owner: Account
+  accountID: String!
+  pokemon: String!
   image: String!
-  movelist: [String]
+  movelist: [String]!
+  level: Int!
+  exp_until_level: Int!
 }
 
 type Pokemon @model @searchable{

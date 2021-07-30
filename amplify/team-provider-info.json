@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "pokemonirl6c251e80": {}
+      },
+      "function": {
+        "pokemonirlAppSyncLambdaPokemonIrl": {
+          "deploymentBucketName": "amplify-pokemonirl-dev-235415-deployment",
+          "s3Key": "amplify-builds/pokemonirlAppSyncLambdaPokemonIrl-LambdaLayerVersion857225f7-build.zip"
+        }
       }
     }
   }

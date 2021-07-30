@@ -1,7 +1,15 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.deleteType = exports.updateType = exports.createType = exports.deleteMove = exports.updateMove = exports.createMove = exports.deletePokemon = exports.updatePokemon = exports.createPokemon = exports.deleteUserPokemon = exports.updateUserPokemon = exports.createUserPokemon = exports.deleteAccount = exports.updateAccount = exports.createAccount = exports.deleteRiddleTask = exports.updateRiddleTask = exports.createRiddleTask = exports.deleteMultipleTask = exports.updateMultipleTask = exports.createMultipleTask = exports.deleteSingleTask = exports.updateSingleTask = exports.createSingleTask = void 0;
+
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
-
-export const createSingleTask = /* GraphQL */ `
+const createSingleTask =
+/* GraphQL */
+`
   mutation CreateSingleTask(
     $input: CreateSingleTaskInput!
     $condition: ModelSingleTaskConditionInput
@@ -22,7 +30,10 @@ export const createSingleTask = /* GraphQL */ `
     }
   }
 `;
-export const updateSingleTask = /* GraphQL */ `
+exports.createSingleTask = createSingleTask;
+const updateSingleTask =
+/* GraphQL */
+`
   mutation UpdateSingleTask(
     $input: UpdateSingleTaskInput!
     $condition: ModelSingleTaskConditionInput
@@ -43,7 +54,10 @@ export const updateSingleTask = /* GraphQL */ `
     }
   }
 `;
-export const deleteSingleTask = /* GraphQL */ `
+exports.updateSingleTask = updateSingleTask;
+const deleteSingleTask =
+/* GraphQL */
+`
   mutation DeleteSingleTask(
     $input: DeleteSingleTaskInput!
     $condition: ModelSingleTaskConditionInput
@@ -64,7 +78,10 @@ export const deleteSingleTask = /* GraphQL */ `
     }
   }
 `;
-export const createMultipleTask = /* GraphQL */ `
+exports.deleteSingleTask = deleteSingleTask;
+const createMultipleTask =
+/* GraphQL */
+`
   mutation CreateMultipleTask(
     $input: CreateMultipleTaskInput!
     $condition: ModelMultipleTaskConditionInput
@@ -85,7 +102,10 @@ export const createMultipleTask = /* GraphQL */ `
     }
   }
 `;
-export const updateMultipleTask = /* GraphQL */ `
+exports.createMultipleTask = createMultipleTask;
+const updateMultipleTask =
+/* GraphQL */
+`
   mutation UpdateMultipleTask(
     $input: UpdateMultipleTaskInput!
     $condition: ModelMultipleTaskConditionInput
@@ -106,7 +126,10 @@ export const updateMultipleTask = /* GraphQL */ `
     }
   }
 `;
-export const deleteMultipleTask = /* GraphQL */ `
+exports.updateMultipleTask = updateMultipleTask;
+const deleteMultipleTask =
+/* GraphQL */
+`
   mutation DeleteMultipleTask(
     $input: DeleteMultipleTaskInput!
     $condition: ModelMultipleTaskConditionInput
@@ -127,7 +150,10 @@ export const deleteMultipleTask = /* GraphQL */ `
     }
   }
 `;
-export const createRiddleTask = /* GraphQL */ `
+exports.deleteMultipleTask = deleteMultipleTask;
+const createRiddleTask =
+/* GraphQL */
+`
   mutation CreateRiddleTask(
     $input: CreateRiddleTaskInput!
     $condition: ModelRiddleTaskConditionInput
@@ -148,7 +174,10 @@ export const createRiddleTask = /* GraphQL */ `
     }
   }
 `;
-export const updateRiddleTask = /* GraphQL */ `
+exports.createRiddleTask = createRiddleTask;
+const updateRiddleTask =
+/* GraphQL */
+`
   mutation UpdateRiddleTask(
     $input: UpdateRiddleTaskInput!
     $condition: ModelRiddleTaskConditionInput
@@ -169,7 +198,10 @@ export const updateRiddleTask = /* GraphQL */ `
     }
   }
 `;
-export const deleteRiddleTask = /* GraphQL */ `
+exports.updateRiddleTask = updateRiddleTask;
+const deleteRiddleTask =
+/* GraphQL */
+`
   mutation DeleteRiddleTask(
     $input: DeleteRiddleTaskInput!
     $condition: ModelRiddleTaskConditionInput
@@ -190,7 +222,10 @@ export const deleteRiddleTask = /* GraphQL */ `
     }
   }
 `;
-export const createAccount = /* GraphQL */ `
+exports.deleteRiddleTask = deleteRiddleTask;
+const createAccount =
+/* GraphQL */
+`
   mutation CreateAccount(
     $input: CreateAccountInput!
     $condition: ModelAccountConditionInput
@@ -198,7 +233,31 @@ export const createAccount = /* GraphQL */ `
     createAccount(input: $input, condition: $condition) {
       id
       username
-      users_pokemon
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          types
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          completed_tasks
+          createdAt
+          updatedAt
+        }
+        image
+        movelist
+        createdAt
+        updatedAt
+      }
       money
       completed_tasks
       createdAt
@@ -206,7 +265,10 @@ export const createAccount = /* GraphQL */ `
     }
   }
 `;
-export const updateAccount = /* GraphQL */ `
+exports.createAccount = createAccount;
+const updateAccount =
+/* GraphQL */
+`
   mutation UpdateAccount(
     $input: UpdateAccountInput!
     $condition: ModelAccountConditionInput
@@ -214,7 +276,31 @@ export const updateAccount = /* GraphQL */ `
     updateAccount(input: $input, condition: $condition) {
       id
       username
-      users_pokemon
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          types
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          completed_tasks
+          createdAt
+          updatedAt
+        }
+        image
+        movelist
+        createdAt
+        updatedAt
+      }
       money
       completed_tasks
       createdAt
@@ -222,7 +308,10 @@ export const updateAccount = /* GraphQL */ `
     }
   }
 `;
-export const deleteAccount = /* GraphQL */ `
+exports.updateAccount = updateAccount;
+const deleteAccount =
+/* GraphQL */
+`
   mutation DeleteAccount(
     $input: DeleteAccountInput!
     $condition: ModelAccountConditionInput
@@ -230,7 +319,31 @@ export const deleteAccount = /* GraphQL */ `
     deleteAccount(input: $input, condition: $condition) {
       id
       username
-      users_pokemon
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          types
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          completed_tasks
+          createdAt
+          updatedAt
+        }
+        image
+        movelist
+        createdAt
+        updatedAt
+      }
       money
       completed_tasks
       createdAt
@@ -238,61 +351,136 @@ export const deleteAccount = /* GraphQL */ `
     }
   }
 `;
-export const createUserPokemon = /* GraphQL */ `
+exports.deleteAccount = deleteAccount;
+const createUserPokemon =
+/* GraphQL */
+`
   mutation CreateUserPokemon(
     $input: CreateUserPokemonInput!
     $condition: ModelUserPokemonConditionInput
   ) {
     createUserPokemon(input: $input, condition: $condition) {
       id
-      accountID
-      pokemon
+      pokemon {
+        id
+        api_id
+        name
+        types
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          movelist
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks
+        createdAt
+        updatedAt
+      }
       image
       movelist
-      level
-      exp_until_level
       createdAt
       updatedAt
     }
   }
 `;
-export const updateUserPokemon = /* GraphQL */ `
+exports.createUserPokemon = createUserPokemon;
+const updateUserPokemon =
+/* GraphQL */
+`
   mutation UpdateUserPokemon(
     $input: UpdateUserPokemonInput!
     $condition: ModelUserPokemonConditionInput
   ) {
     updateUserPokemon(input: $input, condition: $condition) {
       id
-      accountID
-      pokemon
+      pokemon {
+        id
+        api_id
+        name
+        types
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          movelist
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks
+        createdAt
+        updatedAt
+      }
       image
       movelist
-      level
-      exp_until_level
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteUserPokemon = /* GraphQL */ `
+exports.updateUserPokemon = updateUserPokemon;
+const deleteUserPokemon =
+/* GraphQL */
+`
   mutation DeleteUserPokemon(
     $input: DeleteUserPokemonInput!
     $condition: ModelUserPokemonConditionInput
   ) {
     deleteUserPokemon(input: $input, condition: $condition) {
       id
-      accountID
-      pokemon
+      pokemon {
+        id
+        api_id
+        name
+        types
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          movelist
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks
+        createdAt
+        updatedAt
+      }
       image
       movelist
-      level
-      exp_until_level
       createdAt
       updatedAt
     }
   }
 `;
-export const createPokemon = /* GraphQL */ `
+exports.deleteUserPokemon = deleteUserPokemon;
+const createPokemon =
+/* GraphQL */
+`
   mutation CreatePokemon(
     $input: CreatePokemonInput!
     $condition: ModelPokemonConditionInput
@@ -309,7 +497,10 @@ export const createPokemon = /* GraphQL */ `
     }
   }
 `;
-export const updatePokemon = /* GraphQL */ `
+exports.createPokemon = createPokemon;
+const updatePokemon =
+/* GraphQL */
+`
   mutation UpdatePokemon(
     $input: UpdatePokemonInput!
     $condition: ModelPokemonConditionInput
@@ -326,7 +517,10 @@ export const updatePokemon = /* GraphQL */ `
     }
   }
 `;
-export const deletePokemon = /* GraphQL */ `
+exports.updatePokemon = updatePokemon;
+const deletePokemon =
+/* GraphQL */
+`
   mutation DeletePokemon(
     $input: DeletePokemonInput!
     $condition: ModelPokemonConditionInput
@@ -343,7 +537,10 @@ export const deletePokemon = /* GraphQL */ `
     }
   }
 `;
-export const createMove = /* GraphQL */ `
+exports.deletePokemon = deletePokemon;
+const createMove =
+/* GraphQL */
+`
   mutation CreateMove(
     $input: CreateMoveInput!
     $condition: ModelMoveConditionInput
@@ -360,7 +557,10 @@ export const createMove = /* GraphQL */ `
     }
   }
 `;
-export const updateMove = /* GraphQL */ `
+exports.createMove = createMove;
+const updateMove =
+/* GraphQL */
+`
   mutation UpdateMove(
     $input: UpdateMoveInput!
     $condition: ModelMoveConditionInput
@@ -377,7 +577,10 @@ export const updateMove = /* GraphQL */ `
     }
   }
 `;
-export const deleteMove = /* GraphQL */ `
+exports.updateMove = updateMove;
+const deleteMove =
+/* GraphQL */
+`
   mutation DeleteMove(
     $input: DeleteMoveInput!
     $condition: ModelMoveConditionInput
@@ -394,7 +597,10 @@ export const deleteMove = /* GraphQL */ `
     }
   }
 `;
-export const createType = /* GraphQL */ `
+exports.deleteMove = deleteMove;
+const createType =
+/* GraphQL */
+`
   mutation CreateType(
     $input: CreateTypeInput!
     $condition: ModelTypeConditionInput
@@ -409,7 +615,10 @@ export const createType = /* GraphQL */ `
     }
   }
 `;
-export const updateType = /* GraphQL */ `
+exports.createType = createType;
+const updateType =
+/* GraphQL */
+`
   mutation UpdateType(
     $input: UpdateTypeInput!
     $condition: ModelTypeConditionInput
@@ -424,7 +633,10 @@ export const updateType = /* GraphQL */ `
     }
   }
 `;
-export const deleteType = /* GraphQL */ `
+exports.updateType = updateType;
+const deleteType =
+/* GraphQL */
+`
   mutation DeleteType(
     $input: DeleteTypeInput!
     $condition: ModelTypeConditionInput
@@ -439,3 +651,4 @@ export const deleteType = /* GraphQL */ `
     }
   }
 `;
+exports.deleteType = deleteType;

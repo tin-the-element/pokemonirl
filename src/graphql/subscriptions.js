@@ -1,39 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateSingleTask = /* GraphQL */ `
   subscription OnCreateSingleTask {
     onCreateSingleTask {
@@ -201,31 +168,7 @@ export const onCreateAccount = /* GraphQL */ `
     onCreateAccount {
       id
       username
-      users_pokemon {
-        id
-        pokemon {
-          id
-          api_id
-          name
-          types
-          image
-          api
-          createdAt
-          updatedAt
-        }
-        owner {
-          id
-          username
-          money
-          completed_tasks
-          createdAt
-          updatedAt
-        }
-        image
-        movelist
-        createdAt
-        updatedAt
-      }
+      users_pokemon
       money
       completed_tasks
       createdAt
@@ -238,31 +181,7 @@ export const onUpdateAccount = /* GraphQL */ `
     onUpdateAccount {
       id
       username
-      users_pokemon {
-        id
-        pokemon {
-          id
-          api_id
-          name
-          types
-          image
-          api
-          createdAt
-          updatedAt
-        }
-        owner {
-          id
-          username
-          money
-          completed_tasks
-          createdAt
-          updatedAt
-        }
-        image
-        movelist
-        createdAt
-        updatedAt
-      }
+      users_pokemon
       money
       completed_tasks
       createdAt
@@ -275,31 +194,7 @@ export const onDeleteAccount = /* GraphQL */ `
     onDeleteAccount {
       id
       username
-      users_pokemon {
-        id
-        pokemon {
-          id
-          api_id
-          name
-          types
-          image
-          api
-          createdAt
-          updatedAt
-        }
-        owner {
-          id
-          username
-          money
-          completed_tasks
-          createdAt
-          updatedAt
-        }
-        image
-        movelist
-        createdAt
-        updatedAt
-      }
+      users_pokemon
       money
       completed_tasks
       createdAt
@@ -311,33 +206,12 @@ export const onCreateUserPokemon = /* GraphQL */ `
   subscription OnCreateUserPokemon {
     onCreateUserPokemon {
       id
-      pokemon {
-        id
-        api_id
-        name
-        types
-        image
-        api
-        createdAt
-        updatedAt
-      }
-      owner {
-        id
-        username
-        users_pokemon {
-          id
-          image
-          movelist
-          createdAt
-          updatedAt
-        }
-        money
-        completed_tasks
-        createdAt
-        updatedAt
-      }
+      accountID
+      pokemon
       image
       movelist
+      level
+      exp_until_level
       createdAt
       updatedAt
     }
@@ -347,33 +221,12 @@ export const onUpdateUserPokemon = /* GraphQL */ `
   subscription OnUpdateUserPokemon {
     onUpdateUserPokemon {
       id
-      pokemon {
-        id
-        api_id
-        name
-        types
-        image
-        api
-        createdAt
-        updatedAt
-      }
-      owner {
-        id
-        username
-        users_pokemon {
-          id
-          image
-          movelist
-          createdAt
-          updatedAt
-        }
-        money
-        completed_tasks
-        createdAt
-        updatedAt
-      }
+      accountID
+      pokemon
       image
       movelist
+      level
+      exp_until_level
       createdAt
       updatedAt
     }
@@ -383,33 +236,12 @@ export const onDeleteUserPokemon = /* GraphQL */ `
   subscription OnDeleteUserPokemon {
     onDeleteUserPokemon {
       id
-      pokemon {
-        id
-        api_id
-        name
-        types
-        image
-        api
-        createdAt
-        updatedAt
-      }
-      owner {
-        id
-        username
-        users_pokemon {
-          id
-          image
-          movelist
-          createdAt
-          updatedAt
-        }
-        money
-        completed_tasks
-        createdAt
-        updatedAt
-      }
+      accountID
+      pokemon
       image
       movelist
+      level
+      exp_until_level
       createdAt
       updatedAt
     }

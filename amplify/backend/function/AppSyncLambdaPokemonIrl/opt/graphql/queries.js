@@ -1,7 +1,15 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.searchMoves = exports.searchPokemons = exports.listTypes = exports.getType = exports.listMoves = exports.getMove = exports.listPokemons = exports.getPokemon = exports.listUserPokemons = exports.getUserPokemon = exports.listAccounts = exports.getAccount = exports.listRiddleTasks = exports.getRiddleTask = exports.listMultipleTasks = exports.getMultipleTask = exports.listSingleTasks = exports.getSingleTask = void 0;
+
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
-
-export const getSingleTask = /* GraphQL */ `
+const getSingleTask =
+/* GraphQL */
+`
   query GetSingleTask($id: ID!) {
     getSingleTask(id: $id) {
       id
@@ -19,7 +27,10 @@ export const getSingleTask = /* GraphQL */ `
     }
   }
 `;
-export const listSingleTasks = /* GraphQL */ `
+exports.getSingleTask = getSingleTask;
+const listSingleTasks =
+/* GraphQL */
+`
   query ListSingleTasks(
     $filter: ModelSingleTaskFilterInput
     $limit: Int
@@ -44,7 +55,10 @@ export const listSingleTasks = /* GraphQL */ `
     }
   }
 `;
-export const getMultipleTask = /* GraphQL */ `
+exports.listSingleTasks = listSingleTasks;
+const getMultipleTask =
+/* GraphQL */
+`
   query GetMultipleTask($id: ID!) {
     getMultipleTask(id: $id) {
       id
@@ -62,7 +76,10 @@ export const getMultipleTask = /* GraphQL */ `
     }
   }
 `;
-export const listMultipleTasks = /* GraphQL */ `
+exports.getMultipleTask = getMultipleTask;
+const listMultipleTasks =
+/* GraphQL */
+`
   query ListMultipleTasks(
     $filter: ModelMultipleTaskFilterInput
     $limit: Int
@@ -87,7 +104,10 @@ export const listMultipleTasks = /* GraphQL */ `
     }
   }
 `;
-export const getRiddleTask = /* GraphQL */ `
+exports.listMultipleTasks = listMultipleTasks;
+const getRiddleTask =
+/* GraphQL */
+`
   query GetRiddleTask($id: ID!) {
     getRiddleTask(id: $id) {
       id
@@ -105,7 +125,10 @@ export const getRiddleTask = /* GraphQL */ `
     }
   }
 `;
-export const listRiddleTasks = /* GraphQL */ `
+exports.getRiddleTask = getRiddleTask;
+const listRiddleTasks =
+/* GraphQL */
+`
   query ListRiddleTasks(
     $filter: ModelRiddleTaskFilterInput
     $limit: Int
@@ -130,12 +153,39 @@ export const listRiddleTasks = /* GraphQL */ `
     }
   }
 `;
-export const getAccount = /* GraphQL */ `
+exports.listRiddleTasks = listRiddleTasks;
+const getAccount =
+/* GraphQL */
+`
   query GetAccount($id: ID!) {
     getAccount(id: $id) {
       id
       username
-      users_pokemon
+      users_pokemon {
+        id
+        pokemon {
+          id
+          api_id
+          name
+          types
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          completed_tasks
+          createdAt
+          updatedAt
+        }
+        image
+        movelist
+        createdAt
+        updatedAt
+      }
       money
       completed_tasks
       createdAt
@@ -143,7 +193,10 @@ export const getAccount = /* GraphQL */ `
     }
   }
 `;
-export const listAccounts = /* GraphQL */ `
+exports.getAccount = getAccount;
+const listAccounts =
+/* GraphQL */
+`
   query ListAccounts(
     $filter: ModelAccountFilterInput
     $limit: Int
@@ -153,7 +206,13 @@ export const listAccounts = /* GraphQL */ `
       items {
         id
         username
-        users_pokemon
+        users_pokemon {
+          id
+          image
+          movelist
+          createdAt
+          updatedAt
+        }
         money
         completed_tasks
         createdAt
@@ -163,22 +222,49 @@ export const listAccounts = /* GraphQL */ `
     }
   }
 `;
-export const getUserPokemon = /* GraphQL */ `
+exports.listAccounts = listAccounts;
+const getUserPokemon =
+/* GraphQL */
+`
   query GetUserPokemon($id: ID!) {
     getUserPokemon(id: $id) {
       id
-      accountID
-      pokemon
+      pokemon {
+        id
+        api_id
+        name
+        types
+        image
+        api
+        createdAt
+        updatedAt
+      }
+      owner {
+        id
+        username
+        users_pokemon {
+          id
+          image
+          movelist
+          createdAt
+          updatedAt
+        }
+        money
+        completed_tasks
+        createdAt
+        updatedAt
+      }
       image
       movelist
-      level
-      exp_until_level
       createdAt
       updatedAt
     }
   }
 `;
-export const listUserPokemons = /* GraphQL */ `
+exports.getUserPokemon = getUserPokemon;
+const listUserPokemons =
+/* GraphQL */
+`
   query ListUserPokemons(
     $filter: ModelUserPokemonFilterInput
     $limit: Int
@@ -187,12 +273,26 @@ export const listUserPokemons = /* GraphQL */ `
     listUserPokemons(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        accountID
-        pokemon
+        pokemon {
+          id
+          api_id
+          name
+          types
+          image
+          api
+          createdAt
+          updatedAt
+        }
+        owner {
+          id
+          username
+          money
+          completed_tasks
+          createdAt
+          updatedAt
+        }
         image
         movelist
-        level
-        exp_until_level
         createdAt
         updatedAt
       }
@@ -200,7 +300,10 @@ export const listUserPokemons = /* GraphQL */ `
     }
   }
 `;
-export const getPokemon = /* GraphQL */ `
+exports.listUserPokemons = listUserPokemons;
+const getPokemon =
+/* GraphQL */
+`
   query GetPokemon($id: ID!) {
     getPokemon(id: $id) {
       id
@@ -214,7 +317,10 @@ export const getPokemon = /* GraphQL */ `
     }
   }
 `;
-export const listPokemons = /* GraphQL */ `
+exports.getPokemon = getPokemon;
+const listPokemons =
+/* GraphQL */
+`
   query ListPokemons(
     $filter: ModelPokemonFilterInput
     $limit: Int
@@ -235,7 +341,10 @@ export const listPokemons = /* GraphQL */ `
     }
   }
 `;
-export const getMove = /* GraphQL */ `
+exports.listPokemons = listPokemons;
+const getMove =
+/* GraphQL */
+`
   query GetMove($id: ID!) {
     getMove(id: $id) {
       id
@@ -249,7 +358,10 @@ export const getMove = /* GraphQL */ `
     }
   }
 `;
-export const listMoves = /* GraphQL */ `
+exports.getMove = getMove;
+const listMoves =
+/* GraphQL */
+`
   query ListMoves(
     $filter: ModelMoveFilterInput
     $limit: Int
@@ -270,7 +382,10 @@ export const listMoves = /* GraphQL */ `
     }
   }
 `;
-export const getType = /* GraphQL */ `
+exports.listMoves = listMoves;
+const getType =
+/* GraphQL */
+`
   query GetType($id: ID!) {
     getType(id: $id) {
       id
@@ -282,7 +397,10 @@ export const getType = /* GraphQL */ `
     }
   }
 `;
-export const listTypes = /* GraphQL */ `
+exports.getType = getType;
+const listTypes =
+/* GraphQL */
+`
   query ListTypes(
     $filter: ModelTypeFilterInput
     $limit: Int
@@ -301,7 +419,10 @@ export const listTypes = /* GraphQL */ `
     }
   }
 `;
-export const searchPokemons = /* GraphQL */ `
+exports.listTypes = listTypes;
+const searchPokemons =
+/* GraphQL */
+`
   query SearchPokemons(
     $filter: SearchablePokemonFilterInput
     $sort: SearchablePokemonSortInput
@@ -331,7 +452,10 @@ export const searchPokemons = /* GraphQL */ `
     }
   }
 `;
-export const searchMoves = /* GraphQL */ `
+exports.searchPokemons = searchPokemons;
+const searchMoves =
+/* GraphQL */
+`
   query SearchMoves(
     $filter: SearchableMoveFilterInput
     $sort: SearchableMoveSortInput
@@ -361,3 +485,4 @@ export const searchMoves = /* GraphQL */ `
     }
   }
 `;
+exports.searchMoves = searchMoves;

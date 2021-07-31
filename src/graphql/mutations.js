@@ -246,6 +246,7 @@ export const createUserPokemon = /* GraphQL */ `
     createUserPokemon(input: $input, condition: $condition) {
       id
       accountID
+      nickname
       pokemon
       image
       movelist
@@ -264,6 +265,7 @@ export const updateUserPokemon = /* GraphQL */ `
     updateUserPokemon(input: $input, condition: $condition) {
       id
       accountID
+      nickname
       pokemon
       image
       movelist
@@ -282,6 +284,7 @@ export const deleteUserPokemon = /* GraphQL */ `
     deleteUserPokemon(input: $input, condition: $condition) {
       id
       accountID
+      nickname
       pokemon
       image
       movelist

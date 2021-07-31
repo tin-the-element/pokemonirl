@@ -8,13 +8,15 @@ import * as queries from '../../graphql/queries'
 import Auth from '@aws-amplify/auth'
 Amplify.configure(awsExports);
 
+const initialState = { nickname: ''}
+
 function ChoosePokemon() {
+    const [formState, setFormState] = useState(initialState)
     const [chosenPokemon, setChosenPokemon] = useState('')
     const [pokemons, setPokemons] = useState([])
     const [typeSearch, setTypeSearch] = useState('null')
     const [types, setTypes] = useState([])
     const [loadPokemon, setLoadPokemon] = useState(true)
-    const [email, setEmail] = useState('')
 
     useEffect(() => {
         if (loadPokemon) {
@@ -29,17 +31,7 @@ function ChoosePokemon() {
         }
         console.log('change')
       })
-    
-      /* 
-      
-      const pokemonData = await API.graphql({ query: queries.searchPokemons, variables: {filter: {
-            types: {
-                contains: 'fire'
-            }
-        }, sort: {
-            pokemonId: 'asc'
-        },  limit: 900}})
-      */
+
       async function fetchTypes() {
         try {
           const typeData = await API.graphql({query: queries.listTypes})
@@ -116,6 +108,7 @@ function ChoosePokemon() {
             }
             console.log();
             pokemonData = pokemonData.data.createUserPokemon
+            
             var updatedPokemon = {id: pokemonData.id ,accountID: pokemonData.email, pokemon: pokemonData.pokemon, image: pokemonData.image, movelist: returned_moves, level: pokemonData.level, exp_until_level: pokemonData.exp_until_level}
             const newPokemon = API.graphql(graphqlOperation(mutations.updateUserPokemon, {input: updatedPokemon}))
         },
@@ -131,10 +124,11 @@ function ChoosePokemon() {
       async function selectPokemon() {
         
 
+        
+
         // Find account in DB
-        Auth.currentAuthenticatedUser()
-        .then(user => setEmail(user.attributes.email))
-        .catch(err => console.log(err));
+        const authUser = await Auth.currentAuthenticatedUser()
+        const email = authUser.attributes.email
 
 
 
@@ -146,7 +140,9 @@ function ChoosePokemon() {
           }
         },  limit: 900}});
         console.log(pokemonData.data.listPokemons.items[0].api);
-        const newPokemonData = {accountID: email, pokemon: chosenPokemon, image: pokemonData.data.listPokemons.items[0].image, movelist: [], level: 10, exp_until_level: 100}
+
+        const nicknames = { ...formState }
+        const newPokemonData = {accountID: email, nickname: nicknames.nickname, pokemon: chosenPokemon, image: pokemonData.data.listPokemons.items[0].image, movelist: [], level: 10, exp_until_level: 100}
         const newPokemon = await API.graphql(graphqlOperation(mutations.createUserPokemon, {input: newPokemonData}))
 
         // Add pokemon to account
@@ -161,6 +157,10 @@ function ChoosePokemon() {
         const newMoves = await getMoves(pokemonData.data.listPokemons.items[0].api, 10, newPokemon)
       }
 
+      function setInput(key, value) {
+        setFormState({ ...formState, [key]: value })
+      }
+
       function toTitleCase(str) {
         return str.replace(/\w\S*/g, function(txt){
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -170,7 +170,11 @@ function ChoosePokemon() {
 
     return (
       <div className="center-div">
-        <h3>Currently Selected Pokemon: {toTitleCase(chosenPokemon)} </h3>
+        <h3>Currently Selected Pokemon: {toTitleCase(chosenPokemon)}</h3>
+        <form>
+          <label>Nickname: </label>
+          <input style={{width: '200px'}} onChange={event => setInput('nickname', event.target.value)} value={formState["nickname"]} placeholder="Leave empty for no nickname" />
+        </form>
         <button onClick={selectPokemon}>Choose Selected Pokemon</button>
         <form onSubmit={searchType}>
           <label for="type">Type</label>

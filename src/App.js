@@ -21,6 +21,7 @@ import LostBattle from './sections/Battles/LostBattle'
 import MakeAPICalls from './sections/admin/MakeAPICalls'
 import ChoosePokemon from './sections/NewPokemon/ChoosePokemon';
 import IntroduceUser from './sections/Introduction/IntroduceUser';
+import UsersPokemon from './sections/Profile/UsersPokemon';
 
 Amplify.configure(awsExports);
 
@@ -52,6 +53,9 @@ const App = () => {
         </Route>
         <Route path="/introduction" >
           <IntroduceUser />
+        </Route>
+        <Route path="/user_pokemon" >
+          <UsersPokemon />
         </Route>
 
         <Switch>

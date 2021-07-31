@@ -60,6 +60,7 @@ type Account @model {
 type UserPokemon @model {
   id: ID!
   accountID: String!
+  nickname: String
   pokemon: String!
   image: String!
   movelist: [String]!

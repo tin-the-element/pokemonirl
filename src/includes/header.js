@@ -40,6 +40,9 @@ const Header = () => {
           <li>
             <Link to="/introduction">Introduction</Link>
           </li>
+          <li>
+            <Link to="/user_pokemon">Your Pokemon!</Link>
+          </li>
           
           <li>
             <button onClick={signOut}>Logout</button>

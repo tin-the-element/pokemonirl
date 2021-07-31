@@ -168,6 +168,7 @@ export const getUserPokemon = /* GraphQL */ `
     getUserPokemon(id: $id) {
       id
       accountID
+      nickname
       pokemon
       image
       movelist
@@ -188,6 +189,7 @@ export const listUserPokemons = /* GraphQL */ `
       items {
         id
         accountID
+        nickname
         pokemon
         image
         movelist

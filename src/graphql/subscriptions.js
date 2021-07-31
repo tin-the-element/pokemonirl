@@ -207,6 +207,7 @@ export const onCreateUserPokemon = /* GraphQL */ `
     onCreateUserPokemon {
       id
       accountID
+      nickname
       pokemon
       image
       movelist
@@ -222,6 +223,7 @@ export const onUpdateUserPokemon = /* GraphQL */ `
     onUpdateUserPokemon {
       id
       accountID
+      nickname
       pokemon
       image
       movelist
@@ -237,6 +239,7 @@ export const onDeleteUserPokemon = /* GraphQL */ `
     onDeleteUserPokemon {
       id
       accountID
+      nickname
       pokemon
       image
       movelist

@@ -11,13 +11,13 @@ import {
 } from "react-router-dom";
 import Header from './includes/header.js'
 import CreateProblem from './sections/admin/CreateProblem.js'
-import ListBattles from './sections/Battles/ListBattles.js'
+import ListTasks from './sections/Tasks/ListTasks.js'
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "./aws-exports";
-import Battle from './sections/Battles/Battle';
-import WonBattle from './sections/Battles/WonBattle'
-import LostBattle from './sections/Battles/LostBattle'
+import Task from './sections/Tasks/Task';
+import WonTask from './sections/Tasks/WonTask'
+import LostTask from './sections/Tasks/LostTask'
 import MakeAPICalls from './sections/admin/MakeAPICalls'
 import ChoosePokemon from './sections/NewPokemon/ChoosePokemon';
 import IntroduceUser from './sections/Introduction/IntroduceUser';
@@ -36,14 +36,14 @@ const App = () => {
         <Route path="/create_problem">
           <CreateProblem />
         </Route>
-        <Route path="/list_battles">
-          <ListBattles />
+        <Route path="/list_tasks">
+          <ListTasks />
         </Route>
-        <Route path="/won_battle">
-          <WonBattle />
+        <Route path="/won_task">
+          <WonTask />
         </Route>
-        <Route path="/lost_battle">
-          <LostBattle />
+        <Route path="/lost_task">
+          <LostTask />
         </Route>
         <Route path="/make_calls" >
           <MakeAPICalls />
@@ -59,7 +59,7 @@ const App = () => {
         </Route>
 
         <Switch>
-          <Route path="/battle/id=:id" children={<Battle />} />
+          <Route path="/task/id=:id" children={<Task />} />
         </Switch>
       </Switch>
     </Router>

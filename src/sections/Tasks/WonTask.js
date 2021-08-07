@@ -9,7 +9,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-function WonBattle() {
+function WonTask() {
     let location = useLocation()
 
     return (
@@ -24,4 +24,4 @@ function WonBattle() {
 }
 
 
-export default withAuthenticator(WonBattle)
+export default withAuthenticator(WonTask)

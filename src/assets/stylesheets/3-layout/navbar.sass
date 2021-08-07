@@ -1,0 +1,84 @@
+@use "sass:math"
+/* <nav> */    
+.navbar 
+    display: flex
+    height: $nav-size
+    padding: 0 1rem
+    border-bottom: 1px solid white
+
+/* <ul> */  
+.navbar-nav
+    display: flex
+    justify-self: flex-end
+    justify-content: flex-end
+    max-width: 100%
+    height: 100%
+    list-style: none
+
+.nav-title
+    justify-self: center
+
+.navbar-section
+
+    
+.nav-item 
+  width: calc(#{$nav-size} * 0.8)
+  display: flex
+  align-items: center
+  justify-content: center
+
+/* Icon Button */
+.icon-button 
+  width: $button-size
+  height: $button-size
+  background-color: white
+  border-radius: 50%
+  padding: 5px
+  margin: 2px
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: filter 300ms
+
+
+.icon-button:hover 
+  filter: brightness(.6)
+
+
+.icon-button 
+  svg
+    width: 35px
+    height: 35px
+//   fill: var(--text-color)
+  
+
+.dropdown 
+  background: black
+  border: $navbar-border
+  border-radius: $navbar-radius
+  position: absolute
+  top: calc(#{$nav-size} + 20px)
+  width: 300px
+  padding: 1rem
+  overflow: hidden
+  transition: height $speed ease
+
+
+.menu 
+  width: 100%
+
+.menu-item 
+  height: 50px
+  display: flex
+  align-items: center
+  transition: background $speed
+  padding: 1rem
+  border: 1px white solid
+
+
+
+.menu-item:hover 
+  background-color: #525357
+
+
+    

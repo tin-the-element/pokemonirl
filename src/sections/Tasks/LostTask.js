@@ -14,7 +14,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-function LostBattle() {
+function LostTask() {
     let location = useLocation()
     console.log(location.state.name)
     return (
@@ -26,4 +26,4 @@ function LostBattle() {
     )
 }
 
-export default withAuthenticator(LostBattle)
+export default withAuthenticator(LostTask)

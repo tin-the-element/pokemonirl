@@ -12,7 +12,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-const ListBattles = () => {
+const ListTasks = () => {
   const [singleTasks, setSingleTasks] = useState([])
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const ListBattles = () => {
   }
 
   function toBattle(id) {
-    window.location = "/battle/id=" + id ;
+    window.location = "/task/id=" + id ;
   }
 
   console.log("Test")
@@ -52,4 +52,4 @@ const ListBattles = () => {
 }
 
 
-export default withAuthenticator(ListBattles)
+export default withAuthenticator(ListTasks)

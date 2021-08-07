@@ -14,6 +14,87 @@ a {
   align-items: center;
 }
 
+/* <nav> */    
+.navbar {
+  display: flex;
+  height: 100px;
+  padding: 0 1rem;
+  border-bottom: 1px solid white;
+}
+
+/* <ul> */  
+.navbar-nav {
+  display: flex;
+  justify-self: flex-end;
+  justify-content: flex-end;
+  max-width: 100%;
+  height: 100%;
+  list-style: none;
+}
+
+.nav-title {
+  justify-self: center;
+}
+
+.nav-item {
+  width: calc(100px * 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon Button */
+.icon-button {
+  width: calc(100px * 0.5);
+  height: calc(100px * 0.5);
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+}
+
+.icon-button:hover {
+  filter: brightness(0.6);
+}
+
+.icon-button svg {
+  width: 35px;
+  height: 35px;
+}
+
+.dropdown {
+  background: black;
+  border: 1px solid #474a4d;
+  border-radius: 8px;
+  position: absolute;
+  top: calc(100px + 20px);
+  width: 300px;
+  padding: 1rem;
+  overflow: hidden;
+  transition: height 500ms ease;
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  transition: background 500ms;
+  padding: 1rem;
+  border: 1px white solid;
+}
+
+.menu-item:hover {
+  background-color: #525357;
+}
+
 .battle {
   display: flex;
   flex-direction: column;
@@ -24,10 +105,12 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 700px;
+  text-align: center;
 }
 
 .battle_image {
-  width: 500px;
+  width: 400px;
   height: auto;
 }
 
@@ -37,11 +120,51 @@ a {
 }
 
 .user_space {
-  margin-top: 100px;
+  margin-top: 50px;
   align-self: center;
-  width: 100px;
-  display: grid;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: start;
+}
+
+.user_pokemon {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+.user_pokemon_image {
+  width: 10rem;
+  height: auto;
+}
+
+.move_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 100px;
+}
+
+.pokemon_move_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  justify-content: center;
+  border: 1px solid white;
+  overflow-y: auto;
+  height: 200px;
+}
+
+.pokemon_move_list_item {
+  white-space: nowrap;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding: 0 5px 0 5px;
+  border-radius: 70px;
+  text-align: center;
 }
 
 .battle_item {

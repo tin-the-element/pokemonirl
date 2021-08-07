@@ -8,9 +8,130 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../aws-exports";
 import { Auth } from 'aws-amplify';
 
+import { ReactComponent as UserIcon } from '../assets/navbar_icons/user.svg'
+import { ReactComponent as InventoryIcon } from '../assets/navbar_icons/inventory.svg'
+import { ReactComponent as TaskIcon } from '../assets/navbar_icons/task.svg'
+import { ReactComponent as AboutIcon} from '../assets/navbar_icons/about.svg'
+ 
 Amplify.configure(awsExports);
 
-const Header = () => {
+
+
+function Navbar(props) {
+  return (
+    <nav className="navbar" id="navbar_header" name="navbar_header">
+      <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      <h1 className="nav-title">Pokemon Irl</h1>
+      <ul className="navbar-nav">
+        {props.children}
+        {/* <li className="navbar-section">
+          <Link to="/list_tasks">List Tasks</Link>
+       
+
+        
+        <li className="navbar-section">
+          <button onClick={signOut}>Logout</button>
+        </li> */}
+      </ul>
+    </nav>
+)
+}
+
+function NavItem(props) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <li className="nav-item">
+      <span className="icon-button" onClick={() => setOpen(!open)}>
+        {props.icon}
+      </span>
+      {open && props.children}
+    
+    </li>
+  )
+}
+
+function ProfileMenu() {
+  function DropdownItem(props) {
+    return(
+    <a href={props.link} className="menu-item">
+      <span className="icon-button">{props.leftIcon}</span>
+      {props.children}
+      <span className="icon-right">{props.rightIcon}</span>
+    </a>
+    )
+  }
+
+  return (
+    <div className="dropdown">
+      <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
+    </div>
+  )
+}
+
+function AboutMenu() {
+  function DropdownItem(props) {
+    return(
+    <a href={props.link} className="menu-item">
+      <span className="icon-button">{props.leftIcon}</span>
+      {props.children}
+      <span className="icon-right">{props.rightIcon}</span>
+    </a>
+    )
+  }
+
+  return (
+    <div className="dropdown">
+      <DropdownItem link="/introduction">Introduction</DropdownItem>
+      <DropdownItem link="/create_problem">Create Problem</DropdownItem>
+      <DropdownItem link="/make_calls">Make Calls</DropdownItem>
+      <DropdownItem link="/choose_pokemon">Choose Pokemo</DropdownItem>
+    </div>
+  )
+}
+
+function TaskMenu() {
+  function DropdownItem(props) {
+    return(
+    <a href={props.link} className="menu-item">
+      <span className="icon-button">{props.leftIcon}</span>
+      {props.children}
+      <span className="icon-right">{props.rightIcon}</span>
+    </a>
+    )
+  }
+
+  return (
+    <div className="dropdown">
+      <DropdownItem link="/list_tasks">List Tasks</DropdownItem>
+    </div>
+  )
+}
+
+function InventoryMenu() {
+  function DropdownItem(props) {
+    return(
+    <a href={props.link} className="menu-item">
+      <span className="icon-button">{props.leftIcon}</span>
+      {props.children}
+      <span className="icon-right">{props.rightIcon}</span>
+    </a>
+    )
+  }
+
+  return (
+    <div className="dropdown">
+      <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
+    </div>
+  )
+}
+
+
+function Header(props) {
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [taskOpen, setTaskOpen] = useState(false);
+  const [inventoryOpen, setInventoryOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
   
   async function signOut() {
     try {
@@ -20,36 +141,78 @@ const Header = () => {
         console.log('error signing out: ', error);
     }
 }
+  function setOpen(type) {
+    if (type === "profile") {
+      if (profileOpen === true) {
+        setProfileOpen(false)
+      } else {
+        setProfileOpen(true)
+        setTaskOpen(false)
+        setInventoryOpen(false)
+        setAboutOpen(false)
+      }
+      
+    } else if (type === "task") {
+      if (taskOpen === true) {
+        setTaskOpen(false)
+      } else {
+        setProfileOpen(false)
+        setTaskOpen(true)
+        setInventoryOpen(false)
+        setAboutOpen(false)
+       }
+      
+    } else if (type === "inventory") {
+      if (inventoryOpen === true) {
+        setInventoryOpen(false)
+      } else {
+        setProfileOpen(false)
+        setTaskOpen(false)
+        setInventoryOpen(true)
+        setAboutOpen(false)
+      }
+    } else {
+      if (aboutOpen === true) {
+        setAboutOpen(false)
+      } else {
+        setProfileOpen(false)
+        setTaskOpen(false)
+        setInventoryOpen(false)
+        setAboutOpen(true)
+      }
+    }
+  }
+
 
   return (
-    <div style={styles.container}>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/list_battles">List Battles</Link>
-          </li>
-          <li>
-            <Link to="/create_problem">Create Problem</Link>
-          </li>
-          <li>
-            <Link to="/make_calls">Make Calls</Link>
-          </li>
-          <li>
-            <Link to="/choose_pokemon">Choose Pokemon</Link>
-          </li>
-          <li>
-            <Link to="/introduction">Introduction</Link>
-          </li>
-          <li>
-            <Link to="/user_pokemon">Your Pokemon!</Link>
-          </li>
-          
-          <li>
-            <button onClick={signOut}>Logout</button>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      <Navbar>
+        
+        <li className="nav-item">
+          <span className="icon-button" onClick={() => setOpen("profile")}>
+            <UserIcon />
+          </span>
+          {profileOpen && <ProfileMenu></ProfileMenu>}
+    
+        </li>
+        <li className="nav-item">
+          <span className="icon-button" onClick={() => setOpen("task")}>
+            <TaskIcon />
+          </span>
+          {taskOpen && <TaskMenu></TaskMenu>}
+        </li>
+        <li className="nav-item">
+          <span className="icon-button" onClick={() => setOpen("inventory")}>
+            <InventoryIcon />
+          </span>
+          {inventoryOpen && <InventoryMenu></InventoryMenu>}
+        </li>
+        <li className="nav-item">
+          <span className="icon-button" onClick={() => setOpen("about")}>
+            <AboutIcon />
+          </span>
+          {aboutOpen && <AboutMenu></AboutMenu>}
+        </li>
+      </Navbar>
   )
 }
 

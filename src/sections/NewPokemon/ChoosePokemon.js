@@ -86,36 +86,39 @@ function ChoosePokemon() {
 
       async function getMoves(link, level, pokemonData) {
         let returned_moves = []
-        fetch(link)
-        .then(res => res.json())
-        .then((result) => {
-            var moves = result.moves
-            for (var key in moves) {
-              var versions = moves[key].version_group_details
-              for (var k in versions) {
-                var version = versions[k]
-                if (version.move_learn_method.name === "level-up" && version.version_group.name === "ultra-sun-ultra-moon") {
-                  if (version.level_learned_at <= level) {
-                    console.log(moves[key].move.name)
-                    let move = moves[key].move.name
-                    if (!returned_moves.includes(move))
-                      returned_moves.push(move)
+        let response = await fetch(link)
+        let data = await response.json()
+        let moves = data.moves
+
+        for (var key in moves) {
+          var versions = moves[key].version_group_details
+          for (var k in versions) {
+            var version = versions[k]
+            if (version.move_learn_method.name === "level-up" && version.version_group.name === "ultra-sun-ultra-moon") {
+              if (version.level_learned_at <= level) {
+                console.log(moves[key].move.name)
+                const moveData = await API.graphql({query: queries.listMoves, variables: {filter: {
+                  name: {
+                    eq: moves[key].move.name
                   }
-                }
-                
+                },  limit: 900}});
+                const move = moveData.data.listMoves.items[0]
+                const moveString = JSON.stringify(move)
+                console.log(JSON.parse(JSON.stringify(move)))
+                if (!returned_moves.includes(moveString))
+                  returned_moves.push(moveString)
               }
-                
             }
-            console.log();
-            pokemonData = pokemonData.data.createUserPokemon
             
-            var updatedPokemon = {id: pokemonData.id ,accountID: pokemonData.email, pokemon: pokemonData.pokemon, image: pokemonData.image, movelist: returned_moves, level: pokemonData.level, exp_until_level: pokemonData.exp_until_level}
-            const newPokemon = API.graphql(graphqlOperation(mutations.updateUserPokemon, {input: updatedPokemon}))
-        },
-        (error) => {
-            console.log(console.log(error))
+          }
             
-        })
+        }
+        console.log();
+        pokemonData = pokemonData.data.createUserPokemon
+        console.log(returned_moves)
+        var updatedPokemon = {id: pokemonData.id ,accountID: pokemonData.email, pokemon: pokemonData.pokemon, image: pokemonData.image, movelist: returned_moves, level: pokemonData.level, exp_until_level: pokemonData.exp_until_level}
+        const newPokemon = API.graphql(graphqlOperation(mutations.updateUserPokemon, {input: updatedPokemon}))
+    
         console.log(returned_moves)
         return returned_moves
       
@@ -193,6 +196,7 @@ function ChoosePokemon() {
             <div id={pokemon.name} onClick={() => makeSelected(pokemon.name)} className="pokemon center-div" key={pokemon.id ? pokemon.id : index}>
               <h1>{toTitleCase(pokemon.name.replace("-", " "))}</h1>
               <img alt={pokemon.name.replace("-", " ")} src={pokemon.image}></img>
+              
               <div className="pokemon_type_list">
               {pokemon.types.map((pokemonType, index) => (
                 <h3 className={"pokemon_type_list_item " + pokemonType} key={pokemonType.id ? pokemonType.id : index}>{pokemonType}</h3>

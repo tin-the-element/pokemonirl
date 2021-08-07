@@ -83,9 +83,10 @@ function UsersPokemon() {
               {
           pokemons.map((user_pokemon, index) => (
             <div id={user_pokemon.pokemon} className="pokemon center-div" key={user_pokemon.id ? user_pokemon.id : index}>
-              <h1>{user_pokemon.nickname}</h1>
+              <h1 style={{marginBottom: '0px'}}>{user_pokemon.nickname}</h1>
               <h3>{toTitleCase(user_pokemon.pokemon.replace("-", " "))}</h3>
               <img alt={user_pokemon.pokemon.replace("-", " ")} src={user_pokemon.image}></img>
+              <h3 style={{marginTop: '0px'}}>Lv {user_pokemon.level} </h3>
               <div className="pokemon_type_list">
               {user_pokemon.types.map((pokemonType, index) => (
                 <h3 className={"pokemon_type_list_item " + pokemonType} key={pokemonType.id ? pokemonType.id : index}>{pokemonType}</h3>

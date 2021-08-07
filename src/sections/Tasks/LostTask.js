@@ -21,7 +21,7 @@ function LostTask() {
       <div class="center-div">
         <h1>{location.state.quote}</h1>
         <h2>Sorry, you have failed to Solve: {location.state.name}. You have lost {location.state.exp_given} gold.</h2>
-        <h2><a href="/list_problems">Click here to return to the list of problems</a></h2>
+        <h2><a href="/list_tasks">Click here to return to the list of problems</a></h2>
       </div>
     )
 }

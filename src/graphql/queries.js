@@ -136,6 +136,7 @@ export const getAccount = /* GraphQL */ `
       id
       username
       users_pokemon
+      main_pokemon
       money
       completed_tasks
       createdAt
@@ -154,6 +155,7 @@ export const listAccounts = /* GraphQL */ `
         id
         username
         users_pokemon
+        main_pokemon
         money
         completed_tasks
         createdAt

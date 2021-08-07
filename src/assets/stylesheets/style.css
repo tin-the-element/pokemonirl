@@ -120,7 +120,7 @@ a {
 }
 
 .user_space {
-  margin-top: 50px;
+  margin-top: 20px;
   align-self: center;
   display: flex;
   flex-direction: row;
@@ -156,6 +156,11 @@ a {
   border: 1px solid white;
   overflow-y: auto;
   height: 200px;
+}
+
+.pokemon_move_list_item_div:hover {
+  cursor: pointer;
+  filter: brightness(2);
 }
 
 .pokemon_move_list_item {

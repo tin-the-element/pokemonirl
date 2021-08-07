@@ -169,6 +169,7 @@ export const onCreateAccount = /* GraphQL */ `
       id
       username
       users_pokemon
+      main_pokemon
       money
       completed_tasks
       createdAt
@@ -182,6 +183,7 @@ export const onUpdateAccount = /* GraphQL */ `
       id
       username
       users_pokemon
+      main_pokemon
       money
       completed_tasks
       createdAt
@@ -195,6 +197,7 @@ export const onDeleteAccount = /* GraphQL */ `
       id
       username
       users_pokemon
+      main_pokemon
       money
       completed_tasks
       createdAt

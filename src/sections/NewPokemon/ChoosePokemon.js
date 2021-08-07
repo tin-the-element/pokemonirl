@@ -153,7 +153,11 @@ function ChoosePokemon() {
         const oldAccountData = accountData.data.getAccount
         let pokemon_list = oldAccountData.users_pokemon
         pokemon_list.push(newPokemon.data.createUserPokemon.id)
-        const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: pokemon_list, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
+        let main_pokemon_list = oldAccountData.main_pokemon
+        if (main_pokemon_list.length < 19) {
+          main_pokemon_list.push(newPokemon.data.createUserPokemon.id)
+        }
+        const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: pokemon_list, main_pokemon: main_pokemon_list, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
         const setData =  await API.graphql(graphqlOperation(mutations.updateAccount, {input: newAccountData}))
     
         console.log(setData)

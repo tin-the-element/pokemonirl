@@ -53,6 +53,7 @@ type Account @model {
   id: String!
   username: String!
   users_pokemon: [String] 
+  main_pokemon: [String]
   money: Int!
   completed_tasks: [String]!
 }

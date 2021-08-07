@@ -35,7 +35,7 @@ function IntroduceUser() {
         .then(user => setEmail(user.attributes.email))
         .catch(err => console.log(err));
         console.log(email)
-        const accountData = await API.graphql(graphqlOperation(mutations.createAccount, {input: {id: email, username: username, users_pokemon: [] ,money: 100, completed_tasks: []}}))
+        const accountData = await API.graphql(graphqlOperation(mutations.createAccount, {input: {id: email, username: username, users_pokemon: [], main_pokemon: [], money: 100, completed_tasks: []}}))
         console.log(accountData)
     }
     

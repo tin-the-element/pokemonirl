@@ -7,6 +7,7 @@ interface Task{
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
+  reward: Int!
 }
 
 type SingleTask implements Task @model {
@@ -18,6 +19,7 @@ type SingleTask implements Task @model {
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
+  reward: Int!
   answer: [String]!
   total_hp: Int!
 }
@@ -31,6 +33,7 @@ type MultipleTask implements Task @model {
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
+  reward: Int!
   next_steps: [String]!
   answer: [String]!
 }
@@ -44,6 +47,7 @@ type RiddleTask implements Task @model {
   exp_given: Int!
   win_quote: String!
   lose_quote: String!
+  reward: Int!
   next_steps: [String]!
   answer: [String]!
   

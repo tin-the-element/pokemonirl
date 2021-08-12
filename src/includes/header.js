@@ -3,7 +3,7 @@ import {
   Link
 } from "react-router-dom";
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-
+import * as queries from '../graphql/queries'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../aws-exports";
 import { Auth } from 'aws-amplify';
@@ -52,6 +52,23 @@ function NavItem(props) {
 }
 
 function ProfileMenu() {
+  const [accountData, setAccountData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (loading) {
+      getUserData()
+    }
+  })
+
+  async function getUserData() {
+    const authUser = await Auth.currentAuthenticatedUser()
+    const email = await authUser.attributes.email
+    const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
+    console.log(userData)
+    setAccountData(userData.data.getAccount)
+    setLoading(false)
+  }
+
   function DropdownItem(props) {
     return(
     <a href={props.link} className="menu-item">
@@ -64,6 +81,13 @@ function ProfileMenu() {
 
   return (
     <div className="dropdown">
+      {accountData !== null ? 
+      <div>
+      <h3>{accountData.username}</h3>
+      <h3>{accountData.money} pokeCoins</h3>
+      </div>
+       : <div></div>}
+      
       <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
     </div>
   )

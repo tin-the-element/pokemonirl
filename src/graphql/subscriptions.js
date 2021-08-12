@@ -12,6 +12,7 @@ export const onCreateSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       answer
       total_hp
       createdAt
@@ -30,6 +31,7 @@ export const onUpdateSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       answer
       total_hp
       createdAt
@@ -48,6 +50,7 @@ export const onDeleteSingleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       answer
       total_hp
       createdAt
@@ -66,6 +69,7 @@ export const onCreateMultipleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       next_steps
       answer
       createdAt
@@ -84,6 +88,7 @@ export const onUpdateMultipleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       next_steps
       answer
       createdAt
@@ -102,6 +107,7 @@ export const onDeleteMultipleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       next_steps
       answer
       createdAt
@@ -120,6 +126,7 @@ export const onCreateRiddleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       next_steps
       answer
       createdAt
@@ -138,6 +145,7 @@ export const onUpdateRiddleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       next_steps
       answer
       createdAt
@@ -156,6 +164,7 @@ export const onDeleteRiddleTask = /* GraphQL */ `
       exp_given
       win_quote
       lose_quote
+      reward
       next_steps
       answer
       createdAt

@@ -20,7 +20,7 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersionc9017964": {
+    "LambdaLayerVersion5c38a48c": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": [
@@ -30,9 +30,9 @@
           "S3Bucket": {
             "Ref": "deploymentBucketName"
           },
-          "S3Key": "amplify-builds/pokemonirlAppSyncLambdaPokemonIrl-LambdaLayerVersionc9017964-build.zip"
+          "S3Key": "amplify-builds/pokemonirlAppSyncLambdaPokemonIrl-LambdaLayerVersion5c38a48c-build.zip"
         },
-        "Description": "Updated layer version 2021-08-07T00:49:03.568Z",
+        "Description": "Updated layer version 2021-08-07T08:26:57.806Z",
         "LayerName": {
           "Fn::Sub": [
             "pokemonirlAppSyncLambdaPokemonIrl-${env}",
@@ -47,11 +47,11 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivatec9017964": {
+    "LambdaLayerPermissionPrivate5c38a48c": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
-        "LayerVersionArn": "arn:aws:lambda:us-west-2:653076041583:layer:pokemonirlAppSyncLambdaPokemonIrl-dev:4",
+        "LayerVersionArn": "arn:aws:lambda:us-west-2:653076041583:layer:pokemonirlAppSyncLambdaPokemonIrl-dev:5",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -61,7 +61,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersionc9017964"
+        "Ref": "LambdaLayerVersion5c38a48c"
       }
     }
   }

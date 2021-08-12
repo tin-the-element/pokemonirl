@@ -5,6 +5,7 @@
     align-items: center
 
 .problem 
+    position: relative
     display: flex
     flex-direction: column
     align-items: center
@@ -12,8 +13,12 @@
     text-align: center
     
 .battle_image
-    width: 400px
+    width: $image_size
     height: auto
+    visibility: hidden
+
+.battle_div
+    position: relative
 
 #hp_bar
     height: 30px
@@ -59,3 +64,74 @@
     border-radius: 70px
     text-align: center
 
+#party_div
+    @include flex-col
+    display: none
+    
+
+#user_party
+    display: grid
+    grid-template-columns: 1fr 1fr
+    justify-content: center
+    overflow-y: auto
+    height: 250px
+    border: 1px solid white
+    
+.user_party_item
+    margin: 15px 15px 0 15px
+    text-align: center
+
+.user_party_item:hover
+    cursor: pointer
+    filter: brightness(2)
+
+.effect_transition
+    animation: visible 1s
+.electric_transition
+    animation: electric_shake 1s 
+
+.effect_div
+    @include flex-row
+    opacity: 0%
+    position: absolute
+    top: 100px
+    width: $image_size
+    
+#battle_div
+    background-size: auto 100%
+    position: relative
+
+.layer 
+    background-color: #F7D02C
+    position: absolute
+    top: 0
+    left: 0
+    opacity: 0
+    width: 100%
+    height: 100%
+
+
+.effect_img
+    width: calc(#{$image_size} + 100px)
+
+
+@keyframes visible
+    0%
+        opacity: 100%
+
+    100%
+        opacity: 1%
+
+@keyframes electric_shake
+    // 0%
+    //     opacity: 100%
+
+    // 100%
+    //     opacity: 100%
+    0%
+        opacity: 100%
+
+    100% 
+        opacity: 1%
+
+    

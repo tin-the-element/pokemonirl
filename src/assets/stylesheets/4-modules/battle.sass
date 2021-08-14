@@ -85,10 +85,7 @@
     cursor: pointer
     filter: brightness(2)
 
-.effect_transition
-    animation: visible 1s
-.electric_transition
-    animation: electric_shake 1s 
+
 
 .effect_div
     @include flex-row
@@ -101,18 +98,14 @@
     background-size: auto 100%
     position: relative
 
-.layer 
-    background-color: #F7D02C
-    position: absolute
-    top: 0
-    left: 0
-    opacity: 0
-    width: 100%
-    height: 100%
 
 
 .effect_img
     width: calc(#{$image_size} + 100px)
+
+
+.effect_transition
+    animation: visible 1s
 
 
 @keyframes visible
@@ -121,6 +114,9 @@
 
     100%
         opacity: 1%
+
+.electric_transition
+    animation: electric_shake 1s 
 
 @keyframes electric_shake
     // 0%
@@ -134,4 +130,15 @@
     100% 
         opacity: 1%
 
+
+$types: ("normal": #A8A77A, "fire": #EE8130,"water": #6390F0,"grass": #7AC74C,"electric":#F7D02C,"ice": #96D9D6,"fighting": #C22E28,"poison": #A33EA1,"ground": #E2BF65,"flying": #A98FF3,"psychic": #F95587,"bug": #A6B91A,"rock": #B6A136,"ghost": #735797, "dragon": #6F35FC,"dark": #705746,"steel": #B7B7CE)
+     
+
+@each $name, $color in $types 
+    .#{$name}_layer 
+        @include type_effect($color)
+
+    .#{$name}_transition
+        animation: electric_shake 1s
     
+

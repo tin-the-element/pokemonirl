@@ -30,6 +30,8 @@ function Task(){
     const [showPartyButton, setShowPartyButton] = useState("Show Party")
     const [partyPokemon, setPartyPokemon] = useState(null)
 
+    const [moveTypeUsed, setMoveTypeUsed] = useState("")
+
     let { id } = useParams();
     useEffect(() => {
       const fetchProblem = async () => {
@@ -202,6 +204,8 @@ function Task(){
     function try_attack(move) {
       
       if (turnsLeft > 1) {
+        setMoveTypeUsed(move.type)
+
         console.log(move.type)
         if (move.type.toLowerCase() === singleTaskData.answer[0].toLowerCase()) {
           setCurrentHP(currentHP - move.power)
@@ -209,16 +213,18 @@ function Task(){
         } else {
           setPostMoveMessage("Your attack was not effective, please try again!")
         }
-        if (document.getElementById("battle_layer").classList.contains("electric_transition")) {
+
+        let type_transition = move.type + "_transition"
+        if (document.getElementById("battle_layer").classList.contains(type_transition)) {
           console.log("remove")
           document.getElementById("effect_div").classList.remove("effect_transition")
-          document.getElementById("battle_layer").classList.remove("electric_transition")
+          document.getElementById("battle_layer").classList.remove(type_transition)
         }
 
         setTimeout(function() {
           console.log(document)
           document.getElementById("effect_div").classList.add("effect_transition")
-          document.getElementById("battle_layer").classList.add("electric_transition")
+          document.getElementById("battle_layer").classList.add(type_transition)
         }, 10)
         // document.getElementById("battle_image").classList.remove("electric_transition")
       }
@@ -280,11 +286,11 @@ function Task(){
         <div class="problem">
             <h3>Problem: {singleTaskData.question}</h3>
             <h4>Turns Left: {turnsLeft}</h4>
-            <div id="battle_div" style={{color: 'blue', backgroundImage: 'url(/assets/single_tasks/' + singleTaskData['images']}}>
+            <div id="battle_div" style={{backgroundImage: 'url(/assets/single_tasks/' + singleTaskData['images']}}>
               <img id="battle_image" class="battle_image" alt={singleTaskData.name} src={'/assets/single_tasks/' + singleTaskData['images']}></img>
-              <div id="battle_layer" className="layer"></div>
+              <div id="battle_layer" className={moveTypeUsed + "_layer"}></div>
               <div id="effect_div" className={"effect_div"}>
-                <img class="effect_img" alt="Electricity" src="/assets/move_effects/lightning2.png"></img>
+                <img class="effect_img" alt="Electricity" src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
               </div>
             </div>
             <progress id="hp_bar" value={currentHP} max={singleTaskData.total_hp}></progress>

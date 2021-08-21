@@ -10,18 +10,22 @@ import {
   useParams
 } from "react-router-dom";
 import Header from './includes/header.js'
+import Footer from './includes/footer.js'
 import CreateProblem from './sections/admin/CreateProblem.js'
+import CreateMulti from './sections/admin/CreateMulti'
 import ListTasks from './sections/Tasks/ListTasks.js'
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "./aws-exports";
 import Task from './sections/Tasks/Task';
+import MultiTask from './sections/Tasks/MultiTask';
 import WonTask from './sections/Tasks/WonTask'
 import LostTask from './sections/Tasks/LostTask'
 import MakeAPICalls from './sections/admin/MakeAPICalls'
 import ChoosePokemon from './sections/NewPokemon/ChoosePokemon';
 import IntroduceUser from './sections/Introduction/IntroduceUser';
 import UsersPokemon from './sections/Profile/UsersPokemon';
+import Store from './sections/NewPokemon/Store'
 
 Amplify.configure(awsExports);
 
@@ -35,6 +39,9 @@ const App = () => {
       <Switch>
         <Route path="/create_problem">
           <CreateProblem />
+        </Route>
+        <Route path="/create_multi">
+          <CreateMulti />
         </Route>
         <Route path="/list_tasks">
           <ListTasks />
@@ -57,11 +64,15 @@ const App = () => {
         <Route path="/user_pokemon" >
           <UsersPokemon />
         </Route>
-
+        <Route path="/store" >
+          <Store />
+        </Route>
         <Switch>
           <Route path="/task/id=:id" children={<Task />} />
+          <Route path="/multi_task/id=:id" children={<MultiTask />} />
         </Switch>
       </Switch>
+      <Footer />
     </Router>
   )
 }

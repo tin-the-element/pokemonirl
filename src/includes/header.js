@@ -20,7 +20,7 @@ Amplify.configure(awsExports);
 function Navbar(props) {
   return (
     <nav className="navbar" id="navbar_header" name="navbar_header">
-      <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+      
       <h1 className="nav-title">Pokemon Irl</h1>
       <ul className="navbar-nav">
         {props.children}
@@ -84,7 +84,7 @@ function ProfileMenu() {
       {accountData !== null ? 
       <div>
       <h3>{accountData.username}</h3>
-      <h3>{accountData.money} pokeCoins</h3>
+      <h3>{accountData.money} Pokecoins</h3>
       </div>
        : <div></div>}
       
@@ -108,8 +108,9 @@ function AboutMenu() {
     <div className="dropdown">
       <DropdownItem link="/introduction">Introduction</DropdownItem>
       <DropdownItem link="/create_problem">Create Problem</DropdownItem>
+      <DropdownItem link="/create_multi">Create Multi</DropdownItem>
       <DropdownItem link="/make_calls">Make Calls</DropdownItem>
-      <DropdownItem link="/choose_pokemon">Choose Pokemo</DropdownItem>
+      <DropdownItem link="/choose_pokemon">Choose Pokemon</DropdownItem>
     </div>
   )
 }
@@ -146,6 +147,7 @@ function InventoryMenu() {
   return (
     <div className="dropdown">
       <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
+      <DropdownItem link="/store">Store</DropdownItem>
     </div>
   )
 }

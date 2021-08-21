@@ -1,8 +1,21 @@
+.battle_div 
+    @include flex-row
 
 .battle
     display: flex
     flex-direction: column
     align-items: center
+
+.step_grid
+    @include flex-row
+
+.step_box
+    width: 100px
+    height: 20px
+    border: 1px solid white
+
+.current_step_box
+    background-color: white
 
 .problem 
     position: relative
@@ -140,5 +153,9 @@ $types: ("normal": #A8A77A, "fire": #EE8130,"water": #6390F0,"grass": #7AC74C,"e
 
     .#{$name}_transition
         animation: electric_shake 1s
+
+    .#{$name}_step_box
+        border: 1px solid $color
+        background-color: $color
     
 

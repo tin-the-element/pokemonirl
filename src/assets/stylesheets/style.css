@@ -76,6 +76,7 @@ a {
   padding: 1rem;
   overflow: hidden;
   transition: height 500ms ease;
+  z-index: 10;
 }
 
 .menu {
@@ -95,10 +96,48 @@ a {
   background-color: #525357;
 }
 
+.footer {
+  border-top: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+.footer div {
+  width: auto;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.battle_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .battle {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.step_grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.step_box {
+  width: 100px;
+  height: 20px;
+  border: 1px solid white;
+}
+
+.current_step_box {
+  background-color: white;
 }
 
 .problem {
@@ -263,6 +302,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.normal_step_box {
+  border: 1px solid #A8A77A;
+  background-color: #A8A77A;
+}
+
 .fire_layer {
   background-color: #EE8130;
   position: absolute;
@@ -275,6 +319,11 @@ a {
 
 .fire_transition {
   animation: electric_shake 1s;
+}
+
+.fire_step_box {
+  border: 1px solid #EE8130;
+  background-color: #EE8130;
 }
 
 .water_layer {
@@ -291,6 +340,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.water_step_box {
+  border: 1px solid #6390F0;
+  background-color: #6390F0;
+}
+
 .grass_layer {
   background-color: #7AC74C;
   position: absolute;
@@ -303,6 +357,11 @@ a {
 
 .grass_transition {
   animation: electric_shake 1s;
+}
+
+.grass_step_box {
+  border: 1px solid #7AC74C;
+  background-color: #7AC74C;
 }
 
 .electric_layer {
@@ -319,6 +378,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.electric_step_box {
+  border: 1px solid #F7D02C;
+  background-color: #F7D02C;
+}
+
 .ice_layer {
   background-color: #96D9D6;
   position: absolute;
@@ -331,6 +395,11 @@ a {
 
 .ice_transition {
   animation: electric_shake 1s;
+}
+
+.ice_step_box {
+  border: 1px solid #96D9D6;
+  background-color: #96D9D6;
 }
 
 .fighting_layer {
@@ -347,6 +416,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.fighting_step_box {
+  border: 1px solid #C22E28;
+  background-color: #C22E28;
+}
+
 .poison_layer {
   background-color: #A33EA1;
   position: absolute;
@@ -359,6 +433,11 @@ a {
 
 .poison_transition {
   animation: electric_shake 1s;
+}
+
+.poison_step_box {
+  border: 1px solid #A33EA1;
+  background-color: #A33EA1;
 }
 
 .ground_layer {
@@ -375,6 +454,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.ground_step_box {
+  border: 1px solid #E2BF65;
+  background-color: #E2BF65;
+}
+
 .flying_layer {
   background-color: #A98FF3;
   position: absolute;
@@ -387,6 +471,11 @@ a {
 
 .flying_transition {
   animation: electric_shake 1s;
+}
+
+.flying_step_box {
+  border: 1px solid #A98FF3;
+  background-color: #A98FF3;
 }
 
 .psychic_layer {
@@ -403,6 +492,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.psychic_step_box {
+  border: 1px solid #F95587;
+  background-color: #F95587;
+}
+
 .bug_layer {
   background-color: #A6B91A;
   position: absolute;
@@ -415,6 +509,11 @@ a {
 
 .bug_transition {
   animation: electric_shake 1s;
+}
+
+.bug_step_box {
+  border: 1px solid #A6B91A;
+  background-color: #A6B91A;
 }
 
 .rock_layer {
@@ -431,6 +530,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.rock_step_box {
+  border: 1px solid #B6A136;
+  background-color: #B6A136;
+}
+
 .ghost_layer {
   background-color: #735797;
   position: absolute;
@@ -443,6 +547,11 @@ a {
 
 .ghost_transition {
   animation: electric_shake 1s;
+}
+
+.ghost_step_box {
+  border: 1px solid #735797;
+  background-color: #735797;
 }
 
 .dragon_layer {
@@ -459,6 +568,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.dragon_step_box {
+  border: 1px solid #6F35FC;
+  background-color: #6F35FC;
+}
+
 .dark_layer {
   background-color: #705746;
   position: absolute;
@@ -473,6 +587,11 @@ a {
   animation: electric_shake 1s;
 }
 
+.dark_step_box {
+  border: 1px solid #705746;
+  background-color: #705746;
+}
+
 .steel_layer {
   background-color: #B7B7CE;
   position: absolute;
@@ -485,6 +604,11 @@ a {
 
 .steel_transition {
   animation: electric_shake 1s;
+}
+
+.steel_step_box {
+  border: 1px solid #B7B7CE;
+  background-color: #B7B7CE;
 }
 
 .battle_item {
@@ -610,6 +734,25 @@ a {
 .fairy {
   border: 2px solid #D685AD;
   color: #D685AD;
+}
+
+.store_section {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-template-rows: auto;
+  justify-items: stretch;
+  justify-content: center;
+}
+
+.store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.store_item {
+  border: 2px white solid;
 }
 
 /*# sourceMappingURL=style.css.map */

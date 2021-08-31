@@ -5,7 +5,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useHistory
 } from "react-router-dom";
 
 import { withAuthenticator } from '@aws-amplify/ui-react'
@@ -15,6 +16,7 @@ Amplify.configure(awsExports);
 const ListTasks = () => {
   const [singleTasks, setSingleTasks] = useState([])
   const [multiTasks, setMultiTasks] = useState([])
+  const history = useHistory();
 
   useEffect(() => {
       
@@ -35,43 +37,47 @@ const ListTasks = () => {
   }
 
   function toSingle(id) {
-    window.location = "/task/id=" + id ;
+    history.push({
+      pathname: "/task/id=" + id,
+      })
   }
 
   function toMulti(id) {
-    console.log("test");
-
-    window.location = "/multi_task/id=" + id ;
+    history.push({
+      pathname: "/multi_task/id=" + id,
+      })
   }
 
   console.log("Test")
   return (
       
     <div className="center-div">
+      <h1>Tasks</h1>
       <h1>Single Step Tasks</h1>
+      <div className="battle_list">
       {
         singleTasks.map((task, index) => (
           <div className="battle_item center-div" onClick={() => toSingle(task.id)} key={task.id ? task.id : index}>
-            
             <h3>{task.name}</h3>
-            <p>{task.question}</p>
+            <p className="battle_item_text">{task.question}</p>
             <p>Exp Given: {task.exp_given}</p>
-            <hr width="400" />
           </div>
         ))
       }
+      </div>
       <h1>Multi Step Tasks</h1>
+      <div className="battle_list">
       {
         multiTasks.map((task, index) => (
           <div className="battle_item center-div" onClick={() => toMulti(task.id)} key={task.id ? task.id : index}>
             
             <h3>{task.name}</h3>
-            <p>{task.question}</p>
+            <p className="battle_item_text">{task.question}</p>
             <p>Exp Given: {task.exp_given}</p>
-            <hr width="400" />
           </div>
         ))
       }
+      </div>
     </div>
   )
 }

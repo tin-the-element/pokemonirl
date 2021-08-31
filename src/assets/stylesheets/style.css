@@ -2,6 +2,10 @@ body {
   background-color: #231E1E;
   color: white;
   font-family: "Roboto";
+  margin: 0;
+  position: relative;
+  min-height: 95vh;
+  padding-bottom: 2.5rem;
 }
 
 a {
@@ -12,6 +16,20 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.row-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.col-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* <nav> */    
@@ -97,12 +115,15 @@ a {
 }
 
 .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   border-top: 1px solid white;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 2.5rem;
 }
 .footer div {
   width: auto;
@@ -613,6 +634,18 @@ a {
 
 .battle_item {
   width: 30rem;
+  border: 2px white solid;
+}
+
+.battle_list {
+  display: grid;
+  grid-template-columns: 30rem 30rem;
+  grid-template-rows: auto;
+}
+
+.battle_item_text {
+  width: 25rem;
+  text-align: center;
 }
 
 .battle_item:hover {
@@ -625,6 +658,30 @@ a {
   grid-template-rows: auto;
   justify-items: stretch;
   justify-content: center;
+}
+
+.choose_pokemon_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+}
+
+.filter_pokemon_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 50px 0px 50px;
+}
+
+.choose_pokemon_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 50px 0px 50px;
 }
 
 .pokemon {
@@ -753,6 +810,28 @@ a {
 
 .store_item {
   border: 2px white solid;
+}
+
+.final_paragraph {
+  width: 50rem;
+  text-align: center;
+}
+
+.next_step_section {
+  width: 10rem;
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+  border: 2px white dashed;
+}
+
+.next_step_section:hover {
+  border: 2px white solid;
+  cursor: pointer;
+}
+
+.next_step {
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=style.css.map */

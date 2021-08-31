@@ -60,6 +60,7 @@ type Account @model {
   main_pokemon: [String]
   money: Int!
   completed_tasks: [String]!
+  finished_tutorial: Boolean!
 }
 
 type UserPokemon @model {

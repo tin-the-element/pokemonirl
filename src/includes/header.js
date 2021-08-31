@@ -29,9 +29,7 @@ function Navbar(props) {
        
 
         
-        <li className="navbar-section">
-          <button onClick={signOut}>Logout</button>
-        </li> */}
+         */}
       </ul>
     </nav>
 )
@@ -79,6 +77,15 @@ function ProfileMenu() {
     )
   }
 
+  async function signOut() {
+    try {
+        await Auth.signOut();
+        window.location.reload();
+    } catch (error) {
+        console.log('error signing out: ', error);
+    }
+  }
+
   return (
     <div className="dropdown">
       {accountData !== null ? 
@@ -89,6 +96,9 @@ function ProfileMenu() {
        : <div></div>}
       
       <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
+      <li className="navbar-section">
+        <button onClick={signOut}>Logout</button>
+      </li>
     </div>
   )
 }
@@ -159,14 +169,7 @@ function Header(props) {
   const [inventoryOpen, setInventoryOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   
-  async function signOut() {
-    try {
-        await Auth.signOut();
-        window.location.reload();
-    } catch (error) {
-        console.log('error signing out: ', error);
-    }
-}
+  
   function setOpen(type) {
     if (type === "profile") {
       if (profileOpen === true) {

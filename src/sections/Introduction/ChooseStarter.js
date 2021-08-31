@@ -6,14 +6,11 @@ import awsExports from "../../aws-exports";
 import * as mutations from '../../graphql/mutations'
 import * as queries from '../../graphql/queries'
 import Auth from '@aws-amplify/auth'
-import { useHistory } from 'react-router-dom';
 Amplify.configure(awsExports);
 
 const initialState = { nickname: ''}
 
-function ChoosePokemon() {
-  const history = useHistory();
-
+function ChooseStarter() {
     const [formState, setFormState] = useState(initialState)
     const [chosenPokemon, setChosenPokemon] = useState('')
     const [pokemons, setPokemons] = useState([])
@@ -47,21 +44,16 @@ function ChoosePokemon() {
 
       async function fetchPokemon() {
         try {
-            if (typeSearch === 'null') {
-              const pokemonData = await API.graphql({ query: queries.listPokemons, variables: {limit: 900}})
-              const pokemonitems = pokemonData.data.listPokemons.items
-              pokemonitems.sort(function(a, b ) {return a.api_id - b.api_id})
-              setPokemons(pokemonitems)
-            } else {
-              const pokemonData = await API.graphql({ query: queries.listPokemons, variables: {filter: {
-                types: {
-                    contains: typeSearch
-                }
+            const starters = [1, 4, 7]
+            const pokemonData = await API.graphql({ query: queries.listPokemons, variables: {filter: {
+                or: [{ api_id: {eq:1} },
+                    { api_id: {eq:4} },
+                    { api_id: {eq:7} }]
               },  limit: 900}})
-              const pokemonitems = pokemonData.data.listPokemons.items
-              pokemonitems.sort(function(a, b ) {return a.api_id - b.api_id})
-              setPokemons(pokemonitems)
-            }
+            console.log(pokemonData)
+            const pokemonitems = pokemonData.data.listPokemons.items
+            pokemonitems.sort(function(a, b ) {return a.api_id - b.api_id})
+            setPokemons(pokemonitems)
             setLoadPokemon(false)
             
           
@@ -80,9 +72,8 @@ function ChoosePokemon() {
 
       function makeSelected(pokemon) {
         if (chosenPokemon === pokemon) {
-          return
+            return
         }
-
         if (chosenPokemon !== '') {
           document.getElementById(chosenPokemon).style.backgroundColor = "initial"
           document.getElementById(chosenPokemon).style.color = "inherit"
@@ -164,21 +155,11 @@ function ChoosePokemon() {
         if (main_pokemon_list.length < 19) {
           main_pokemon_list.push(newPokemon.data.createUserPokemon.id)
         }
-        const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: pokemon_list, main_pokemon: main_pokemon_list, money: oldAccountData.money - 200, completed_tasks: oldAccountData.completed_tasks}
+        const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: pokemon_list, main_pokemon: main_pokemon_list, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
         const setData =  await API.graphql(graphqlOperation(mutations.updateAccount, {input: newAccountData}))
     
         console.log(setData)
         const newMoves = await getMoves(pokemonData.data.listPokemons.items[0].api, 10, newPokemon)
-
-        history.push({
-          pathname: "/completed_purchase",
-          state: {
-            nickname: newPokemonData.nickname,
-            pokemon: newPokemonData.pokemon,
-            image: newPokemonData.image
-          }
-        })
-
       }
 
       function setInput(key, value) {
@@ -195,19 +176,6 @@ function ChoosePokemon() {
     return (
       <div className="center-div">
         <div className="choose_pokemon_container">
-          <div className="center-div filter_pokemon_div">
-            <form onSubmit={searchType}>
-              <label for="type">Type</label>
-              <select name="type" id="type">
-                <option value='null'>none</option>
-                {types.map((type, index) => (
-                  <option key={type.id ? type.id : index} value={type.name}>{type.name}</option>
-                ))}
-              </select>
-              <br></br>
-              <input type="submit" value="Submit" />
-            </form>
-          </div>
           <div className="center-div choose_pokemon_div">
             <h3>Currently Selected Pokemon: {toTitleCase(chosenPokemon)}</h3>
             <form>
@@ -239,4 +207,4 @@ function ChoosePokemon() {
 }
 
 
-export default withAuthenticator(ChoosePokemon);
+export default withAuthenticator(ChooseStarter);

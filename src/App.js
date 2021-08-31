@@ -7,6 +7,7 @@ import {
   Switch,
   Route,
   Link,
+  Redirect,
   useParams
 } from "react-router-dom";
 import Header from './includes/header.js'
@@ -26,6 +27,11 @@ import ChoosePokemon from './sections/NewPokemon/ChoosePokemon';
 import IntroduceUser from './sections/Introduction/IntroduceUser';
 import UsersPokemon from './sections/Profile/UsersPokemon';
 import Store from './sections/NewPokemon/Store'
+import CompletedPurchase from './sections/NewPokemon/CompletedPurchase'
+import ChooseStarter from './sections/Introduction/ChooseStarter';
+import FirstPokemon from './sections/Introduction/FirstPokemon'
+import FinalIntroduction from './sections/Introduction/FinalIntroduction'
+import Wiki from './sections/Introduction/Wiki'
 
 Amplify.configure(awsExports);
 
@@ -58,6 +64,9 @@ const App = () => {
         <Route path="/choose_pokemon" >
           <ChoosePokemon />
         </Route>
+        <Route path="/choose_starter" >
+          <ChooseStarter />
+        </Route>
         <Route path="/introduction" >
           <IntroduceUser />
         </Route>
@@ -67,10 +76,34 @@ const App = () => {
         <Route path="/store" >
           <Store />
         </Route>
+        <Route path="/completed_purchase">
+          <CompletedPurchase />
+        </Route>
+        <Route path="/first_pokemon">
+          <FirstPokemon />
+        </Route>
+        <Route path="/final_introduction">
+          <FinalIntroduction />
+        </Route>
+        <Route path="/wiki">
+          <Wiki />
+        </Route>
         <Switch>
+
           <Route path="/task/id=:id" children={<Task />} />
           <Route path="/multi_task/id=:id" children={<MultiTask />} />
+          <Route
+                path="/"
+                render={() => {
+                    return (
+                      <Redirect to="/list_tasks" /> 
+                    )
+                }}
+              />
+          
         </Switch>
+        
+       
       </Switch>
       <Footer />
     </Router>

@@ -50,7 +50,7 @@ function IntroduceUser() {
             <p>finish all the possible tasks, or raise the highest level Pokemon you possibly can! The possibilities are endless!! (Depending on how good the </p>
             <p>coder of this game is) I hope you enjoy your stay here, for the sake of the players and the career of the creator of the world.</p>
             <button onClick={addAccount}>Add account</button>
-            <p><a href="/choose_pokemon">Choose Your First Pokemon!</a></p>
+            <p><a href="/first_pokemon">Meet Your First Pokemon!</a></p>
         </div>
     )
 }

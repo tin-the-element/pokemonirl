@@ -12,16 +12,45 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 import MoonLoader from "react-spinners/MoonLoader";
 
-const store_items = [
-    {
-        name: "Adopt a new pokemon!",
-        description: "Take a trip to Pokeco to adopt a new pokemon!",
-        cost: 200
-    }
-]
+
 
 function Store() {
 
+    const store_items = [
+        {
+            name: "Adopt a new pokemon!",
+            description: "Take a trip to Pokeco to adopt a new pokemon!",
+            cost: 200,
+            function: () => buypokemon()
+        }
+    ]
+
+    const history = useHistory();
+    const [accountData, setAccountData] = useState()
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        if (loading) {
+          getUserData()
+        }
+      })
+    
+    async function getUserData() {
+        const authUser = await Auth.currentAuthenticatedUser()
+        const email = await authUser.attributes.email
+        const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
+        console.log(userData)
+        setAccountData(userData.data.getAccount)
+        setLoading(false)
+    }
+
+    function buypokemon() {
+        history.push({
+            pathname: "/choose_pokemon",
+            })
+    }   
+
+    
+    
 
 
 
@@ -29,13 +58,15 @@ function Store() {
     return (
         <div class="store">
             <h1>Mart</h1>
+            {loading ? <div></div> : <h3>You have: {accountData.money} Pokecoins</h3>}
+            
             <div class="store_section">
                 {store_items.map((item, key) => {
                     return (<div class="store_item center-div" key={key}>
                         <h2>{item.name}</h2>
-                        <h4>{item.description}</h4>
+                        <h4 style={{textAlign: "center"}}>{item.description}</h4>
                         <h4>{item.cost} Pokecoins</h4>
-                        <button>Buy</button>
+                        <button onClick={item.function} style={{marginBottom: ""}}>Buy</button>
                     </div>)
                 })
 

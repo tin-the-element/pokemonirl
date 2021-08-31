@@ -5,6 +5,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 import * as mutations from '../../graphql/mutations'
 import * as queries from '../../graphql/queries'
+import MoonLoader from "react-spinners/MoonLoader";
 import Auth from '@aws-amplify/auth'
 Amplify.configure(awsExports);
 
@@ -17,7 +18,7 @@ function UsersPokemon() {
     const [pokemons, setPokemons] = useState([])
     const [typeSearch, setTypeSearch] = useState('null')
     const [types, setTypes] = useState([])
-    const [loadPokemon, setLoadPokemon] = useState([])
+    const [loadPokemon, setLoadPokemon] = useState(true)
     const [mainPokemon, setMainPokemon] = useState([])
     const [errorMessage, setErrorMessage] = useState("")
 
@@ -38,28 +39,71 @@ function UsersPokemon() {
           var mainPokemons = []
           var newPokemons = []
           
+
+          // var id_filter = []
+
+          // for (var key in pokemonIds) {
+          //   id_filter.push({id: {anyofterms: key}})
+          // }
+
+          // var main_id_filter = []
+          
+          // for (var main_key in mainPokemonIds) {
+            
+          //   main_id_filter.push({id: {anyofterms: main_key}})
+          // }
+
+          // console.log(id_filter)
+          // console.log(main_id_filter)
+          // console.log([{ priority: {eq:1} },
+          //   { priority: {eq:2} }])
+
+
+
+          // const pokemonData = await API.graphql({ query: queries.listUserPokemons, variables: {filter: {
+          //   or: id_filter
+          // },  limit: 900}})
+
+          // const mainpokemonData = await API.graphql({ query: queries.listUserPokemons, variables: {filter: {
+          //   or: main_id_filter
+          // },  limit: 900}})
+
+          // console.log(pokemonData)
+          // console.log(mainpokemonData)
+
+          // mainPokemons = mainpokemonData.data.listUserPokemons.items
+          // newPokemons = pokemonData.data.listUserPokemons.items
+
           for (var key in pokemonIds) {
-              const newPokemon = await API.graphql({query: queries.getUserPokemon, variables: {id: pokemonIds[key]}})
-              
-              var mapData = newPokemon.data.getUserPokemon
-              const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
-                  name: {
-                    eq: mapData.pokemon
-                  }
-                },  limit: 900}});
-              mapData.types = pokemonData.data.listPokemons.items[0].types
+            const newPokemon = await API.graphql({query: queries.getUserPokemon, variables: {id: pokemonIds[key]}})
+            
+            var mapData = newPokemon.data.getUserPokemon
+            const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
+                name: {
+                  eq: mapData.pokemon
+                }
+              },  limit: 900}});
+            mapData.types = pokemonData.data.listPokemons.items[0].types
 
-              newPokemons.push(mapData)
-              console.log(pokemonIds[key])
-              console.log(mainPokemonIds)
-              if (mainPokemonIds.includes(pokemonIds[key])) {
-                mainPokemons.push(mapData)
-              }
+            newPokemons.push(mapData)
+            console.log(pokemonIds[key])
+            console.log(mainPokemonIds)
+            if (mainPokemonIds.includes(pokemonIds[key])) {
+              mainPokemons.push(mapData)
+            }
 
-          }
+        }
+          
+
+          
+
+        //   console.log(mainPokemons)
+        //   console.log(newPokemons)
+
+
           setMainPokemon(mainPokemons)
           setPokemons(newPokemons)
-          console.log(pokemons)
+          console.log(mainPokemon)
           setLoadPokemon(false)
           console.log(loadPokemon)
           
@@ -211,6 +255,8 @@ function UsersPokemon() {
 
     return (
       <div className="center-div">
+          {pokemons.length === 0 ? <MoonLoader color={"white"} loading={"true"} size={150} /> :
+          <div className="center-div">
           <h1>Main Pokemon</h1>
           <div className="pokemon-list-container">
               {
@@ -256,7 +302,7 @@ function UsersPokemon() {
             </div>
           ))
         }
-          </div>
+          </div> </div> }
         </div>
     )
 }

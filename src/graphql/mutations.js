@@ -211,6 +211,7 @@ export const createAccount = /* GraphQL */ `
       main_pokemon
       money
       completed_tasks
+      finished_tutorial
       createdAt
       updatedAt
     }
@@ -228,6 +229,7 @@ export const updateAccount = /* GraphQL */ `
       main_pokemon
       money
       completed_tasks
+      finished_tutorial
       createdAt
       updatedAt
     }
@@ -245,6 +247,7 @@ export const deleteAccount = /* GraphQL */ `
       main_pokemon
       money
       completed_tasks
+      finished_tutorial
       createdAt
       updatedAt
     }

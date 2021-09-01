@@ -31,7 +31,11 @@ import CompletedPurchase from './sections/NewPokemon/CompletedPurchase'
 import ChooseStarter from './sections/Introduction/ChooseStarter';
 import FirstPokemon from './sections/Introduction/FirstPokemon'
 import FinalIntroduction from './sections/Introduction/FinalIntroduction'
+import FinishedIntro from './sections/Introduction/FinishedIntro'
+import * as mutations from './graphql/mutations'
+import * as queries from './graphql/queries'
 import Wiki from './sections/Introduction/Wiki'
+import Auth from '@aws-amplify/auth'
 
 Amplify.configure(awsExports);
 
@@ -39,59 +43,85 @@ const initialState = { name: '', description: '' }
 
 const App = () => {
 
+  const [finishedTutorial, setFinishedTutorial] = useState(false)
+  const [notFinishedTutorial, setNotFinishedTutorial] = useState(true)
+  const [checkFT, setCheckFT] = useState(true)
+
+  useEffect(() => {
+    if (checkFT) {
+      
+      checkIntro()
+    }
+    
+  })
+  async function  checkIntro() {
+
+    const authUser = await Auth.currentAuthenticatedUser()
+            
+    const email = await authUser.attributes.email
+  
+    const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
+
+    console.log('loop')
+
+    setCheckFT(false)
+    const bool = userData.data.getAccount.finished_tutorial
+    if (bool) {
+      setFinishedTutorial(bool)
+    } else {
+      setNotFinishedTutorial(bool)
+    }
+    
+    console.log(finishedTutorial)
+  }
+
+  const links_obj = 
+  [
+    {link: '/create_problem', component: <CreateProblem />},
+    {link: '/create_multi', component: <CreateMulti />},
+    {link: '/list_tasks', component: <ListTasks />},
+    {link: '/won_task', component: <WonTask />},
+    {link: '/lost_task', component: <LostTask />},
+    {link: '/make_calls', component: <MakeAPICalls />},
+    {link: '/choose_pokemon', component: <ChoosePokemon />},
+    {link: '/choose_starter', component: <ChooseStarter />},
+    {link: '/user_pokemon', component: <UsersPokemon />},
+    {link: '/store', component: <Store />},
+    {link: '/completed_purchase', component: <CompletedPurchase />},
+    {link: '/finished_intro', component: <FinishedIntro />},
+    {link: '/wiki', component: <Wiki />}
+  ]
+
   return (
     <Router>
       <Header />
       <Switch>
-        <Route path="/create_problem">
-          <CreateProblem />
-        </Route>
-        <Route path="/create_multi">
-          <CreateMulti />
-        </Route>
-        <Route path="/list_tasks">
-          <ListTasks />
-        </Route>
-        <Route path="/won_task">
-          <WonTask />
-        </Route>
-        <Route path="/lost_task">
-          <LostTask />
-        </Route>
-        <Route path="/make_calls" >
-          <MakeAPICalls />
-        </Route>
-        <Route path="/choose_pokemon" >
-          <ChoosePokemon />
-        </Route>
-        <Route path="/choose_starter" >
-          <ChooseStarter />
-        </Route>
+        
+
         <Route path="/introduction" >
-          <IntroduceUser />
-        </Route>
-        <Route path="/user_pokemon" >
-          <UsersPokemon />
-        </Route>
-        <Route path="/store" >
-          <Store />
-        </Route>
-        <Route path="/completed_purchase">
-          <CompletedPurchase />
+        {finishedTutorial ? <Redirect to="/finished_intro" /> : <IntroduceUser />}
         </Route>
         <Route path="/first_pokemon">
-          <FirstPokemon />
+          {finishedTutorial ? <Redirect to="/finished_intro" /> : <FirstPokemon />}
         </Route>
         <Route path="/final_introduction">
-          <FinalIntroduction />
+          {finishedTutorial ? <Redirect to="/finished_intro" /> : <FinalIntroduction />}
         </Route>
-        <Route path="/wiki">
-          <Wiki />
-        </Route>
+
+        {links_obj.map((link_obj, key) => (
+          <Route path={link_obj.link}>
+            {notFinishedTutorial ? link_obj.component: <Redirect to="/introduction" /> }
+          </Route>
+        ))}
+       
         <Switch>
 
-          <Route path="/task/id=:id" children={<Task />} />
-          <Route path="/multi_task/id=:id" children={<MultiTask />} />
+          <Route path="/task/id=:id">
+            {notFinishedTutorial ? <Task />: <Redirect to="/introduction" /> }
+          </Route>
+          <Route path="/multi_task/id=:id">
+            {notFinishedTutorial ? <MultiTask />: <Redirect to="/introduction" /> }
+          </Route>
           <Route
                 path="/"
                 render={() => {

@@ -300,8 +300,8 @@ function Task(){
         <div class="problem">
             <h3>Problem: {singleTaskData.question}</h3>
             <h4>Turns Left: {turnsLeft}</h4>
-            <div id="battle_div" style={{backgroundImage: 'url(/assets/single_tasks/' + singleTaskData['images']}}>
-              <img id="battle_image" class="battle_image" alt={singleTaskData.name} src={'/assets/single_tasks/' + singleTaskData['images']}></img>
+            <div id="battle_div" style={{backgroundImage: 'url(/assets/single_tasks/' + singleTaskData['images'] + '.jpg'}}>
+              <img id="battle_image" class="battle_image" alt={singleTaskData.name} src={'/assets/single_tasks/' + singleTaskData['images'] + ".jpg"}></img>
               <div id="battle_layer" className={moveTypeUsed + "_layer"}></div>
               <div id="effect_div" className={"effect_div"}>
                 <img class="effect_img" alt="Electricity" src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>

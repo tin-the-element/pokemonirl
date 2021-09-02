@@ -5,7 +5,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-const initialState = { name: '', question: '', images: '', answer: '', total_hp: '', win_quote: '', lose_quote: '', turns_permitted: '', exp_given: '' }
+const initialState = { name: '', question: '', images: '', answer: '', total_hp: 100, win_quote: '', lose_quote: '', turns_permitted: 10, exp_given: 100, reward: 100}
 
 const CreateProblem = () => {
   const [formState, setFormState] = useState(initialState)
@@ -18,7 +18,7 @@ const CreateProblem = () => {
   const singleTask = [
     {
       name: 'name',
-      text: 'Name'
+      text: 'Name',
     },
     {
       name: 'images',
@@ -41,8 +41,12 @@ const CreateProblem = () => {
       text: 'Win Quote'
     },
     {
+      name: "reward",
+      text: "Reward"
+    },
+    {
       name: 'lose_quote',
-      text: 'NamLose Quotee'
+      text: 'Lose Quote'
     },
     {
       name: 'answer',

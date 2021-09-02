@@ -651,6 +651,9 @@ a {
 .battle_item:hover {
   cursor: pointer;
 }
+.battle_item:hover .battle_item_text {
+  text-decoration: underline;
+}
 
 .pokemon-list-container {
   display: grid;

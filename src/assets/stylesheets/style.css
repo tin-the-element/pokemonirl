@@ -171,8 +171,8 @@ a {
 }
 
 .battle_image {
-  width: 400px;
-  height: auto;
+  height: 300px;
+  width: auto;
   visibility: hidden;
 }
 
@@ -221,7 +221,7 @@ a {
   justify-content: center;
   border: 1px solid white;
   overflow-y: auto;
-  height: 200px;
+  height: 250px;
 }
 
 .pokemon_move_list_item_div:hover {
@@ -272,21 +272,24 @@ a {
   justify-content: center;
   opacity: 0%;
   position: absolute;
-  top: 100px;
+  bottom: 0;
   width: 400px;
 }
 
 #battle_div {
   background-size: auto 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .effect_img {
-  width: calc(400px + 100px);
+  width: 100px;
 }
 
 .effect_transition {
-  animation: visible 1s;
+  animation: visible 2s;
 }
 
 @keyframes visible {

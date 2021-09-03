@@ -229,12 +229,14 @@ function Task(){
           console.log("remove")
           document.getElementById("effect_div").classList.remove("effect_transition")
           document.getElementById("battle_layer").classList.remove(type_transition)
+          
         }
 
         setTimeout(function() {
           console.log(document)
           document.getElementById("effect_div").classList.add("effect_transition")
           document.getElementById("battle_layer").classList.add(type_transition)
+          
         }, 10)
         // document.getElementById("battle_image").classList.remove("electric_transition")
       }
@@ -304,7 +306,9 @@ function Task(){
               <img id="battle_image" class="battle_image" alt={singleTaskData.name} src={'/assets/single_tasks/' + singleTaskData['images'] + ".jpg"}></img>
               <div id="battle_layer" className={moveTypeUsed + "_layer"}></div>
               <div id="effect_div" className={"effect_div"}>
-                <img class="effect_img" alt="Electricity" src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
               </div>
             </div>
             <progress id="hp_bar" value={currentHP} max={singleTaskData.total_hp}></progress>

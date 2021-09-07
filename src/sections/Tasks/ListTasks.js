@@ -51,7 +51,7 @@ const ListTasks = () => {
   console.log("Test")
   return (
       
-    <div className="center-div">
+    <div className="center-div" style={{marginBottom: "20px"}}>
       <h1>Tasks</h1>
       <h1>Single Step Tasks</h1>
       <div className="battle_list">
@@ -60,6 +60,7 @@ const ListTasks = () => {
           <div className="battle_item center-div" onClick={() => toSingle(task.id)} key={task.id ? task.id : index}>
             <h3>{task.name}</h3>
             <p className="battle_item_text">{task.question}</p>
+            <img style={{height: '100px', width: '150px', objectFit: 'cover'}} alt={task.name} src={'/assets/single_tasks/' + task.images + '.jpg'} />
             <p>Exp Given: {task.exp_given}</p>
           </div>
         ))
@@ -73,6 +74,7 @@ const ListTasks = () => {
             
             <h3>{task.name}</h3>
             <p className="battle_item_text">{task.question}</p>
+            <img style={{height: '100px', width: '150px', objectFit: 'cover'}} alt={task.name} src={'/assets/multi_tasks/' + task.images + '0.jpg'} />
             <p>Exp Given: {task.exp_given}</p>
           </div>
         ))

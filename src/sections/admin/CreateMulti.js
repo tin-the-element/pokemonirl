@@ -5,7 +5,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-const initialState = { name: '', question: '', images: '', answer: '', win_quote: '', lose_quote: '', turns_permitted: '', exp_given: '', next_steps: '', reward: '' }
+const initialState = { name: '', question: '', images: '', answer: '', win_quote: '', lose_quote: '', turns_permitted: 10, exp_given: 100, next_steps: '', reward: 300}
 
 const CreateProblem = () => {
   const [formState, setFormState] = useState(initialState)
@@ -70,7 +70,7 @@ const CreateProblem = () => {
       setSingleTasks([...singleTasks, singleTask])
       singleTask.answer = singleTask.answer.split(',')
       singleTask.next_steps = singleTask.next_steps.split(',')
-      // setFormState(initialState)
+      setFormState(initialState)
       console.log(singleTask)
       await API.graphql(graphqlOperation(createMultipleTask, {input: singleTask}))
       console.log("success")

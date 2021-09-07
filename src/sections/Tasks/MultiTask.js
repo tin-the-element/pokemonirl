@@ -203,6 +203,8 @@ function MultiTask(){
 
     function try_attack(move) {
       
+      
+
       if (turnsLeft > 1) {
         setMoveTypeUsed(move.type)
 
@@ -222,6 +224,8 @@ function MultiTask(){
         }, 1)
         // document.getElementById("battle_image").classList.remove("electric_transition")
       }
+
+      console.log()
 
       if (move.type.toLowerCase() === multiTaskData.answer[currentStep].toLowerCase()) {
         if (currentStep + 1 === multiTaskData.answer.length) {

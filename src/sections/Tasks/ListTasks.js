@@ -52,7 +52,7 @@ const ListTasks = () => {
   return (
       
     <div className="center-div" style={{marginBottom: "20px"}}>
-      <h1>Tasks</h1>
+      <div className="tasks_title_div"><h1>Tasks</h1></div>
       <h1>Single Step Tasks</h1>
       <div className="battle_list">
       {

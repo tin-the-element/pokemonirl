@@ -21,6 +21,15 @@ function Navbar(props) {
   return (
     <nav className="navbar" id="navbar_header" name="navbar_header">
       
+      <ul className="hidden-nav">
+        {props.children}
+        {/* <li className="navbar-section">
+          <Link to="/list_tasks">List Tasks</Link>
+       
+
+        
+         */}
+      </ul>
       <h1 className="nav-title">Pokemon Irl</h1>
       <ul className="navbar-nav">
         {props.children}

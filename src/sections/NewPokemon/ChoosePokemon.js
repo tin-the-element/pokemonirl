@@ -7,6 +7,7 @@ import * as mutations from '../../graphql/mutations'
 import * as queries from '../../graphql/queries'
 import Auth from '@aws-amplify/auth'
 import { useHistory } from 'react-router-dom';
+import MoonLoader from "react-spinners/MoonLoader";
 Amplify.configure(awsExports);
 
 const initialState = { nickname: ''}
@@ -20,6 +21,8 @@ function ChoosePokemon() {
     const [typeSearch, setTypeSearch] = useState('null')
     const [types, setTypes] = useState([])
     const [loadPokemon, setLoadPokemon] = useState(true)
+    const [finishedBuying, setFinishedBuying] = useState(false)
+    const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
         if (loadPokemon) {
@@ -133,8 +136,12 @@ function ChoosePokemon() {
 
       async function selectPokemon() {
         
+        if (chosenPokemon === '') {
+          setErrorMessage("Please choose a pokemon to adopt first!")
+          return
+        } 
 
-        
+        setFinishedBuying(true)
 
         // Find account in DB
         const authUser = await Auth.currentAuthenticatedUser()
@@ -194,6 +201,9 @@ function ChoosePokemon() {
 
     return (
       <div className="center-div">
+        {finishedBuying ? <MoonLoader color={"white"} loading={"true"} size={150} /> : 
+        <div className="center-div">
+          <div className="shelter_title_div"><h1>Poke Shelter</h1></div>
         <div className="choose_pokemon_container">
           <div className="center-div filter_pokemon_div">
             <form onSubmit={searchType}>
@@ -215,6 +225,7 @@ function ChoosePokemon() {
               <input style={{width: '200px'}} onChange={event => setInput('nickname', event.target.value)} value={formState["nickname"]} placeholder="Leave empty for no nickname" />
             </form>
             <button onClick={selectPokemon}>Choose Selected Pokemon</button>
+            {errorMessage !== '' ? <h3>{errorMessage}</h3> : <div></div>}
           </div>
         </div>
           <div className="pokemon-list-container">
@@ -234,6 +245,8 @@ function ChoosePokemon() {
           ))
         }
           </div>
+        </div>
+        }
         </div>
     )
 }

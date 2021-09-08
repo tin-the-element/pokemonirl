@@ -257,6 +257,7 @@ function UsersPokemon() {
       <div className="center-div">
           {pokemons.length === 0 ? <MoonLoader color={"white"} loading={"true"} size={150} /> :
           <div className="center-div">
+           <div className="pokemon_title_div"> <h1>Your Pokemon</h1></div>
           <h1>Main Pokemon</h1>
           <div className="pokemon-list-container">
               {

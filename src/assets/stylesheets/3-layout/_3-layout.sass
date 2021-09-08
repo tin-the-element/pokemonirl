@@ -9,5 +9,25 @@
 .col-div
     @include flex-col
 
+$titles: ("tasks": white, "store": white, "pokemon": white, "shelter": white)
+     
+
+@each $name, $color in $titles 
+    .#{$name}_title_div 
+        margin-top: 20px
+        width: 600px
+        display: flex
+        justify-content: center
+        background-size: cover
+        background-position: center
+        color: $color
+         //background: linear-gradient(rgba(0, 0, 0, 0.7)rgba(0, 0, 0, 0.7)  ), url("../title_images/" + $name + ".jpg")
+        //background-image: url("../title_images/" + $name + ".jpg")
+        background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("../title_images/" + $name + ".jpg") no-repeat center/100% 
+
+        h1
+            margin: 10px 0 10px 0
+            font-size: 3rem
+
 @import navbar
 @import footer

@@ -57,7 +57,7 @@ function Store() {
 
     return (
         <div class="store">
-            <h1>Mart</h1>
+            <div className="store_title_div"><h1>PokeSmart</h1></div>
             {loading ? <div></div> : <h3>You have: {accountData.money} Pokecoins</h3>}
             
             <div class="store_section">

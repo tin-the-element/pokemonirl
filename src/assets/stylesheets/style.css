@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css2?family=VT323';
+@import 'https://fonts.googleapis.com/css2?family=VT323';
 body {
   background-color: #231E1E;
   color: white;
@@ -32,18 +34,91 @@ a {
   justify-content: center;
 }
 
+.tasks_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/tasks.jpg") no-repeat center/100%;
+}
+.tasks_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
+.store_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/store.jpg") no-repeat center/100%;
+}
+.store_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
+.pokemon_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/pokemon.jpg") no-repeat center/100%;
+}
+.pokemon_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
+.shelter_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/shelter.jpg") no-repeat center/100%;
+}
+.shelter_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
 /* <nav> */    
 .navbar {
   display: flex;
+  justify-content: flex-end;
   height: 100px;
   padding: 0 1rem;
   border-bottom: 1px solid white;
 }
 
+.hidden-nav {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  justify-content: flex-end;
+  max-width: 100%;
+  height: 100%;
+  list-style: none;
+  visibility: hidden;
+}
+
 /* <ul> */  
 .navbar-nav {
   display: flex;
-  justify-self: flex-end;
+  justify-self: center;
+  align-self: center;
   justify-content: flex-end;
   max-width: 100%;
   height: 100%;
@@ -52,6 +127,11 @@ a {
 
 .nav-title {
   justify-self: center;
+  align-self: center;
+  text-align: center;
+  margin: auto;
+  font-family: "VT323";
+  font-size: 4rem;
 }
 
 .nav-item {

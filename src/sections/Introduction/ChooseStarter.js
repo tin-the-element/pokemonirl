@@ -17,6 +17,7 @@ function ChooseStarter() {
     const [typeSearch, setTypeSearch] = useState('null')
     const [types, setTypes] = useState([])
     const [loadPokemon, setLoadPokemon] = useState(true)
+    const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
         if (loadPokemon) {
@@ -125,7 +126,10 @@ function ChooseStarter() {
       async function selectPokemon() {
         
 
-        
+        if (chosenPokemon === '') {
+          setErrorMessage("Please choose a pokemon to adopt first!")
+          return
+        } 
 
         // Find account in DB
         const authUser = await Auth.currentAuthenticatedUser()
@@ -183,6 +187,7 @@ function ChooseStarter() {
               <input style={{width: '200px'}} onChange={event => setInput('nickname', event.target.value)} value={formState["nickname"]} placeholder="Leave empty for no nickname" />
             </form>
             <button onClick={selectPokemon}>Choose Selected Pokemon</button>
+            {errorMessage !== '' ? <h3>{errorMessage}</h3> : <div></div>}
           </div>
         </div>
           <div className="pokemon-list-container">

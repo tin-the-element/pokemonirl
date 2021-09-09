@@ -39,6 +39,7 @@ function MultiTask(){
     useEffect(() => {
       const fetchProblem = async () => {
         try {
+          console.log("test")
           const authUser = await Auth.currentAuthenticatedUser()
             
           const email = await authUser.attributes.email
@@ -46,19 +47,20 @@ function MultiTask(){
 
           const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
           const pokemonIds = userData.data.getAccount.main_pokemon
+          console.log(pokemonIds)
           var newPokemons = []
-          for (var key in pokemonIds) {
-              const newPokemon = await API.graphql({query: queries.getUserPokemon, variables: {id: pokemonIds[key]}})
-              
-              var mapData = newPokemon.data.getUserPokemon
-              const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
-                  name: {
-                    eq: mapData.pokemon
-                  }
-                },  limit: 900}});
-              mapData.types = pokemonData.data.listPokemons.items[0].types
-              newPokemons.push(mapData)
-              
+          const pokemonData = await API.graphql({query: queries.listUserPokemons, variables: {filter: {
+            accountID: {
+              eq: email
+            }
+          },  limit: 100000000}});
+
+          newPokemons = pokemonData.data.listUserPokemons.items
+
+          for (var key in newPokemons) {
+            if (pokemonIds.includes(newPokemons[key].id)) {
+              newPokemons.push(newPokemons[key])
+            }
           }
 
           var newMoves = []
@@ -154,12 +156,27 @@ function MultiTask(){
           state: {
             name: multiTaskData.name,
             quote: multiTaskData.win_quote,
-            exp_given: multiTaskData.exp_given
+            exp_given: multiTaskData.exp_given,
+            money_gained: multiTaskData.reward
           }
         })
       }
   
-      function handle_lost() {
+      async function handle_lost() {
+        const authUser = await Auth.currentAuthenticatedUser()
+              
+        const email = await authUser.attributes.email
+
+        const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
+        userData.data.getAccount.money -= 100
+        if (userData.data.getAccount.money < 0) {
+          userData.data.getAccount.money = 0
+        }
+        const oldAccountData = userData.data.getAccount
+        console.log(userData.data.getAccount)
+        const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: oldAccountData.pokemon_list, main_pokemon: oldAccountData.main_pokemon, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
+        const updateUser = await API.graphql(graphqlOperation(mutations.updateAccount, {input: newAccountData}))
+
         history.push({
           pathname: "/lost_task",
           state: {

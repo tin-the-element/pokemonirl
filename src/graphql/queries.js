@@ -182,6 +182,7 @@ export const getUserPokemon = /* GraphQL */ `
       pokemon
       image
       movelist
+      types
       level
       exp_until_level
       createdAt
@@ -203,6 +204,7 @@ export const listUserPokemons = /* GraphQL */ `
         pokemon
         image
         movelist
+        types
         level
         exp_until_level
         createdAt
@@ -310,6 +312,39 @@ export const listTypes = /* GraphQL */ `
         updatedAt
       }
       nextToken
+    }
+  }
+`;
+export const searchUserPokemons = /* GraphQL */ `
+  query SearchUserPokemons(
+    $filter: SearchableUserPokemonFilterInput
+    $sort: SearchableUserPokemonSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchUserPokemons(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        accountID
+        nickname
+        pokemon
+        image
+        movelist
+        types
+        level
+        exp_until_level
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
     }
   }
 `;

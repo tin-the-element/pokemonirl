@@ -63,13 +63,14 @@ type Account @model {
   finished_tutorial: Boolean!
 }
 
-type UserPokemon @model {
+type UserPokemon @model @searchable{
   id: ID!
   accountID: String!
   nickname: String!
   pokemon: String!
   image: String!
   movelist: [String]!
+  types: [String]
   level: Int!
   exp_until_level: Int!
 }

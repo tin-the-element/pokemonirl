@@ -14,7 +14,11 @@ function WonTask() {
     return (
       <div class="center-div">
         {location.state != null
-        ? <div><h1 style={{textAlign: 'center'}}>{location.state.quote}</h1><h3>Congrats you have solved: {location.state.name}! All of the Pokemon in your Party have gained {location.state.exp_given}xp!</h3></div>
+        ? <div style={{textAlign: 'center'}}>
+            <h1>Congrats you have solved: {location.state.name}!</h1>
+            <h1>{location.state.quote}</h1>
+            
+               <h3>All of the Pokemon in your Party have gained {location.state.exp_given} xp and you have gained {location.state.money_gained} Pokecoins!</h3></div>
         : <h2>Oops! Something has gone wrong</h2>}
         
         <h3><a href="/list_tasks">Click here</a> to return to the list of problems</h3>

@@ -74,26 +74,21 @@ function UsersPokemon() {
           // mainPokemons = mainpokemonData.data.listUserPokemons.items
           // newPokemons = pokemonData.data.listUserPokemons.items
 
-          for (var key in pokemonIds) {
-            const newPokemon = await API.graphql({query: queries.getUserPokemon, variables: {id: pokemonIds[key]}})
-            
-            var mapData = newPokemon.data.getUserPokemon
-            const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
-                name: {
-                  eq: mapData.pokemon
-                }
-              },  limit: 900}});
-            mapData.types = pokemonData.data.listPokemons.items[0].types
-
-            newPokemons.push(mapData)
-            console.log(pokemonIds[key])
-            console.log(mainPokemonIds)
-            if (mainPokemonIds.includes(pokemonIds[key])) {
-              mainPokemons.push(mapData)
+          const pokemonData = await API.graphql({query: queries.listUserPokemons, variables: {filter: {
+            accountID: {
+              eq: email
             }
+          },  limit: 100000000}});
 
-        }
-          
+          newPokemons = pokemonData.data.listUserPokemons.items
+
+          for (var key in newPokemons) {
+            if (mainPokemonIds.includes(newPokemons[key].id)) {
+              mainPokemons.push(newPokemons[key])
+            }
+          }
+          console.log(newPokemons)
+          console.log(mainPokemons)
 
           
 
@@ -103,9 +98,7 @@ function UsersPokemon() {
 
           setMainPokemon(mainPokemons)
           setPokemons(newPokemons)
-          console.log(mainPokemon)
           setLoadPokemon(false)
-          console.log(loadPokemon)
           
           
         
@@ -114,10 +107,12 @@ function UsersPokemon() {
 
     useEffect(() => {
         if (loadPokemon) {
-            console.log(loadPokemon)
             fetchUsersPokemon()
         } 
         
+        console.log(mainPokemon)
+        console.log(pokemons)
+
       })
 
       function mainSelected(pokemon) {
@@ -255,7 +250,7 @@ function UsersPokemon() {
 
     return (
       <div className="center-div">
-          {pokemons.length === 0 ? <MoonLoader color={"white"} loading={"true"} size={150} /> :
+          {mainPokemon.length === 0 || pokemons.length === 0 ? <MoonLoader color={"white"} loading={"true"} size={150} /> :
           <div className="center-div">
            <div className="pokemon_title_div"> <h1>Your Pokemon</h1></div>
           <h1>Main Pokemon</h1>

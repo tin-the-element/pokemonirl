@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import { createMove, createPokemon, createSingleTask, createType } from '../../graphql/mutations'
+import { createMove, createPokemon, createSingleTask, createType, updateUserPokemon } from '../../graphql/mutations'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 import * as queries from '../../graphql/queries'
@@ -103,7 +103,33 @@ function MakeAPICalls() {
         }
     */
 
-    
+    async function add_types()  {
+        const pokemonData = await API.graphql({query: queries.listUserPokemons, variables: {limit: 100000000}});
+        var newPokemons = pokemonData.data.listUserPokemons.items
+
+        for (var key in newPokemons) {
+            const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
+                name: {
+                eq: newPokemons[key].pokemon
+                }
+            },  limit: 900}});
+            newPokemons[key].types = pokemonData.data.listPokemons.items[0].types
+            var old_user_pokemon = newPokemons[key]
+            const newAccountData = {
+                id: old_user_pokemon.id, 
+                accountID: old_user_pokemon.accountID, 
+                nickname: old_user_pokemon.nickname, 
+                image: old_user_pokemon.image, 
+                movelist: old_user_pokemon.movelist, 
+                types: old_user_pokemon.types,
+                level: old_user_pokemon.level,
+                level: old_user_pokemon.level
+            
+            }   
+            API.graphql(graphqlOperation(updateUserPokemon, {input: newAccountData}))
+        }
+    }
+
     function add_moves(id, link) {
         fetch(link)
         .then(res => res.json())
@@ -141,8 +167,9 @@ function MakeAPICalls() {
     return (
         <div>
             <button onClick={load_pokemon}>Load Pokemon</button>
-        <button onClick={load_types}>Load Types</button>
-        <button onClick={load_moves}>Load Moves</button>
+            <button onClick={load_types}>Load Types</button>
+            <button onClick={load_moves}>Load Moves</button>
+            <button onClick={add_types}>Add Types</button>
         </div>
     )
 }

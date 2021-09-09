@@ -226,6 +226,7 @@ export const onCreateUserPokemon = /* GraphQL */ `
       pokemon
       image
       movelist
+      types
       level
       exp_until_level
       createdAt
@@ -242,6 +243,7 @@ export const onUpdateUserPokemon = /* GraphQL */ `
       pokemon
       image
       movelist
+      types
       level
       exp_until_level
       createdAt
@@ -258,6 +260,7 @@ export const onDeleteUserPokemon = /* GraphQL */ `
       pokemon
       image
       movelist
+      types
       level
       exp_until_level
       createdAt

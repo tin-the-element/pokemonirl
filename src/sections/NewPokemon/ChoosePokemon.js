@@ -159,7 +159,7 @@ function ChoosePokemon() {
         console.log(pokemonData.data.listPokemons.items[0].api);
 
         const nicknames = { ...formState }
-        const newPokemonData = {accountID: email, nickname: nicknames.nickname, pokemon: chosenPokemon, image: pokemonData.data.listPokemons.items[0].image, movelist: [], level: 10, exp_until_level: 100}
+        const newPokemonData = {accountID: email, nickname: nicknames.nickname, pokemon: chosenPokemon, image: pokemonData.data.listPokemons.items[0].image, movelist: [], level: 10, exp_until_level: 100, types: pokemonData.data.listPokemons.items[0].types}
         const newPokemon = await API.graphql(graphqlOperation(mutations.createUserPokemon, {input: newPokemonData}))
 
         // Add pokemon to account

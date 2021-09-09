@@ -37,6 +37,7 @@ function FinalIntroduction(){
         Like the real world, we won't show you how to do correctly do stuff, however, we will give you a lot of
         information to help you while you play the game along with it!
       </h3>
+      <p>Mini hint: Do the bird task first</p>
       </div>
       <div className="row-div next_step">
         <div onClick={() =>  to_wiki() }className="next_step_section">

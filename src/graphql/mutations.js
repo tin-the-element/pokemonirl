@@ -265,6 +265,7 @@ export const createUserPokemon = /* GraphQL */ `
       pokemon
       image
       movelist
+      types
       level
       exp_until_level
       createdAt
@@ -284,6 +285,7 @@ export const updateUserPokemon = /* GraphQL */ `
       pokemon
       image
       movelist
+      types
       level
       exp_until_level
       createdAt
@@ -303,6 +305,7 @@ export const deleteUserPokemon = /* GraphQL */ `
       pokemon
       image
       movelist
+      types
       level
       exp_until_level
       createdAt

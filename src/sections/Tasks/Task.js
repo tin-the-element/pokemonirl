@@ -48,19 +48,32 @@ function Task(){
           const pokemonIds = userData.data.getAccount.main_pokemon
           console.log(pokemonIds)
           var newPokemons = []
-          for (var key in pokemonIds) {
-              const newPokemon = await API.graphql({query: queries.getUserPokemon, variables: {id: pokemonIds[key]}})
-              
-              var mapData = newPokemon.data.getUserPokemon
-              const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
-                  name: {
-                    eq: mapData.pokemon
-                  }
-                },  limit: 900}});
-              mapData.types = pokemonData.data.listPokemons.items[0].types
-              newPokemons.push(mapData)
-              
+          const pokemonData = await API.graphql({query: queries.listUserPokemons, variables: {filter: {
+            accountID: {
+              eq: email
+            }
+          },  limit: 100000000}});
+
+          newPokemons = pokemonData.data.listUserPokemons.items
+
+          for (var key in newPokemons) {
+            if (pokemonIds.includes(newPokemons[key].id)) {
+              newPokemons.push(newPokemons[key])
+            }
           }
+          // for (var key in pokemonIds) {
+          //     const newPokemon = await API.graphql({query: queries.getUserPokemon, variables: {id: pokemonIds[key]}})
+              
+          //     var mapData = newPokemon.data.getUserPokemon
+          //     const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
+          //         name: {
+          //           eq: mapData.pokemon
+          //         }
+          //       },  limit: 900}});
+          //     mapData.types = pokemonData.data.listPokemons.items[0].types
+          //     newPokemons.push(mapData)
+              
+          // }
 
           var newMoves = []
           var firstPokemon = newPokemons[0]
@@ -135,7 +148,7 @@ function Task(){
 
           }
 
-          const newUpdatedPokemon = {id: updatedPokemon.id ,accountID: updatedPokemon.email, pokemon: updatedPokemon.pokemon, image: updatedPokemon.image, movelist: updatedPokemon.returned_moves, level: updatedPokemon.level, exp_until_level: updatedPokemon.exp_until_level}
+          const newUpdatedPokemon = {id: updatedPokemon.id ,accountID: updatedPokemon.email, pokemon: updatedPokemon.pokemon, image: updatedPokemon.image, movelist: updatedPokemon.returned_moves, level: updatedPokemon.level, exp_until_level: updatedPokemon.exp_until_level, types: updatedPokemon.types}
           const updatePokemon = await API.graphql(graphqlOperation(mutations.updateUserPokemon, {input: newUpdatedPokemon}))
         
         }
@@ -157,12 +170,29 @@ function Task(){
           state: {
             name: singleTaskData.name,
             quote: singleTaskData.win_quote,
-            exp_given: singleTaskData.exp_given
+            exp_given: singleTaskData.exp_given,
+            money_gained: singleTaskData.reward
           }
         })
       }
   
-      function handle_lost() {
+      async function handle_lost() {
+
+        const authUser = await Auth.currentAuthenticatedUser()
+              
+        const email = await authUser.attributes.email
+
+        const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
+        userData.data.getAccount.money -= 100
+        if (userData.data.getAccount.money < 0) {
+          userData.data.getAccount.money = 0
+        }
+        const oldAccountData = userData.data.getAccount
+        console.log(userData.data.getAccount)
+        const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: oldAccountData.pokemon_list, main_pokemon: oldAccountData.main_pokemon, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
+        const updateUser = await API.graphql(graphqlOperation(mutations.updateAccount, {input: newAccountData}))
+
+
         history.push({
           pathname: "/lost_task",
           state: {

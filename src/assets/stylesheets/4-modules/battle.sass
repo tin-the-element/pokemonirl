@@ -117,6 +117,7 @@
 
 
 .effect_img
+    z-index: 4
     width: 100px
 
 
@@ -147,7 +148,7 @@
         opacity: 1%
 
 
-$types: ("normal": #A8A77A, "fire": #EE8130,"water": #6390F0,"grass": #7AC74C,"electric":#F7D02C,"ice": #96D9D6,"fighting": #C22E28,"poison": #A33EA1,"ground": #E2BF65,"flying": #A98FF3,"psychic": #F95587,"bug": #A6B91A,"rock": #B6A136,"ghost": #735797, "dragon": #6F35FC,"dark": #705746,"steel": #B7B7CE)
+$types: ("normal": #A8A77A, "fire": #EE8130,"water": #6390F0,"grass": #7AC74C,"electric":#F7D02C,"ice": #96D9D6,"fighting": #C22E28,"poison": #A33EA1,"ground": #E2BF65,"flying": #A98FF3,"psychic": #F95587,"bug": #A6B91A,"rock": #B6A136,"ghost": #735797, "dragon": #6F35FC,"dark": #705746,"steel": #B7B7CE, "fairy": #D685AD)
      
 
 @each $name, $color in $types 
@@ -160,5 +161,16 @@ $types: ("normal": #A8A77A, "fire": #EE8130,"water": #6390F0,"grass": #7AC74C,"e
     .#{$name}_step_box
         border: 1px solid $color
         background-color: $color
+
+    // .#{$name}_effect
+    //     width: 100px
+    //     height: 100px
+    //     z-index: 4
+    //     // background-size: auto 100%
+    //     background-size: cover
+    //     // background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("../title_images/pokemon.jpg") no-repeat center/100% 
+    //     background: url("../move_effects/" + $name + ".png") no-repeat center/100% 
+
+
     
 

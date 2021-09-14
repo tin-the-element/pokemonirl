@@ -33,12 +33,13 @@ function Task(){
     const [notFinished, setNotFinished] = useState(true)
     const [moveTypeUsed, setMoveTypeUsed] = useState("")
     const [completed, setCompleted] = useState(false)
+    const [moveUsed, setMoveUsed] = useState(false)
+    const [oldMove, setOldMove] = useState("")
 
     let { id } = useParams();
     useEffect(() => {
       const fetchProblem = async () => {
         try {
-          console.log("test")
           const authUser = await Auth.currentAuthenticatedUser()
             
           const email = await authUser.attributes.email
@@ -46,7 +47,6 @@ function Task(){
 
           const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
           const pokemonIds = userData.data.getAccount.main_pokemon
-          console.log(pokemonIds)
           var newPokemons = []
           const pokemonData = await API.graphql({query: queries.listUserPokemons, variables: {filter: {
             accountID: {
@@ -61,19 +61,6 @@ function Task(){
               newPokemons.push(newPokemons[key])
             }
           }
-          // for (var key in pokemonIds) {
-          //     const newPokemon = await API.graphql({query: queries.getUserPokemon, variables: {id: pokemonIds[key]}})
-              
-          //     var mapData = newPokemon.data.getUserPokemon
-          //     const pokemonData = await API.graphql({query: queries.listPokemons, variables: {filter: {
-          //         name: {
-          //           eq: mapData.pokemon
-          //         }
-          //       },  limit: 900}});
-          //     mapData.types = pokemonData.data.listPokemons.items[0].types
-          //     newPokemons.push(mapData)
-              
-          // }
 
           var newMoves = []
           var firstPokemon = newPokemons[0]
@@ -102,9 +89,12 @@ function Task(){
 
         } catch (err) { console.log(err) }
       }
-      console.log(selectedPokemon)
       if (loading){
         fetchProblem()
+      }
+
+      if (moveUsed && turnsLeft !== 0){
+        move_effect()
       }
       
       async function handle_win() {
@@ -128,7 +118,6 @@ function Task(){
               var version = versions[k]
               if (version.move_learn_method.name === "level-up" && version.version_group.name === "ultra-sun-ultra-moon") {
                 if (version.level_learned_at === updatedPokemon.level) {
-                  console.log(moves[key].move.name)
                   const moveData = await API.graphql({query: queries.listMoves, variables: {filter: {
                     name: {
                       eq: moves[key].move.name
@@ -136,7 +125,6 @@ function Task(){
                   },  limit: 900}});
                   const move = moveData.data.listMoves.items[0]
                   const moveString = JSON.stringify(move)
-                  console.log(JSON.parse(JSON.stringify(move)))
                   if (!updatedPokemon.movelist.includes(moveString))
                   updatedPokemon.movelist.push(moveString)
                 }
@@ -161,6 +149,10 @@ function Task(){
         const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
         userData.data.getAccount.money += singleTaskData.reward 
         const oldAccountData = userData.data.getAccount
+        if (!oldAccountData.completed_tasks.includes(singleTaskData.id)) {
+          oldAccountData.completed_tasks.push(singleTaskData.id)
+          console.log(oldAccountData.completed_tasks)
+        }
         const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: oldAccountData.pokemon_list, main_pokemon: oldAccountData.main_pokemon, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
         const updateUser = await API.graphql(graphqlOperation(mutations.updateAccount, {input: newAccountData}))
 
@@ -188,7 +180,6 @@ function Task(){
           userData.data.getAccount.money = 0
         }
         const oldAccountData = userData.data.getAccount
-        console.log(userData.data.getAccount)
         const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: oldAccountData.pokemon_list, main_pokemon: oldAccountData.main_pokemon, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
         const updateUser = await API.graphql(graphqlOperation(mutations.updateAccount, {input: newAccountData}))
 
@@ -204,7 +195,6 @@ function Task(){
       }
 
       function check_win() {
-        console.log(currentHP <= 0)
         if (currentHP <= 0) {
           handle_win()
           return true
@@ -212,7 +202,6 @@ function Task(){
       }
 
       function check_lose() {
-        console.log(turnsLeft)
         if (turnsLeft <= 0) {
           handle_lost()
         }
@@ -229,7 +218,34 @@ function Task(){
       }, [id, loading, currentHP, turnsLeft, singleTaskData.turns_permitted, singleTaskData.total_hp, usersPokemons, selectedPokemon, history, singleTaskData.exp_given, singleTaskData.lose_quote, singleTaskData.name, singleTaskData.win_quote])
 
 
-    
+    function move_effect() {
+      let old_type_transition = oldMove + "_transition"
+      let old_layer = oldMove + "_layer"
+
+      let type_transition = moveTypeUsed + "_transition"
+      let new_layer = moveTypeUsed + "_layer"
+
+      console.log(document.getElementById("battle_layer").classList)
+
+      if (document.getElementById("battle_layer").classList.contains(old_type_transition)) {
+
+        document.getElementById("effect_div").classList.remove("effect_transition")
+        document.getElementById("battle_layer").classList.remove(old_layer)
+        document.getElementById("battle_layer").classList.remove(old_type_transition)
+        
+      }
+
+      setTimeout(function() {
+        document.getElementById("effect_div").classList.add("effect_transition")
+        document.getElementById("battle_layer").classList.add(type_transition)
+        document.getElementById("battle_layer").classList.add(new_layer)
+        console.log(1)
+        
+      }, 10)
+
+      setMoveUsed(false)
+
+    }
     
     
 
@@ -237,40 +253,23 @@ function Task(){
 
     function try_attack(move) {
       
-      if (turnsLeft > 1) {
-        setMoveTypeUsed(move.type)
+      setOldMove(moveTypeUsed)
+      setMoveTypeUsed(move.type)
 
-        console.log(move.type)
-        if (move.type.toLowerCase() === singleTaskData.answer[0].toLowerCase()) {
-          if (currentHP - move.power > 0) {
-            setCurrentHP(currentHP - move.power)
-          } else {
-            setCurrentHP(0)
-            setCompleted(true)
-          }
-          
-          setPostMoveMessage("Your attack was effective and it did " + move.power + " damage!")
+      if (move.type.toLowerCase() === singleTaskData.answer[0].toLowerCase()) {
+        if (currentHP - move.power > 0) {
+          setCurrentHP(currentHP - move.power)
         } else {
-          setPostMoveMessage("Your attack was not effective, please try again!")
+          setCurrentHP(0)
+          setCompleted(true)
         }
-
-        let type_transition = move.type + "_transition"
-        if (document.getElementById("battle_layer").classList.contains(type_transition)) {
-          console.log("remove")
-          document.getElementById("effect_div").classList.remove("effect_transition")
-          document.getElementById("battle_layer").classList.remove(type_transition)
-          
-        }
-
-        setTimeout(function() {
-          console.log(document)
-          document.getElementById("effect_div").classList.add("effect_transition")
-          document.getElementById("battle_layer").classList.add(type_transition)
-          
-        }, 10)
-        // document.getElementById("battle_image").classList.remove("electric_transition")
+        
+        setPostMoveMessage("Your attack was effective and it did " + move.power + " damage!")
+      } else {
+        setPostMoveMessage("Your attack was not effective, please try again!")
       }
-      
+      setMoveUsed(true)
+
 
       setTurnsLeft(turnsLeft - 1)
       
@@ -292,7 +291,6 @@ function Task(){
 
     function swapPokemon() {
       if (partyPokemon !== null) {
-        console.log(partyPokemon)
         setSelectedPokemon(partyPokemon);
         document.getElementById(partyPokemon.id).style.border = "none"
         document.getElementById(partyPokemon.id).style.cursor = "pointer"
@@ -323,19 +321,19 @@ function Task(){
       });
     }
 
-
     return(
       <div class="battle_div">
         {notFinished ?
-        <MoonLoader color={"white"} loading={"true"} size={150} /> :
+          <MoonLoader color={"white"} loading={"true"} size={150} /> :
         <div class="battle">
         <div class="problem">
             <h3>Problem: {singleTaskData.question}</h3>
             <h4>Turns Left: {turnsLeft}</h4>
             <div id="battle_div" style={{backgroundImage: 'url(/assets/single_tasks/' + singleTaskData['images'] + '.jpg'}}>
               <img id="battle_image" class="battle_image" alt={singleTaskData.name} src={'/assets/single_tasks/' + singleTaskData['images'] + ".jpg"}></img>
-              <div id="battle_layer" className={moveTypeUsed + "_layer"}></div>
+              <div id="battle_layer"></div>
               <div id="effect_div" className={"effect_div"}>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
                 <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
                 <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
                 <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
@@ -345,7 +343,7 @@ function Task(){
             <div>{currentHP}/{singleTaskData.total_hp}</div>
             <h4>{postMoveMessage}</h4>
             </div>
-        { completed ? <MoonLoader color={"white"} loading={"true"} size={150} />
+        { completed ? <div class="center-div"><MoonLoader color={"white"} loading={"true"} size={150} /><h3>Calculating if any of your pokemon have leveled up or learned any moves...</h3></div>
           : <div class="user_space">
             <div id="party_div">
               <h3>Your pokemon</h3>

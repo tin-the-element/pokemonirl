@@ -1,5 +1,4 @@
 @import 'https://fonts.googleapis.com/css2?family=VT323';
-@import 'https://fonts.googleapis.com/css2?family=VT323';
 body {
   background-color: #231E1E;
   color: white;
@@ -365,6 +364,7 @@ a {
 }
 
 .effect_img {
+  z-index: 4;
   width: 100px;
 }
 
@@ -715,6 +715,25 @@ a {
   background-color: #B7B7CE;
 }
 
+.fairy_layer {
+  background-color: #D685AD;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fairy_transition {
+  animation: electric_shake 1s;
+}
+
+.fairy_step_box {
+  border: 1px solid #D685AD;
+  background-color: #D685AD;
+}
+
 .battle_item {
   width: 30rem;
   border: 2px white solid;
@@ -724,6 +743,13 @@ a {
   display: grid;
   grid-template-columns: 30rem 30rem;
   grid-template-rows: auto;
+}
+@media screen and (max-width: 1000px) {
+  .battle_list {
+    display: grid;
+    grid-template-columns: 30rem;
+    grid-template-rows: auto;
+  }
 }
 
 .battle_item_text {

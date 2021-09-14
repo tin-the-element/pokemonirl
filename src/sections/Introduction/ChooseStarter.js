@@ -115,7 +115,7 @@ function ChooseStarter() {
         console.log();
         pokemonData = pokemonData.data.createUserPokemon
         console.log(returned_moves)
-        var updatedPokemon = {id: pokemonData.id ,accountID: pokemonData.email, pokemon: pokemonData.pokemon, image: pokemonData.image, movelist: returned_moves, level: pokemonData.level, exp_until_level: pokemonData.exp_until_level}
+        var updatedPokemon = {id: pokemonData.id ,accountID: pokemonData.email, pokemon: pokemonData.pokemon, image: pokemonData.image, movelist: returned_moves, level: pokemonData.level, exp_until_level: pokemonData.exp_until_level, types: pokemonData.types}
         const newPokemon = API.graphql(graphqlOperation(mutations.updateUserPokemon, {input: updatedPokemon}))
     
         console.log(returned_moves)

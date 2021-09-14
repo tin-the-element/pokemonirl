@@ -34,6 +34,8 @@ function MultiTask(){
     const [moveTypeUsed, setMoveTypeUsed] = useState("")
     const [multiTaskSteps, setMultiTaskSteps] = useState([])
     const [completed, setCompleted] = useState(false)
+    const [moveUsed, setMoveUsed] = useState(false)
+    const [oldMove, setOldMove] = useState("")
 
     let { id } = useParams();
     useEffect(() => {
@@ -93,6 +95,10 @@ function MultiTask(){
         setNotFinished(false)
       } else {
 
+      }
+
+      if (moveUsed && turnsLeft !== 0){
+        move_effect()
       }
       
       async function handle_win() {
@@ -212,37 +218,43 @@ function MultiTask(){
       }, [id, loading, currentStep, turnsLeft, multiTaskData.turns_permitted, multiTaskData.total_hp, usersPokemons, selectedPokemon, history, multiTaskData.exp_given, multiTaskData.lose_quote, multiTaskData.name, multiTaskData.win_quote])
 
 
-    
+    function move_effect() {
+        let old_type_transition = oldMove + "_transition"
+        let old_layer = oldMove + "_layer"
+  
+        let type_transition = moveTypeUsed + "_transition"
+        let new_layer = moveTypeUsed + "_layer"
+  
+        console.log(document.getElementById("battle_layer").classList)
+  
+        if (document.getElementById("battle_layer").classList.contains(old_type_transition)) {
+  
+          document.getElementById("effect_div").classList.remove("effect_transition")
+          document.getElementById("battle_layer").classList.remove(old_layer)
+          document.getElementById("battle_layer").classList.remove(old_type_transition)
+          
+        }
+  
+        setTimeout(function() {
+          document.getElementById("effect_div").classList.add("effect_transition")
+          document.getElementById("battle_layer").classList.add(type_transition)
+          document.getElementById("battle_layer").classList.add(new_layer)
+          console.log(1)
+          
+        }, 10)
+  
+        setMoveUsed(false)
+  
+      }
     
     
 
     
 
     function try_attack(move) {
-      
-      
 
-      if (turnsLeft > 1) {
-        setMoveTypeUsed(move.type)
-
-        
-        
-
-        let type_transition = move.type + "_transition"
-        if (document.getElementById("battle_layer").classList.contains(type_transition)) {
-
-          document.getElementById("effect_div").classList.remove("effect_transition")
-          document.getElementById("battle_layer").classList.remove(type_transition)
-        }
-
-        setTimeout(function() {
-          document.getElementById("effect_div").classList.add("effect_transition")
-          document.getElementById("battle_layer").classList.add(type_transition)
-        }, 1)
-        // document.getElementById("battle_image").classList.remove("electric_transition")
-      }
-
-      console.log()
+      setOldMove(moveTypeUsed)
+      setMoveTypeUsed(move.type)
 
       if (move.type.toLowerCase() === multiTaskData.answer[currentStep].toLowerCase()) {
         if (currentStep + 1 === multiTaskData.answer.length) {
@@ -254,6 +266,7 @@ function MultiTask(){
       } else {
         setPostMoveMessage("Your attack was not effective, please try again!")
       }
+      setMoveUsed(true)
 
       setTurnsLeft(turnsLeft - 1)
       
@@ -316,9 +329,12 @@ function MultiTask(){
             <h4>Turns Left: {turnsLeft}</h4>
             <div id="battle_div" style={{backgroundImage: 'url(/assets/multi_tasks/' + multiTaskData['images'] + currentStep + ".jpg"}}>
               <img id="battle_image" class="battle_image" alt={multiTaskData.name} src={'/assets/multi_tasks/' + multiTaskData['images'] + currentStep + ".jpg"}></img>
-              <div id="battle_layer" className={moveTypeUsed + "_layer"}></div>
+              <div id="battle_layer"></div>
               <div id="effect_div" className={"effect_div"}>
-                <img class="effect_img" alt="Electricity" src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
+                <img className="effect_img" alt={moveTypeUsed} src={"/assets/move_effects/" + moveTypeUsed + ".png"}></img>
               </div>
             </div>
             <h3>Current Step: {multiTaskSteps[currentStep]}</h3>
@@ -348,7 +364,7 @@ function MultiTask(){
             </div>
             <h4>{postMoveMessage}</h4>
         </div>
-        { completed ? <MoonLoader color={"white"} loading={"true"} size={150} />
+        { completed ? <div class="center-div"><MoonLoader color={"white"} loading={"true"} size={150} /><h3>Calculating if any of your pokemon have leveled up or learned any moves...</h3></div>
           : <div class="user_space">
           <div id="party_div">
             <h3>Your pokemon</h3>

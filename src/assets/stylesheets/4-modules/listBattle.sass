@@ -1,6 +1,61 @@
+
+$battle_item_completed_padding: 140px
+    
 .battle_item 
+    position: relative
     width: 30rem
     border: 2px white solid
+
+.battle_item_title
+    @include flex-row
+    justify-content: flex-end
+    align-self: flex-end
+    text-align: center
+    margin: auto
+    max-width: 100%
+
+.battle_item_completed
+    position: absolute
+    top: 5%
+    left: 3%
+    width: 30px
+    height: 30px
+    justify-content: flex-end
+    margin-right: $battle_item_completed_padding
+    
+
+.battle_item_completed_hidden
+    width: 30px
+    height: 30px
+    justify-content: flex-end
+    visibility: hidden
+    margin-right: $battle_item_completed_padding
+
+.battle_item_completed_padding
+    width: 30px
+    height: 30px
+    justify-content: flex-end
+    visibility: hidden
+    margin-left: $battle_item_completed_padding
+
+
+// .navbar 
+//     display: flex
+//     justify-content: flex-end
+//     height: $nav-size
+//     padding: 0 1rem
+//     border-bottom: 1px solid white
+
+// .hidden-nav
+//     display: flex
+//     justify-self: center
+//     align-self: center
+//     justify-content: flex-end
+//     max-width: 100%
+//     height: 100%
+//     list-style: none
+//     visibility: hidden
+
 
 .battle_list
     display: grid

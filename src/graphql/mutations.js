@@ -148,7 +148,6 @@ export const createRiddleTask = /* GraphQL */ `
       win_quote
       lose_quote
       reward
-      next_steps
       answer
       createdAt
       updatedAt
@@ -170,7 +169,6 @@ export const updateRiddleTask = /* GraphQL */ `
       win_quote
       lose_quote
       reward
-      next_steps
       answer
       createdAt
       updatedAt
@@ -192,7 +190,6 @@ export const deleteRiddleTask = /* GraphQL */ `
       win_quote
       lose_quote
       reward
-      next_steps
       answer
       createdAt
       updatedAt

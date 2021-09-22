@@ -15,7 +15,7 @@ function Footer() {
         <div className="footer">
             <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
             <div>Project made by <a href="https://tinluu-website.herokuapp.com">Tin Luu</a></div> 
-            <div><a href="https://www.freepik.com/photos/background">Photos created by wirestock - www.freepik.com</a></div>
+            <div>Photos from <a href="https://unsplash.com">https://unsplash.com</a></div>
                 
         </div>
     )

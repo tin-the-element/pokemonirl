@@ -48,7 +48,6 @@ type RiddleTask implements Task @model {
   win_quote: String!
   lose_quote: String!
   reward: Int!
-  next_steps: [String]!
   answer: [String]!
   
 }

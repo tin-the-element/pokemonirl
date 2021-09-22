@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Amplify, { API, graphqlOperation } from 'aws-amplify'
-import { createMultipleTask, createSingleTask } from '../../graphql/mutations'
+import { createMultipleTask, createRiddleTask, createSingleTask } from '../../graphql/mutations'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "../../aws-exports";
 Amplify.configure(awsExports);
 
-const initialState = { name: '', question: '', images: '', answer: '', win_quote: '', lose_quote: '', turns_permitted: 10, exp_given: 100, next_steps: '', reward: 300}
+const initialState = { name: '', question: '', images: '', answer: '', win_quote: '', lose_quote: '', turns_permitted: 10, exp_given: 150, reward: 500}
 
-const CreateMulti = () => {
+const CreateRiddle = () => {
   const [formState, setFormState] = useState(initialState)
   const [singleTasks, setSingleTasks] = useState([])
 
@@ -52,10 +52,6 @@ const CreateMulti = () => {
       name: 'answer',
       text: 'Answer (comma seperated)'
     },
-    {
-      name: 'next_steps',
-      text: 'Next Steps(comma seperated)'
-    }
   ]
 
 
@@ -68,11 +64,9 @@ const CreateMulti = () => {
       console.log(!formState["name"] || !formState.question || !formState.images || !formState.answer || !formState.total_hp || !formState.turns_permitted || !formState.exp_given)
       console.log(singleTask);
       setSingleTasks([...singleTasks, singleTask])
-      singleTask.answer = singleTask.answer.split(',')
-      singleTask.next_steps = singleTask.next_steps.split(',')
       setFormState(initialState)
       console.log(singleTask)
-      await API.graphql(graphqlOperation(createMultipleTask, {input: singleTask}))
+      await API.graphql(graphqlOperation(createRiddleTask, {input: singleTask}))
       console.log("success")
     } catch (err) {
       console.log('error creating todo:', err)
@@ -87,7 +81,7 @@ question
 */
   return (
     <div style={styles.container}>
-      <h2>Create Multi</h2>
+      <h2>Create Riddle</h2>
       {
         singleTask.map((object, index) => {
           return (
@@ -123,4 +117,4 @@ const styles = {
   button: { backgroundColor: 'black', color: 'white', outline: 'none', fontSize: 18, padding: '12px 0px' }
 }
 
-export default withAuthenticator(CreateMulti)
+export default withAuthenticator(CreateRiddle)

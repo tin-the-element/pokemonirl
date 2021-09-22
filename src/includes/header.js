@@ -105,6 +105,7 @@ function ProfileMenu() {
        : <div></div>}
       
       <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
+      <DropdownItem link="/leaderboard">Leaderboard</DropdownItem>
       <li className="navbar-section">
         <button onClick={signOut}>Logout</button>
       </li>
@@ -128,6 +129,7 @@ function AboutMenu() {
       <DropdownItem link="/introduction">Introduction</DropdownItem>
       <DropdownItem link="/create_problem">Create Problem</DropdownItem>
       <DropdownItem link="/create_multi">Create Multi</DropdownItem>
+      <DropdownItem link="/create_riddle">Create Riddle</DropdownItem>
       <DropdownItem link="/make_calls">Make Calls</DropdownItem>
       <DropdownItem link="/choose_pokemon">Choose Pokemon</DropdownItem>
     </div>

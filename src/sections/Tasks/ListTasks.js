@@ -17,6 +17,7 @@ Amplify.configure(awsExports);
 const ListTasks = () => {
   const [singleTasks, setSingleTasks] = useState([])
   const [multiTasks, setMultiTasks] = useState([])
+  const [riddleTasks, setRiddleTasks] = useState([])
   const [finishedTasks, setFinishedTasks] = useState([])
   const history = useHistory();
 
@@ -42,9 +43,14 @@ const ListTasks = () => {
 
       const multiTaskData = await API.graphql(graphqlOperation(queries.listMultipleTasks))
       const multiTasks = multiTaskData.data.listMultipleTasks.items
+
+      const riddleTaskData = await API.graphql(graphqlOperation(queries.listRiddleTasks))
+      const riddleTasks = riddleTaskData.data.listRiddleTasks.items
+      
       setFinishedTasks(finishedTasks)
       setSingleTasks(singleTasks)
       setMultiTasks(multiTasks)
+      setRiddleTasks(riddleTasks)
     } catch (err) { console.log(err) }
   }
 
@@ -60,12 +66,19 @@ const ListTasks = () => {
       })
   }
 
+  function toRiddle(id) {
+    history.push({
+      pathname: "/riddle_task/id=" + id,
+      })
+  }
+
   console.log("Test")
   return (
       
     <div className="center-div" style={{marginBottom: "20px"}}>
       <div className="tasks_title_div"><h1>Tasks</h1></div>
       <h1>Single Step Tasks</h1>
+      <h3 className="task_descriptions">Tasks where the solution is a specific type</h3>
       <div className="battle_list">
       {
         singleTasks.map((task, index) => (
@@ -82,6 +95,7 @@ const ListTasks = () => {
       }
       </div>
       <h1>Multi Step Tasks</h1>
+      <h3 className="task_descriptions">Tasks where the solution is a multiple type done in steps</h3>
       <div className="battle_list">
       {
         multiTasks.map((task, index) => (
@@ -90,6 +104,21 @@ const ListTasks = () => {
             <h3>{task.name}</h3>
             <p className="battle_item_text">{task.question}</p>
             <img style={{height: '100px', width: '150px', objectFit: 'cover'}} alt={task.name} src={'/assets/multi_tasks/' + task.images + '0.jpg'} />
+            <p>Exp Given: {task.exp_given}</p>
+          </div>
+        ))
+      }
+      </div>
+      <h1>Riddle Tasks</h1>
+      <h3 className="task_descriptions">Tasks where the solution is a specific type (like a riddle)</h3>
+      <div className="battle_list">
+      {
+        riddleTasks.map((task, index) => (
+          <div className="battle_item center-div" onClick={() => toRiddle(task.id)} key={task.id ? task.id : index}>
+            
+            <h3>{task.name}</h3>
+            <p className="battle_item_text">{task.question}</p>
+            <img style={{height: '100px', width: '150px', objectFit: 'cover'}} alt={task.name} src={'/assets/riddle_tasks/' + task.images + '.jpg'} />
             <p>Exp Given: {task.exp_given}</p>
           </div>
         ))

@@ -20,6 +20,7 @@ import { withAuthenticator } from '@aws-amplify/ui-react'
 import awsExports from "./aws-exports";
 import Task from './sections/Tasks/Task';
 import MultiTask from './sections/Tasks/MultiTask';
+import RiddleTask from './sections/Tasks/RiddleTask';
 import WonTask from './sections/Tasks/WonTask'
 import LostTask from './sections/Tasks/LostTask'
 import MakeAPICalls from './sections/admin/MakeAPICalls'
@@ -36,6 +37,8 @@ import * as mutations from './graphql/mutations'
 import * as queries from './graphql/queries'
 import Wiki from './sections/Introduction/Wiki'
 import Auth from '@aws-amplify/auth'
+import Leaderboard from './sections/Profile/Leaderboard';
+import CreateRiddle from './sections/admin/CreateRiddle';
 
 Amplify.configure(awsExports);
 
@@ -79,6 +82,7 @@ const App = () => {
   [
     {link: '/create_problem', component: <CreateProblem />},
     {link: '/create_multi', component: <CreateMulti />},
+    {link: '/create_riddle', component: <CreateRiddle />},
     {link: '/list_tasks', component: <ListTasks />},
     {link: '/won_task', component: <WonTask />},
     {link: '/lost_task', component: <LostTask />},
@@ -89,7 +93,8 @@ const App = () => {
     {link: '/store', component: <Store />},
     {link: '/completed_purchase', component: <CompletedPurchase />},
     {link: '/finished_intro', component: <FinishedIntro />},
-    {link: '/wiki', component: <Wiki />}
+    {link: '/wiki', component: <Wiki />},
+    {link: '/leaderboard', component: <Leaderboard />}
   ]
 
   return (
@@ -121,6 +126,9 @@ const App = () => {
           </Route>
           <Route path="/multi_task/id=:id">
             {notFinishedTutorial ? <MultiTask />: <Redirect to="/introduction" /> }
+          </Route>
+          <Route path="/riddle_task/id=:id">
+            {notFinishedTutorial ? <RiddleTask />: <Redirect to="/introduction" /> }
           </Route>
           <Route
                 path="/"

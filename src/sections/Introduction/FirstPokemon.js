@@ -7,6 +7,7 @@ import * as mutations from '../../graphql/mutations'
 import * as queries from '../../graphql/queries'
 import Auth from '@aws-amplify/auth'
 import { useHistory } from 'react-router-dom';
+import MoonLoader from "react-spinners/MoonLoader";
 Amplify.configure(awsExports);
 
 const initialState = { nickname: ''}
@@ -18,6 +19,7 @@ function FirstPokemon() {
     const [pokemons, setPokemons] = useState([])
     const [typeSearch, setTypeSearch] = useState('null')
     const [types, setTypes] = useState([])
+    const [finishedBuying, setFinishedBuying] = useState(false)
     const [loadPokemon, setLoadPokemon] = useState(true)
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -130,6 +132,8 @@ function FirstPokemon() {
             return
         }
 
+        setFinishedBuying(true)
+
         // Find account in DB
         const authUser = await Auth.currentAuthenticatedUser()
         const email = authUser.attributes.email
@@ -146,7 +150,10 @@ function FirstPokemon() {
         console.log(pokemonData.data.listPokemons.items[0].api);
 
         const nicknames = { ...formState }
-        const newPokemonData = {accountID: email, nickname: nicknames.nickname, pokemon: chosenPokemon, image: pokemonData.data.listPokemons.items[0].image, movelist: [], level: 10, exp_until_level: 100}
+        if (nicknames.nickname === '') {
+          nicknames.nickname = toTitleCase(chosenPokemon)
+        }
+        const newPokemonData = {accountID: email, nickname: nicknames.nickname, pokemon: chosenPokemon, image: pokemonData.data.listPokemons.items[0].image, movelist: [], level: 10, exp_until_level: 100, types: pokemonData.data.listPokemons.items[0].types}
         const newPokemon = await API.graphql(graphqlOperation(mutations.createUserPokemon, {input: newPokemonData}))
 
         // Add pokemon to account
@@ -187,6 +194,8 @@ function FirstPokemon() {
 
     return (
       <div className="center-div">
+        {finishedBuying ? <MoonLoader color={"white"} loading={"true"} size={150} /> : 
+        <div className="center-div">
         <div className="choose_pokemon_container">
           <div className="center-div choose_pokemon_div">
             <h3>Currently Selected Pokemon: {toTitleCase(chosenPokemon)}</h3>
@@ -216,7 +225,7 @@ function FirstPokemon() {
             </div>
           ))
         }
-          </div>
+          </div></div> }
         </div>
     )
 }

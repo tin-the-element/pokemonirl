@@ -26,7 +26,7 @@ function Store() {
     ]
 
     const history = useHistory();
-    const [accountData, setAccountData] = useState()
+    const [money, setMoney] = useState()
     const [loading, setLoading] = useState(true)
     useEffect(() => {
         if (loading) {
@@ -39,7 +39,7 @@ function Store() {
         const email = await authUser.attributes.email
         const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
         console.log(userData)
-        setAccountData(userData.data.getAccount)
+        setMoney(userData.data.getAccount.money)
         setLoading(false)
     }
 
@@ -58,7 +58,7 @@ function Store() {
     return (
         <div class="store">
             <div className="store_title_div"><h1>PokeSmart</h1></div>
-            {loading ? <div></div> : <h3>You have: {accountData.money} Pokecoins</h3>}
+            {loading ? <div></div> : <h3>You have: {money} Pokecoins</h3>}
             
             <div class="store_section">
                 {store_items.map((item, key) => {
@@ -66,7 +66,9 @@ function Store() {
                         <h2>{item.name}</h2>
                         <h4 style={{textAlign: "center"}}>{item.description}</h4>
                         <h4>{item.cost} Pokecoins</h4>
-                        <button onClick={item.function} style={{marginBottom: ""}}>Buy</button>
+                        {item.cost > money ?
+                        <button onClick={item.function} style={{marginBottom: ""}} disabled>Buy</button> 
+                        : <button onClick={item.function} style={{marginBottom: ""}}>Buy</button> }
                     </div>)
                 })
 

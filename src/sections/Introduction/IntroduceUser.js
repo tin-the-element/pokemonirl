@@ -17,26 +17,35 @@ Amplify.configure(awsExports);
 
 function IntroduceUser() {
     
+    const [addedAccount, setAddedAccount] = useState(false)
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('')
 
     useEffect(() => {
         getUsername()
     })
-    function getUsername() {
+    async function getUsername() {
 
-        Auth.currentAuthenticatedUser()
-        .then(user => setUsername(user.username))
-        .catch(err => console.log(err));
+        const authUser = await Auth.currentAuthenticatedUser()
+
+        setUsername(authUser.username)
+        setEmail(authUser.attributes.email)
+        const userData = await API.graphql({query: queries.getAccount, variables: {id: authUser.attributes.email}})
+        console.log(userData)
+        if (userData.data.getAccount !== null) {
+            setAddedAccount(true)
+        }
+
+
     }
 
     async function addAccount() {
-        Auth.currentAuthenticatedUser()
-        .then(user => setEmail(user.attributes.email))
-        .catch(err => console.log(err));
+
         console.log(email)
-        const accountData = await API.graphql(graphqlOperation(mutations.createAccount, {input: {id: email, username: username, users_pokemon: [], main_pokemon: [], money: 100, completed_tasks: []}}))
+        console.log(username)
+        const accountData = await API.graphql(graphqlOperation(mutations.createAccount, {input: {id: email, username: username, users_pokemon: [], main_pokemon: [], money: 100, completed_tasks: [], finished_tutorial: false}}))
         console.log(accountData)
+        setAddedAccount(true)
     }
     
 
@@ -49,8 +58,9 @@ function IntroduceUser() {
             <p>In the world of Real Life no one in the world can restrict what you are able to do with you and your Pokemon. You can collect all the Pokemon, </p>
             <p>finish all the possible tasks, or raise the highest level Pokemon you possibly can! The possibilities are endless!! (Depending on how good the </p>
             <p>coder of this game is) I hope you enjoy your stay here, for the sake of the players and the career of the creator of the world.</p>
-            <button onClick={addAccount}>Add account</button>
-            <p><a href="/first_pokemon">Meet Your First Pokemon!</a></p>
+            
+            { addedAccount ?
+            <p><a href="/first_pokemon">Meet Your First Pokemon!</a></p> : <button onClick={addAccount}>Add account</button>}
         </div>
     )
 }

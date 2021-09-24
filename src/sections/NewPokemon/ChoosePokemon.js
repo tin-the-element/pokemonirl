@@ -141,13 +141,21 @@ function ChoosePokemon() {
           return
         } 
 
-        setFinishedBuying(true)
+       
+
+        
 
         // Find account in DB
         const authUser = await Auth.currentAuthenticatedUser()
         const email = authUser.attributes.email
+        const accountData = await API.graphql({ query: queries.getAccount, variables: {id: email}})
+        console.log(accountData.data.getAccount.money)
+        if (accountData.data.getAccount.money < 200) {
+          setErrorMessage("You do not have enough money to adopt a Pokemon")
+          return
+        }
 
-
+        setFinishedBuying(true)
 
         // Add new pokemon to DB
         console.log(chosenPokemon);
@@ -159,11 +167,16 @@ function ChoosePokemon() {
         console.log(pokemonData.data.listPokemons.items[0].api);
 
         const nicknames = { ...formState }
+
+        if (nicknames.nickname === '') {
+          nicknames.nickname = toTitleCase(chosenPokemon)
+        }
+
         const newPokemonData = {accountID: email, nickname: nicknames.nickname, pokemon: chosenPokemon, image: pokemonData.data.listPokemons.items[0].image, movelist: [], level: 10, exp_until_level: 100, types: pokemonData.data.listPokemons.items[0].types}
         const newPokemon = await API.graphql(graphqlOperation(mutations.createUserPokemon, {input: newPokemonData}))
 
         // Add pokemon to account
-        const accountData = await API.graphql({ query: queries.getAccount, variables: {id: email}})
+        
         const oldAccountData = accountData.data.getAccount
         let pokemon_list = oldAccountData.users_pokemon
         pokemon_list.push(newPokemon.data.createUserPokemon.id)

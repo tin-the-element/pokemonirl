@@ -29,7 +29,6 @@ import IntroduceUser from './sections/Introduction/IntroduceUser';
 import UsersPokemon from './sections/Profile/UsersPokemon';
 import Store from './sections/NewPokemon/Store'
 import CompletedPurchase from './sections/NewPokemon/CompletedPurchase'
-import ChooseStarter from './sections/Introduction/ChooseStarter';
 import FirstPokemon from './sections/Introduction/FirstPokemon'
 import FinalIntroduction from './sections/Introduction/FinalIntroduction'
 import FinishedIntro from './sections/Introduction/FinishedIntro'
@@ -65,6 +64,11 @@ const App = () => {
   
     const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
 
+    if (userData.data.getAccount == null) {
+      setNotFinishedTutorial(false)
+      return
+    }
+
     console.log('loop')
 
     setCheckFT(false)
@@ -88,7 +92,6 @@ const App = () => {
     {link: '/lost_task', component: <LostTask />},
     {link: '/make_calls', component: <MakeAPICalls />},
     {link: '/choose_pokemon', component: <ChoosePokemon />},
-    {link: '/choose_starter', component: <ChooseStarter />},
     {link: '/user_pokemon', component: <UsersPokemon />},
     {link: '/store', component: <Store />},
     {link: '/completed_purchase', component: <CompletedPurchase />},

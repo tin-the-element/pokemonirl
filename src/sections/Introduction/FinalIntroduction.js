@@ -18,15 +18,11 @@ function FinalIntroduction(){
   const history = useHistory()
 
   function to_wiki() {
-    history.push({
-        pathname: "/wiki",
-        })
+    window.location.href = '/wiki'
   }   
 
   function to_list_tasks() {
-    history.push({
-        pathname: "/list_tasks",
-        })
+    window.location.href = '/list_tasks'
   }   
 
   return (

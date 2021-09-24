@@ -54,11 +54,11 @@ function Task(){
             }
           },  limit: 100000000}});
 
-          newPokemons = pokemonData.data.listUserPokemons.items
+          var usersPokemons = pokemonData.data.listUserPokemons.items
 
-          for (var key in newPokemons) {
-            if (pokemonIds.includes(newPokemons[key].id)) {
-              newPokemons.push(newPokemons[key])
+          for (var key in usersPokemons) {
+            if (pokemonIds.includes(usersPokemons[key].id)) {
+              newPokemons.push(usersPokemons[key])
             }
           }
 

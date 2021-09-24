@@ -78,7 +78,7 @@ function ProfileMenu() {
 
   function DropdownItem(props) {
     return(
-    <a href={props.link} className="menu-item">
+    <a href={props.link}  className="menu-item">
       <span className="icon-button">{props.leftIcon}</span>
       {props.children}
       <span className="icon-right">{props.rightIcon}</span>
@@ -97,6 +97,7 @@ function ProfileMenu() {
 
   return (
     <div className="dropdown">
+      <h1 style={{textAlign: 'center'}}>Profile Menu</h1>
       {accountData !== null ? 
       <div>
       <h3>{accountData.username}</h3>
@@ -117,6 +118,7 @@ function AboutMenu() {
   function DropdownItem(props) {
     return(
     <a href={props.link} className="menu-item">
+      <h1 style={{textAlign: 'center'}}>About Menu</h1>
       <span className="icon-button">{props.leftIcon}</span>
       {props.children}
       <span className="icon-right">{props.rightIcon}</span>
@@ -148,7 +150,8 @@ function TaskMenu() {
   }
 
   return (
-    <div className="dropdown">
+    <div style={{right: "25px"}} className="dropdown">
+      <h1 style={{textAlign: 'center'}}>Tasks Menu</h1>
       <DropdownItem link="/list_tasks">List Tasks</DropdownItem>
     </div>
   )
@@ -166,7 +169,8 @@ function InventoryMenu() {
   }
 
   return (
-    <div className="dropdown">
+    <div style={{right: "5px"}} className="dropdown">
+      <h1 style={{textAlign: 'center'}}>Inventory Menu</h1>
       <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
       <DropdownItem link="/store">Store</DropdownItem>
     </div>
@@ -178,7 +182,7 @@ function Header(props) {
   const [profileOpen, setProfileOpen] = useState(false);
   const [taskOpen, setTaskOpen] = useState(false);
   const [inventoryOpen, setInventoryOpen] = useState(false);
-  const [aboutOpen, setAboutOpen] = useState(false);
+  // const [aboutOpen, setAboutOpen] = useState(false);
   
   
   function setOpen(type) {
@@ -189,7 +193,7 @@ function Header(props) {
         setProfileOpen(true)
         setTaskOpen(false)
         setInventoryOpen(false)
-        setAboutOpen(false)
+        // setAboutOpen(false)
       }
       
     } else if (type === "task") {
@@ -199,27 +203,28 @@ function Header(props) {
         setProfileOpen(false)
         setTaskOpen(true)
         setInventoryOpen(false)
-        setAboutOpen(false)
+        // setAboutOpen(false)
        }
       
-    } else if (type === "inventory") {
+    } else {
       if (inventoryOpen === true) {
         setInventoryOpen(false)
       } else {
         setProfileOpen(false)
         setTaskOpen(false)
         setInventoryOpen(true)
-        setAboutOpen(false)
+        // setAboutOpen(false)
       }
-    } else {
-      if (aboutOpen === true) {
-        setAboutOpen(false)
-      } else {
-        setProfileOpen(false)
-        setTaskOpen(false)
-        setInventoryOpen(false)
-        setAboutOpen(true)
-      }
+    // } else {
+    //   if (aboutOpen === true) {
+    //     setAboutOpen(false)
+    //   } else {
+    //     setProfileOpen(false)
+    //     setTaskOpen(false)
+    //     setInventoryOpen(false)
+    //     // setAboutOpen(true)
+    //   }
+    // }
     }
   }
 
@@ -234,7 +239,7 @@ function Header(props) {
           {profileOpen && <ProfileMenu></ProfileMenu>}
     
         </li>
-        <li className="nav-item">
+        <li  className="nav-item">
           <span className="icon-button" onClick={() => setOpen("task")}>
             <TaskIcon />
           </span>
@@ -246,12 +251,12 @@ function Header(props) {
           </span>
           {inventoryOpen && <InventoryMenu></InventoryMenu>}
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <span className="icon-button" onClick={() => setOpen("about")}>
             <AboutIcon />
           </span>
           {aboutOpen && <AboutMenu></AboutMenu>}
-        </li>
+        </li> */}
       </Navbar>
   )
 }

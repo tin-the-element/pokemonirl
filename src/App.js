@@ -98,6 +98,7 @@ const App = () => {
     {link: '/finished_intro', component: <FinishedIntro />},
     {link: '/wiki', component: <Wiki />},
     {link: '/leaderboard', component: <Leaderboard />}
+    // {link: '/make_calls', component:<MakeAPICalls/>}
   ]
 
   return (

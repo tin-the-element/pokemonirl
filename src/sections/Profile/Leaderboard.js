@@ -34,22 +34,23 @@ function Leaderboard() {
         accountsDataList.sort(sortMostPokemon)
         setMostPokemon(accountsDataList.slice(0, 10))
 
-        console.log(pokemonDataList)
+        console.log(accountsDataList.sort(sortMostPokemon))
         pokemonDataList.sort(sortLevelPokemon)
         setHighestPokemon(pokemonDataList.slice(0, 10))
         setLoadData(false)
     }
 
     function sortMostTasks(a, b) {
-        return a.completed_tasks.size - b.completed_tasks.size
+        return b.completed_tasks.length - a.completed_tasks.length
     }
 
     function sortMostPokemon(a, b) {
-        return a.users_pokemon.size - b.users_pokemon.size
+        console.log(a.users_pokemon)
+        return b.users_pokemon.length - a.users_pokemon.length 
     }
 
     function sortLevelPokemon(a, b) {
-        return a.level - b.level
+        return b.level - a.level
     }
     
     return (    
@@ -65,7 +66,6 @@ function Leaderboard() {
             {mostTasks.map((data, key) => (
                 <tr key={key}>
                     <td>{key + 1}</td>
-                    {console.log(data)}
                     <td>{data.username}</td>
                     <td>{data.completed_tasks.length}</td>
                 </tr>
@@ -83,7 +83,6 @@ function Leaderboard() {
             {mostPokemon.map((data, key) => (
                 <tr key={key}>
                     <td>{key + 1}</td>
-                    {console.log(data)}
                     <td>{data.username}</td>
                     <td>{data.users_pokemon.length}</td>
                 </tr>
@@ -102,7 +101,6 @@ function Leaderboard() {
             {highestPokemon.map((data, key) => (
                 <tr key={key}>
                     <td>{key + 1}</td>
-                    {console.log(data)}
                     <td>{data.nickname}</td>
                     <td>{data.pokemon}</td>
                     <td>{data.level}</td>

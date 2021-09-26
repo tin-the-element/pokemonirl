@@ -153,6 +153,10 @@ function MultiTask(){
         const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
         userData.data.getAccount.money += multiTaskData.reward 
         const oldAccountData = userData.data.getAccount
+        if (!oldAccountData.completed_tasks.includes(multiTaskData.id)) {
+          oldAccountData.completed_tasks.push(multiTaskData.id)
+          console.log(oldAccountData.completed_tasks)
+        }
         const newAccountData = {id: oldAccountData.id, username: oldAccountData.username, users_pokemon: oldAccountData.pokemon_list, main_pokemon: oldAccountData.main_pokemon, money: oldAccountData.money, completed_tasks: oldAccountData.completed_tasks}
         const updateUser = await API.graphql(graphqlOperation(mutations.updateAccount, {input: newAccountData}))
 

@@ -101,6 +101,7 @@ const ListTasks = () => {
         multiTasks.map((task, index) => (
           <div className="battle_item center-div" onClick={() => toMulti(task.id)} key={task.id ? task.id : index}>
             
+            {finishedTasks.includes(task.id) ? <Completed className="battle_item_completed"/>: <></>}
             <h3>{task.name}</h3>
             <p className="battle_item_text">{task.question}</p>
             <img style={{height: '100px', width: '150px', objectFit: 'cover'}} alt={task.name} src={'/assets/multi_tasks/' + task.images + '0.jpg'} />
@@ -116,6 +117,7 @@ const ListTasks = () => {
         riddleTasks.map((task, index) => (
           <div className="battle_item center-div" onClick={() => toRiddle(task.id)} key={task.id ? task.id : index}>
             
+            {finishedTasks.includes(task.id) ? <Completed className="battle_item_completed"/>: <></>}
             <h3>{task.name}</h3>
             <p className="battle_item_text">{task.question}</p>
             <img style={{height: '100px', width: '150px', objectFit: 'cover'}} alt={task.name} src={'/assets/riddle_tasks/' + task.images + '.jpg'} />

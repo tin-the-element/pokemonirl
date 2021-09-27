@@ -1,215 +1,20 @@
 @import 'https://fonts.googleapis.com/css2?family=VT323';
-body {
-  background-color: #231E1E;
-  color: white;
-  font-family: "Roboto";
-  margin: 0;
-  position: relative;
-  min-height: 95vh;
-  padding-bottom: 2.5rem;
+@keyframes visible {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
 }
-
-a {
-  color: #1ecbe1;
+@keyframes electric_shake {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 1%;
+  }
 }
-
-.center-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.row-div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.col-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.tasks_title_div {
-  margin-top: 20px;
-  width: 600px;
-  display: flex;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  color: white;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/tasks.jpg") no-repeat center/100%;
-}
-.tasks_title_div h1 {
-  margin: 10px 0 10px 0;
-  font-size: 3rem;
-}
-
-.store_title_div {
-  margin-top: 20px;
-  width: 600px;
-  display: flex;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  color: white;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/store.jpg") no-repeat center/100%;
-}
-.store_title_div h1 {
-  margin: 10px 0 10px 0;
-  font-size: 3rem;
-}
-
-.pokemon_title_div {
-  margin-top: 20px;
-  width: 600px;
-  display: flex;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  color: white;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/pokemon.jpg") no-repeat center/100%;
-}
-.pokemon_title_div h1 {
-  margin: 10px 0 10px 0;
-  font-size: 3rem;
-}
-
-.shelter_title_div {
-  margin-top: 20px;
-  width: 600px;
-  display: flex;
-  justify-content: center;
-  background-size: cover;
-  background-position: center;
-  color: white;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/shelter.jpg") no-repeat center/100%;
-}
-.shelter_title_div h1 {
-  margin: 10px 0 10px 0;
-  font-size: 3rem;
-}
-
-/* <nav> */    
-.navbar {
-  display: flex;
-  justify-content: flex-end;
-  height: auto;
-  padding: 0 1rem;
-  border-bottom: 1px solid white;
-}
-
-.hidden-nav {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  justify-content: flex-end;
-  max-width: 100%;
-  height: 100%;
-  list-style: none;
-  visibility: hidden;
-}
-
-/* <ul> */  
-.navbar-nav {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  justify-content: flex-end;
-  max-width: 100%;
-  height: 100%;
-  list-style: none;
-}
-
-.nav-title {
-  justify-self: center;
-  align-self: center;
-  text-align: center;
-  margin: auto;
-  font-family: "VT323";
-  font-size: 4rem;
-}
-
-.nav-item {
-  width: calc(100px * 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Icon Button */
-.icon-button {
-  width: calc(100px * 0.5);
-  height: calc(100px * 0.5);
-  background-color: white;
-  border-radius: 50%;
-  padding: 5px;
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: filter 300ms;
-}
-
-.icon-button:hover {
-  filter: brightness(0.6);
-}
-
-.icon-button svg {
-  width: 35px;
-  height: 35px;
-}
-
-.dropdown {
-  background: black;
-  border: 1px solid #474a4d;
-  border-radius: 8px;
-  position: absolute;
-  top: calc(100px + 20px);
-  width: 300px;
-  padding: 1rem;
-  overflow: hidden;
-  transition: height 500ms ease;
-  z-index: 10;
-}
-
-.menu {
-  width: 100%;
-}
-
-.menu-item {
-  height: 50px;
-  display: flex;
-  align-items: center;
-  transition: background 500ms;
-  padding: 1rem;
-  border: 1px white solid;
-}
-
-.menu-item:hover {
-  background-color: #525357;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  border-top: 1px solid white;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-}
-.footer div {
-  width: auto;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
 .battle_div {
   display: flex;
   flex-direction: row;
@@ -372,26 +177,10 @@ a {
   animation: visible 2s;
 }
 
-@keyframes visible {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 1%;
-  }
-}
 .electric_transition {
   animation: electric_shake 1s;
 }
 
-@keyframes electric_shake {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 1%;
-  }
-}
 .normal_layer {
   background-color: #A8A77A;
   position: absolute;
@@ -989,6 +778,217 @@ a {
 
 .next_step {
   justify-content: space-between;
+}
+
+body {
+  background-color: #231E1E;
+  color: white;
+  font-family: "Roboto";
+  margin: 0;
+  position: relative;
+  min-height: 95vh;
+  padding-bottom: 2.5rem;
+}
+
+a {
+  color: #1ecbe1;
+}
+
+.center-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.col-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tasks_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/tasks.jpg") no-repeat center/100%;
+}
+.tasks_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
+.store_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/store.jpg") no-repeat center/100%;
+}
+.store_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
+.pokemon_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/pokemon.jpg") no-repeat center/100%;
+}
+.pokemon_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
+.shelter_title_div {
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../title_images/shelter.jpg") no-repeat center/100%;
+}
+.shelter_title_div h1 {
+  margin: 10px 0 10px 0;
+  font-size: 3rem;
+}
+
+/* <nav> */    
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  height: auto;
+  padding: 0 1rem;
+  border-bottom: 1px solid white;
+}
+
+.hidden-nav {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  justify-content: flex-end;
+  max-width: 100%;
+  height: 100%;
+  list-style: none;
+  visibility: hidden;
+}
+
+/* <ul> */  
+.navbar-nav {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  justify-content: flex-end;
+  max-width: 100%;
+  height: 100%;
+  list-style: none;
+}
+
+.nav-title {
+  justify-self: center;
+  align-self: center;
+  text-align: center;
+  margin: auto;
+  font-family: "VT323";
+  font-size: 4rem;
+}
+
+.nav-item {
+  width: calc(100px * 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon Button */
+.icon-button {
+  width: calc(100px * 0.5);
+  height: calc(100px * 0.5);
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+}
+
+.icon-button:hover {
+  filter: brightness(0.6);
+}
+
+.icon-button svg {
+  width: 35px;
+  height: 35px;
+}
+
+.dropdown {
+  background: black;
+  border: 1px solid #474a4d;
+  border-radius: 8px;
+  position: absolute;
+  top: calc(100px + 20px);
+  width: 300px;
+  padding: 1rem;
+  overflow: hidden;
+  transition: height 500ms ease;
+  z-index: 10;
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  transition: background 500ms;
+  padding: 1rem;
+  border: 1px white solid;
+}
+
+.menu-item:hover {
+  background-color: #525357;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+}
+.footer div {
+  width: auto;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 /*# sourceMappingURL=style.css.map */

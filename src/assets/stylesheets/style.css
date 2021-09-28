@@ -944,6 +944,32 @@ a {
   height: 35px;
 }
 
+/* Icon Button */
+.dropdown-icon-button {
+  width: calc(100px * 0.5);
+  height: calc(100px * 0.5);
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+}
+
+.dropdown-icon-button:hover {
+  filter: brightness(0.6);
+}
+
+.dropdown-icon-button svg {
+  width: 50px;
+  height: 50px;
+}
+
+.dropdown-text {
+  margin-left: 10px;
+}
+
 .dropdown {
   background: black;
   border: 1px solid #474a4d;
@@ -968,6 +994,8 @@ a {
   transition: background 500ms;
   padding: 1rem;
   border: 1px white solid;
+  text-decoration: none;
+  color: white;
 }
 
 .menu-item:hover {

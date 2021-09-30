@@ -77,6 +77,7 @@ const ListTasks = () => {
       
     <div className="center-div" style={{marginBottom: "20px"}}>
       <div className="tasks_title_div"><h1>Tasks</h1></div>
+      <h3>Tip: You can still do a task even if you have finished it!</h3>
       <h1>Single Step Tasks</h1>
       <h3 className="task_descriptions">Tasks where the solution is a specific type</h3>
       <div className="battle_list">

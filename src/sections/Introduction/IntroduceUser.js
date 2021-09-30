@@ -52,7 +52,7 @@ function IntroduceUser() {
     return (
         <div className="center-div">
             <h1>Welcome {username}! </h1>
-            <p>My name is Professor ____ and welcome to the world of Real Life!</p>
+            <p>My name is Professor Tim and welcome to the world of Real Life!</p>
             <p>In this world you have Pokemon that help you with completing tasks that help the world and yourself. Your goal in this world is to...</p>
             <h3>Have fun!!</h3>
             <p>In the world of Real Life no one in the world can restrict what you are able to do with you and your Pokemon. You can collect all the Pokemon, </p>

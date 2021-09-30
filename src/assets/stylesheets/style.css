@@ -175,10 +175,7 @@
 
 .effect_transition {
   animation: visible 2s;
-}
-
-.electric_transition {
-  animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .normal_layer {
@@ -193,6 +190,7 @@
 
 .normal_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .normal_step_box {
@@ -212,6 +210,7 @@
 
 .fire_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .fire_step_box {
@@ -231,6 +230,7 @@
 
 .water_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .water_step_box {
@@ -250,6 +250,7 @@
 
 .grass_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .grass_step_box {
@@ -269,6 +270,7 @@
 
 .electric_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .electric_step_box {
@@ -288,6 +290,7 @@
 
 .ice_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .ice_step_box {
@@ -307,6 +310,7 @@
 
 .fighting_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .fighting_step_box {
@@ -326,6 +330,7 @@
 
 .poison_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .poison_step_box {
@@ -345,6 +350,7 @@
 
 .ground_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .ground_step_box {
@@ -364,6 +370,7 @@
 
 .flying_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .flying_step_box {
@@ -383,6 +390,7 @@
 
 .psychic_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .psychic_step_box {
@@ -402,6 +410,7 @@
 
 .bug_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .bug_step_box {
@@ -421,6 +430,7 @@
 
 .rock_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .rock_step_box {
@@ -440,6 +450,7 @@
 
 .ghost_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .ghost_step_box {
@@ -459,6 +470,7 @@
 
 .dragon_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .dragon_step_box {
@@ -478,6 +490,7 @@
 
 .dark_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .dark_step_box {
@@ -497,6 +510,7 @@
 
 .steel_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .steel_step_box {
@@ -516,6 +530,7 @@
 
 .fairy_transition {
   animation: electric_shake 1s;
+  animation-delay: 0.2s;
 }
 
 .fairy_step_box {

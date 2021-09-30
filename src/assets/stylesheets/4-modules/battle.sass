@@ -142,12 +142,7 @@
 
 .effect_transition
     animation: visible 2s
-
-
-
-
-.electric_transition
-    animation: electric_shake 1s 
+    animation-delay: .2s
 
 
 
@@ -161,6 +156,8 @@ $types: ("normal": #A8A77A, "fire": #EE8130,"water": #6390F0,"grass": #7AC74C,"e
 
     .#{$name}_transition
         animation: electric_shake 1s
+        animation-delay: .2s
+        
 
     .#{$name}_step_box
         border: 1px solid $color

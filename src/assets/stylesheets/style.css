@@ -1,18 +1,18 @@
 @import 'https://fonts.googleapis.com/css2?family=VT323';
 @keyframes visible {
   0% {
-    opacity: 100%;
+    opacity: 100;
   }
   100% {
-    opacity: 1%;
+    opacity: 1;
   }
 }
 @keyframes electric_shake {
   0% {
-    opacity: 100%;
+    opacity: 100;
   }
   100% {
-    opacity: 1%;
+    opacity: 1;
   }
 }
 .battle_div {
@@ -154,7 +154,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  opacity: 0%;
+  opacity: 0;
   position: absolute;
   bottom: 0;
   width: 400px;

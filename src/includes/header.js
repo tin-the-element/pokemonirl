@@ -12,6 +12,12 @@ import { ReactComponent as UserIcon } from '../assets/navbar_icons/user.svg'
 import { ReactComponent as InventoryIcon } from '../assets/navbar_icons/inventory.svg'
 import { ReactComponent as TaskIcon } from '../assets/navbar_icons/task.svg'
 import { ReactComponent as AboutIcon} from '../assets/navbar_icons/about.svg'
+
+import { ReactComponent as PokemonIcon } from '../assets/navbar_icons/pokeball.svg'
+import { ReactComponent as ListTasksIcon } from '../assets/navbar_icons/to-do-list.svg'
+import { ReactComponent as ShopIcon} from '../assets/navbar_icons/shops.svg'
+import { ReactComponent as LeaderboardIcon } from '../assets/navbar_icons/podium.svg'
+import MoonLoader from "react-spinners/MoonLoader";
  
 Amplify.configure(awsExports);
 
@@ -79,7 +85,7 @@ function ProfileMenu() {
   function DropdownItem(props) {
     return(
     <a href={props.link}  className="menu-item">
-      <span className="icon-button">{props.leftIcon}</span>
+      <span className="dropdown-icon-button">{props.leftIcon}</span>
       {props.children}
       <span className="icon-right">{props.rightIcon}</span>
     </a>
@@ -95,6 +101,9 @@ function ProfileMenu() {
     }
   }
 
+  const pokeball_icon = <PokemonIcon />
+  const leaderboard_icon = <LeaderboardIcon />
+
   return (
     <div className="dropdown">
       <h1 style={{textAlign: 'center'}}>Profile Menu</h1>
@@ -103,10 +112,10 @@ function ProfileMenu() {
       <h3>{accountData.username}</h3>
       <h3>{accountData.money} Pokecoins</h3>
       </div>
-       : <div></div>}
+       : <div style={{height: "87px"}}><MoonLoader color={"white"} loading={"true"} size={60} /></div>}
       
-      <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
-      <DropdownItem link="/leaderboard">Leaderboard</DropdownItem>
+      <DropdownItem leftIcon={pokeball_icon} link="/user_pokemon"><h3 className="dropdown-text">Your Pokemon!</h3></DropdownItem>
+      <DropdownItem leftIcon={leaderboard_icon} link="/leaderboard"><h3 className="dropdown-text">Leaderboard</h3></DropdownItem>
       <li className="navbar-section">
         <button onClick={signOut}>Logout</button>
       </li>
@@ -119,7 +128,7 @@ function AboutMenu() {
     return(
     <a href={props.link} className="menu-item">
       <h1 style={{textAlign: 'center'}}>About Menu</h1>
-      <span className="icon-button">{props.leftIcon}</span>
+      <span className="dropdown-icon-button">{props.leftIcon}</span>
       {props.children}
       <span className="icon-right">{props.rightIcon}</span>
     </a>
@@ -142,17 +151,19 @@ function TaskMenu() {
   function DropdownItem(props) {
     return(
     <a href={props.link} className="menu-item">
-      <span className="icon-button">{props.leftIcon}</span>
+      <span className="dropdown-icon-button">{props.leftIcon}</span>
       {props.children}
       <span className="icon-right">{props.rightIcon}</span>
     </a>
     )
   }
 
+  const list_tasks_icon = <ListTasksIcon />
+
   return (
     <div style={{right: "25px"}} className="dropdown">
       <h1 style={{textAlign: 'center'}}>Tasks Menu</h1>
-      <DropdownItem link="/list_tasks">List Tasks</DropdownItem>
+      <DropdownItem leftIcon={list_tasks_icon} link="/list_tasks"><h3 className="dropdown-text">List Tasks</h3></DropdownItem>
     </div>
   )
 }
@@ -161,18 +172,20 @@ function InventoryMenu() {
   function DropdownItem(props) {
     return(
     <a href={props.link} className="menu-item">
-      <span className="icon-button">{props.leftIcon}</span>
+      <span className="dropdown-icon-button">{props.leftIcon}</span>
       {props.children}
       <span className="icon-right">{props.rightIcon}</span>
     </a>
     )
   }
 
+  
+  const store_icon = <ShopIcon />
+
   return (
     <div style={{right: "5px"}} className="dropdown">
       <h1 style={{textAlign: 'center'}}>Inventory Menu</h1>
-      <DropdownItem link="/user_pokemon">Your Pokemon!</DropdownItem>
-      <DropdownItem link="/store">Store</DropdownItem>
+      <DropdownItem leftIcon={store_icon} link="/store"><h3 className="dropdown-text">Store</h3></DropdownItem>
     </div>
   )
 }

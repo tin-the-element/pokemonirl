@@ -32,7 +32,6 @@ const ListTasks = () => {
       const authUser = await Auth.currentAuthenticatedUser()  
       const email = await authUser.attributes.email
       
-
       const userData = await API.graphql({query: queries.getAccount, variables: {id: email}})
       const oldAccountData = userData.data.getAccount
       const finishedTasks = oldAccountData.completed_tasks

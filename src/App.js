@@ -69,8 +69,6 @@ const App = () => {
       return
     }
 
-    console.log('loop')
-
     setCheckFT(false)
     const bool = userData.data.getAccount.finished_tutorial
     if (bool) {
@@ -79,7 +77,6 @@ const App = () => {
       setNotFinishedTutorial(bool)
     }
     
-    console.log(finishedTutorial)
   }
 
   const links_obj = 
